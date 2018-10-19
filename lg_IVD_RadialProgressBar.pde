@@ -1,15 +1,18 @@
 class RadialProgressBar {
-  float x; // changing
-  float speed = 1;
+  int x;
+  int y;
+  int d;
   
-  RadialProgressBar() {
+  
+  RadialProgressBar(int tx, int ty, int td) {
+    x = tx;
+    y = ty;
+    d = td;
   }
   
   void display(float v) {
-    arc(200,200,300,300,0,radians(v*360));
+    arc(x,y,d,d,radians(90),radians(v*480));
+    fill(0);
+    arc(x,y,d+1,d+1,radians(v*480),radians(480));
   }
-  
-  //void move() {
-  //  x = x + speed;    
-  //}
 }

@@ -47,9 +47,9 @@ void setup() {
   switchMainDisplayBottom = new SwitchMainDisplay(0, nColY*4, nColX*6, nColY*2-20);
   switchMainDisplayTop = new SwitchMainDisplay(0, 0, nColX*6, nColY*4);
   /*Radial Progress Bar*/
-  radialProgressBar = new RadialProgressBar();
+  radialProgressBar = new RadialProgressBar(nColX*6+nBorder,nColY*7+40,150);
   /*Speed Slider*/
-  speedSlider = new SpeedSlider(10,10,20,100,0.0);
+  speedSlider = new SpeedSlider(nColX*4+nBorder,nColY*7,20,100,0.2);
 
   /*------Methods------*/
   /*Background*/
@@ -78,11 +78,11 @@ void draw() {
   
   /*Speed Slider*/
   speedSlider.display();
-  println(speedSlider.value());
   /*Radial Progress Bar*/
-  fill(0,0,255);
-  //radialProgressBar.move();
+  noStroke();
+  fill(255);
   radialProgressBar.display(speedSlider.value());
+  stroke(255);
   
   /*Main Display*/ // when I am trying to use push the matrix to create blocks of code the hover effect is not working (it is on the original place, it is not moved with pushMatrix())
   pushMatrix();
