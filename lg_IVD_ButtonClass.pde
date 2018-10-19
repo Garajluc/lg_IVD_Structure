@@ -14,6 +14,13 @@ class Button {
       return false;
     }
   }
+  boolean clickedOut(float x, float y, float width, float height) {
+     if (mouseX >= x && mouseX <= x+width && 
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   Button(float trectX, float trectY, float trectW, float trectH) {
     initColor = color(0);
@@ -25,6 +32,7 @@ class Button {
     nRectY = trectY;
   }
 
+/*Display Bittons*/
   void display() {
     fill(initColor);
     if (rectOver) {
@@ -32,7 +40,8 @@ class Button {
     }
     rect(nRectX, nRectY, nRectW, nRectH);
   }
-
+  
+/*Hover and Update Position of Cursor*/
   void update() {
     if (overRect(nRectX, nRectY, nRectW, nRectH) ) {
       rectOver = true;
@@ -41,6 +50,7 @@ class Button {
     }
   }
 
+/*Change Color when Mouse Pressed*/
   void pressed() {
     if (rectOver) {
       initColor = clickedColor;
@@ -49,6 +59,7 @@ class Button {
     }
   }
 
+/*Change Color and Toggle*/
   void toggle() {
     if (rectOver) {
       initColor = clickedColor;
