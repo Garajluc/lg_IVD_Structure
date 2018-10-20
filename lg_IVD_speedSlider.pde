@@ -23,9 +23,7 @@ class SpeedSlider {
   }
 
   void display() {
-    //strokeWeight(1);
     stroke(255);
-    //noFill();
     rect(x, y, w, h);
 
     bHover = false;
