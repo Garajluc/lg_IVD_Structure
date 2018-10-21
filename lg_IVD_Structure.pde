@@ -1,4 +1,4 @@
-/*------Objects------*/
+/*-----------------------------------Start Objects-----------------------------------*/
 /*Grid*/
 Rect sideBarLeft;
 Rect sideBarRight;
@@ -16,8 +16,17 @@ SwitchMainDisplay switchMainDisplayBottom;
 SwitchMainDisplay switchMainDisplayTop;
 /*Radiap Progress Bar*/
 RadialProgressBar radialProgressBar;
-/*Slider*/
+/*Speed Slider*/
 SpeedSlider speedSlider;
+/*Pressure Progress Bar*/
+ProgressBarPressure[] progressBarPressure = new ProgressBarPressure[15];
+ProgressBarPressure[] progressBarPressure1 = new ProgressBarPressure[15];
+ProgressBarPressure[] progressBarPressure2 = new ProgressBarPressure[15];
+/*Digital Clock*/
+DigitalClock digitalClock;
+/*Color Mode Slider*/
+ColorModeSlider colorModeSlider;
+/*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
 int nBorder = 40; // 2*40=80
@@ -25,10 +34,9 @@ int nColX = 100; // 12*100=1200
 int nColY = 80; // 9*80=720
 float modesButtonIndex;
 
-/*-------Setup-------*/
+/*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
-  background(0);
 
   /*------Initiate the objects------*/
   /*Layout*/
@@ -39,7 +47,7 @@ void setup() {
   /*Buttons*/
   for (int i = 0; i < arBtn.length; i++) {
     arBtn[i] = new Button(nBorder+(i*50), nColY*9-50, 50, 20);
-  }
+  } 
   for (int i = 0; i < vagonBtn.length; i++) {
     vagonBtn[i] = new Button(nColX*9+nBorder+(i*50), nColY*9-50, 50, 20);
   }
@@ -60,22 +68,37 @@ void setup() {
   radialProgressBar = new RadialProgressBar(nColX*6+nBorder, nColY*7+40, 150);
   /*Speed Slider*/
   speedSlider = new SpeedSlider(nColX*5, nColY*6+45, 30, 150, 0.3);
+  /*Pressure Progress Bar*/
+  for (int i = 0; i < progressBarPressure.length; i++) {
+    progressBarPressure[i] = new ProgressBarPressure(nColX*8-50, i*10+nColY*7-30);
+  }
+  for (int i = 0; i < progressBarPressure1.length; i++) {
+    progressBarPressure1[i] = new ProgressBarPressure(nColX*8+50, i*10+nColY*7-30);
+  }
+  for (int i = 0; i < progressBarPressure2.length; i++) {
+    progressBarPressure2[i] = new ProgressBarPressure(nColX*8, i*10+nColY*7-30);
+  }
+  /*Digital Clock*/
+  digitalClock = new DigitalClock();
+  /*Color Mode Slider*/
+  colorModeSlider = new ColorModeSlider();
+}
+/*-----------------------------------End Setup-----------------------------------*/
 
-  /*------Methods------*/
+/*-----------------------------------Start Draw Loop-----------------------------------*/
+void draw() {  
+  background(colorModeSlider.value());
+
   /*Background*/
   pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
   pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
-}
-
-
-/*-------Draw Loop-------*/
-void draw() {  
   /*------Objects------*/
   /*Structure*/
-  sideBarLeft.display();
-  sideBarRight.display();
-  sideBarBottom.display();
-  mainDisplay.display();
+  sideBarLeft.display(colorModeSlider.value());
+  sideBarRight.display(colorModeSlider.value());
+  sideBarBottom.display(colorModeSlider.value());
+  mainDisplay.display(colorModeSlider.value());
+
   /*Buttons*/
   for (int i = 0; i < arBtn.length; i++) {
     arBtn[i].display();
@@ -103,14 +126,63 @@ void draw() {
   }
 
   /*Speed Slider*/
-  fill(0);
-  speedSlider.display();
+  speedSlider.display(colorModeSlider.value(), modesButtonIndex);
+
+  /*Pressure Progress Bar*/
+  for (int i = 0; i < progressBarPressure.length; i++) {
+    progressBarPressure[i].display();
+  }
+  if (frameCount % (60 * 0.65) == 1) {
+    float rn = floor(random(progressBarPressure.length));
+    for (int i = 0; i < progressBarPressure.length; i++) {
+      if (i<rn) {
+        progressBarPressure[i].colorA = 125;
+      } else {
+        color to = color (232, 255, 62);
+        color from = color (255, 62, 143);
+        progressBarPressure[i].colorA = lerpColor(from, to, (float(i)/(i+10)));
+      }
+    }
+  }
+  for (int i = 0; i < progressBarPressure1.length; i++) {
+    progressBarPressure1[i].display();
+  }
+  if (frameCount % (60 * 0.65) == 1) {
+    float rn = 13-map(speedSlider.value(), 0, 1, 0, 15);
+    for (int i = 0; i < progressBarPressure1.length; i++) {
+      if (i<rn) {
+        progressBarPressure1[i].colorA = 125;
+      } else {
+        color to = color (232, 255, 62);
+        color from = color (255, 62, 143);
+        progressBarPressure1[i].colorA = lerpColor(from, to, (float(i)/(i+10)));
+      }
+    }
+  }
+  for (int i = 0; i < progressBarPressure2.length; i++) {
+    progressBarPressure2[i].display();
+  }
+  if (frameCount % (60 * 0.65) == 1) {
+    float rn = map(speedSlider.value(), 0, 1, 0, 15);
+    for (int i = 0; i < progressBarPressure2.length; i++) {
+      if (i<rn) {
+        progressBarPressure2[i].colorA = 125;
+      } else {
+        color to = color (232, 255, 62);
+        color from = color (255, 62, 143);
+        progressBarPressure2[i].colorA = lerpColor(from, to, (float(i)/(i+10)));
+      }
+    }
+  }
+
   /*Radial Progress Bar*/
   // get the value form slider and set it in radialProgressBar
-  noStroke();
-  //radialProgressBar.display(speedSlider.value());
-  radialProgressBar.modes(speedSlider.value(), modesButtonIndex);
-  stroke(255);
+  radialProgressBar.display(colorModeSlider.value(), speedSlider.value(), modesButtonIndex);
+  /*Digital Clock*/
+  digitalClock.display(colorModeSlider.value());
+
+  /*Color Mode Slider*/
+  colorModeSlider.display();
 
   /*Main Display*/
   pushMatrix();
@@ -119,16 +191,17 @@ void draw() {
   switchMainDisplayBottom.display();
   switchMainDisplayTop.display();
   popMatrix();
-  /*Buttons*/
+  /*Main Display Buttons*/
   for (int i = 0; i < mainDisplayButton.length; i++) {
     mainDisplayButton[i].display();
     mainDisplayButton[i].hover();
   }
 }
+/*-----------------------------------End Draw Loop-----------------------------------*/
 
-/*------Mouse Functions------*/
+/*----------------------------------Start Mouse Functions----------------------------------*/
 void mousePressed() {
-  /*Button Get Color*/
+  /*Buttons*/
   for (int i = 0; i < arBtn.length; i++) {
     this.arBtn[i].pressed();
   }
@@ -138,14 +211,10 @@ void mousePressed() {
   for (int i = 0; i < mainDisplayButton.length; i++) { 
     mainDisplayButton[i].pressed();
   }
-  //for (Button m : modesButton) {
-  //  println(m.index);
-  //}
   for (int i = 0; i < modesButton.length; i++) { 
     modesButton[i].pressed();
     modesButton[i].store(i);
   }
-
 
   /*Switch Image Main Display*/
   if (mouseX >= nColX*3+nBorder && mouseX <= nColX*3+nBorder+nColX*6 && 
@@ -163,3 +232,15 @@ void mousePressed() {
     switchMainDisplayTop.screenTwo();
   }
 }
+
+void mouseDragged() {
+  if (mouseX >= 50 && mouseX <= 350 && 
+    mouseY >= 440 && mouseY <= 470) {
+    colorModeSlider.move();
+  }
+}
+/*----------------------------------End Mouse Functions----------------------------------*/
+
+//for (Button m : modesButton) {
+//  println(m.index);
+//}

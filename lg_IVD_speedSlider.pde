@@ -4,26 +4,28 @@ class SpeedSlider {
   int y;
   int w;
   int h;
+  float colorMode;
 
-  float v;// value
-  float rv;// remainder value (e.g. when v = 0.6, rv = 0.4)
-  float value() {return v;}
+  float v;
+  float rv;
+  float value() {
+    return v;
+  }
 
   boolean bHover;
 
-  // constructor
   SpeedSlider(int tx, int ty, int tw, int th, float tv) {
     x = tx;
     y = ty;
     w = tw;
     h = th;
     v = tv;
-    // set the remainder value of v
     rv = 1.0 - v;
   }
 
-  void display() {
+  void display(float colorMode, float modesButtonIndex) {
     stroke(255);
+    fill(colorMode);
     rect(x, y, w, h);
 
     bHover = false;
@@ -36,15 +38,26 @@ class SpeedSlider {
       bHover = true;
     }
 
-    if (bHover && mousePressed) {
-      noFill();
+    if (modesButtonIndex == 0 && bHover && mousePressed) {
       v = 1.0 - ((mouseY - y)/float(h));
       constrain(rv, 0.0, 1.0);
       rv = 1.0 - v;
+    } else if (modesButtonIndex == 1) {
+      rv = 0.75;
+      v = 0.25;
+    } else if (modesButtonIndex == 2) {
+      rv = 0.50;
+      v = 0.50;
+    } else if (modesButtonIndex == 3) {
+      rv = 0.25;
+      v = 0.75;
+    } else if (modesButtonIndex == 4) {
+      rv = 0.0;
+      v = 1.0;
     }
-
-    //noStroke();
-    fill(255);
-    rect(x, y + (rv * h), w, v * h);
+    noStroke();
+    fill(255-colorMode);
+    rect(x+1, y + (rv * h), w-1, v * h);
+    fill(0);
   }
 }
