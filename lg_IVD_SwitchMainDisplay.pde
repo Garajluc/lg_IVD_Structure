@@ -1,58 +1,69 @@
 class SwitchMainDisplay {
   int nCurrentScreen;
-  int nColX = 100;
-  int nColY = 80;
+  //int nColX = 100;
+  //int nColY = 80;
   int x;
   int y;
   int w;
   int h;
-  int alpha = 1;
+  //int alpha = 1;
+  PImage image1; 
+  PImage image2;
+  PImage image3;
 
-  SwitchMainDisplay(int tx, int ty, int tw, int th) {
+  SwitchMainDisplay(int tx, int ty, int tw, int th, PImage timage1, PImage timage2, PImage timage3) {
     x = tx;
     y = ty;
     w = tw;
     h = th;
+    image1 = timage1;
+    image2 = timage2;
+    image3 = timage3;
   }
-/*Switch by Clicking in Area*/ 
+  
+  /*Switch by Clicking in Area*/
   void display() {
     switch(nCurrentScreen) {
-      case 0: drawScreenZero(); break;
-      case 1: drawScreenOne(); break;
-      case 2: drawScreenTwo(); break;
+    case 0: 
+      drawScreenZero(); 
+      break;
+    case 1: 
+      drawScreenOne(); 
+      break;
+    case 2: 
+      drawScreenTwo(); 
+      break;
     }
   }
-  
+
   void drawScreenZero() {
-    fill(255,0,0);
-    rect(x,y,w,h);
+    image(image1,x,y,w,h);
   }
+
   void drawScreenOne() {
-    fill(0,255,0);
-    rect(x,y,w,h);
+    image(image2,x,y,w,h);
   }
   void drawScreenTwo() {
-    fill(0,0,255);
-    rect(x,y,w,h);
+    image(image3,x,y,w,h);
   }
-  
-    void switchScreen() {
+
+  void switchScreen() {
     nCurrentScreen++;
-    if(nCurrentScreen > 2) {
+    if (nCurrentScreen > 2) {
       nCurrentScreen = 0;
     }
   }
 
-/*Switch by Clicking on Button*/
+  /*Switch by Clicking on Button*/
   void screenZero() {
     nCurrentScreen = 0;
   }
-  
+
   void screenOne() {
     nCurrentScreen = 1;
   }
-  
-    void screenTwo() {
+
+  void screenTwo() {
     nCurrentScreen = 2;
   }
 }

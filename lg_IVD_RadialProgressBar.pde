@@ -1,10 +1,12 @@
 class RadialProgressBar {
-  int x;
-  int y;
-  int d;
-  float rad;
+  int x; //xpos
+  int y; //ypos
+  int d; // diameter
+  float deg; //degree
   String speed;
   float colorMode;
+  float increment = 0.001;
+  float currentValue;
 
 
   RadialProgressBar(int tx, int ty, int td) {
@@ -13,31 +15,41 @@ class RadialProgressBar {
     d = td;
   }
 
-  void display(float colorMode, float v, float modesButtonIndex) {
+  void display(float colorMode, float targetValue) {
     noStroke();
-    if (modesButtonIndex == 0) {
-      rad = v*360;
-      speed = nf(int(v*100));
-    } else if (modesButtonIndex == 1) {
-      rad = 90;
-      speed = "25";
-    } else if (modesButtonIndex == 2) {
-      rad = 180;
-      speed = "50";
-    } else if (modesButtonIndex == 3) {
-      rad = 270;
-      speed = "75";
-    } else if (modesButtonIndex == 4) {
-      rad = 360;
-      speed = "100";
+    if (currentButton3 == 0) {
+      if ( currentValue <= targetValue) {
+        currentValue = currentValue + increment;
+      } 
+      if (currentValue >= targetValue) {
+        currentValue = currentValue - increment;
+      }
+      deg = currentValue*180;
+    } else if (currentButton3 == 1) {
+      targetValue = 0.25;
+    } else if (currentButton3 == 2) {
+      targetValue = 0.50;
+    } else if (currentButton3 == 3) {
+      targetValue = 0.75;
+    } else if (currentButton3 == 4) {
+      targetValue = 1.0;
     }
+
+    if ( currentValue <= targetValue) {
+      currentValue = currentValue + increment;
+    } 
+    if (currentValue >= targetValue) {
+      currentValue = currentValue - increment;
+    }
+    deg = currentValue*180;
+
+    speed = nf(int(currentValue*100));
     fill(255-colorMode);
-    arc(x, y, d, d, 0, radians(rad));
+    arc(x, y, d, d, radians(180), radians(180)+radians(deg)); 
     fill(colorMode);
-    arc(x, y, d+1, d+1, radians(rad), radians(360));
     fill(255, 0, 0);
-    textSize(35);
-    text(speed + "%", 640-30, 80*7+40+15);
+    textSize(32);
+    text(int(speed)+1, 620, 80*8+40);
     fill(0);
   }
 }
