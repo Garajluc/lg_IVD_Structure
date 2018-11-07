@@ -1,2 +1,0 @@
-I have created a text file.
-I want to practice vreating of pull request
