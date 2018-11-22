@@ -14,7 +14,8 @@ class radarUI {
     y = ty;
     w = tw;
     h = th;
-    sideBarLeftUp = new Rect(nBorder, nColY, nColX*3, nColY*3-40);
+    // Outlines of the radar window
+    sideBarLeftUp = new Rect(nBorder, nColY, nColX*2, nColY*3-40);
 
     for (int i = 0; i < arPulse.length; i++) {
       arPulse[i] = new radarPulse(w/2+x, h/2+y, i * 50);

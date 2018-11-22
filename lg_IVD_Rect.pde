@@ -17,26 +17,25 @@ class Rect {
 
   // Methods
   void display(float colorMode, String text) {
-    stroke(255-colorMode);
-    strokeWeight(0.5);
+    stroke(colors[0]); // color of the outlines
+    strokeWeight(1);
     noFill();
-    //rect(a, b, c, d);
+    rect(a, b, c, d);
     // text
-    fill(100,0,200);
-    stroke(100,0,200);
+    fill(colors[0]); // color of text 
     textSize(16);
-    text(text, a+10,b+20);
+    text(text, a+10,b+20); // text and its position
     //line(a+10,b+33,a+c-10, b+33);
     
     //lines in up-right corner
-    stroke(100, 0, 200);
+    //stroke(100, 0, 200);
     //line(a+10, b+30, a+20, b+30); // horizontal
-    line(a+10, b+30, a+c-10, b+30); // horizontal
-    line(a+10, b+30, a+10, b+40); // vertical
+    //line(a+10, b+30, a+c-10, b+30); // horizontal
+    //line(a+10, b+30, a+10, b+40); // vertical
 
     //lines up-left corner
     //line(a+c-10, b+30, a+c-20, b+30); // horizontal
-    line(a+c-10, b+30, a+c-10, b+40); // vertical
+    //line(a+c-10, b+30, a+c-10, b+40); // vertical
 
     //// lines down-right corner
     //line(a+10, b+d-10, a+20, b+d-10); // horizontal

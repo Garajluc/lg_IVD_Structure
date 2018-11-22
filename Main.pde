@@ -13,7 +13,7 @@ ControlPanelUI controlPanel;
 /*Engine Status UI*/
 EngineStatusUI engineStatus;
 /*Radar UI*/
-radarUI radar;
+//radarUI radar;
 /*Audio Visualiser UI*/
 AudioVisualiserUI audioVisualiser;
 /*Main Display UI*/
@@ -35,7 +35,9 @@ int currentButton1 = 0;
 int currentButton2 = 0;
 int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
-//float inversValue;
+int[] colors = {#66C8CB, #19777B, #EBE719}; // Set of color palette
+
+PImage radarBackground;
 
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
@@ -51,7 +53,7 @@ void setup() {
   /*Digital Clock*/
   digitalClock = new DigitalClock(55, 70);
   /*Radar UI*/
-  radar = new radarUI(nBorder, nColY+40, 300, 160);
+  //radar = new radarUI(nBorder, nColY+40, 300, 160);
   /*Audio Visualiser*/
   audioVisualiser = new AudioVisualiserUI(nBorder+10, nColY*4, nColX*3-10, nColY*2);
   /*Control Panel UI*/
@@ -66,8 +68,11 @@ void setup() {
   airCondition = new AirConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
-}
+  
+  radarBackground = loadImage ("layout/radar.png");
 /*-----------------------------------End Setup-----------------------------------*/
+}
+
 
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {  
@@ -91,7 +96,7 @@ void draw() {
   /*Digital Clock and Date */
   digitalClock.display(colorModeSlider.value());
   /*Radar UI*/
-  radar.display();
+  //radar.display();
   /*Audio Visualiser UI*/
   audioVisualiser.display();
   /*Engine Status UI*/
@@ -123,8 +128,11 @@ void draw() {
   if (controlButton[4].initColor == controlButton[4].clickedColor) {
     audioVisualiser.on();
   }
-}
+  
+  image(radarBackground, 40, 80, 200, 200);
 /*-----------------------------------End Draw Loop-----------------------------------*/
+}
+
 
 /*----------------------------------Start Mouse Functions----------------------------------*/
 void mousePressed() {
