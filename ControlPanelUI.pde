@@ -1,6 +1,6 @@
 class ControlPanelUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect sideBarBottom;
+  Frame sideBarBottom;
   SpeedSlider speedSlider;
   RadialProgressBar radialProgressBar;
   Button[] speedModeButton = new Button[5];
@@ -18,7 +18,7 @@ class ControlPanelUI {
     w = tw;
     h = th;
 
-    sideBarBottom = new Rect(x, y, w, h);
+    sideBarBottom = new Frame(x, y, w, h);
     radialProgressBar = new RadialProgressBar(x+300, y+170, 150);
     speedSlider = new SpeedSlider(x+160, y+45, 30, 125, 0.3);
 

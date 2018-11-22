@@ -1,6 +1,6 @@
 class AirConditionUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect sideBarRightBottom;
+  Frame sideBarRightBottom;
   Button[] airConditionButton = new Button[5];
   RandomSlider[] airConditionSlider = new RandomSlider[6];
   RandomSlider heatSlider;
@@ -16,7 +16,7 @@ class AirConditionUI {
     w = tw;
     h = th;
     
-    sideBarRightBottom = new Rect(x,y,w,h);
+    sideBarRightBottom = new Frame(x,y,w,h);
     /*--------------Buttons--------------*/
     for (int i = 0; i < airConditionButton.length; i++) {
       airConditionButton[i] = new Button(x+(i*52)+20, y+nColY*3-50, 52, 30, i, 1);

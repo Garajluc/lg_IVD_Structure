@@ -1,5 +1,5 @@
 /*Grid/Structure of objects*/
-class Rect {
+class Frame {
   // Global variables
   int a; // x position
   int b; // y position
@@ -8,7 +8,7 @@ class Rect {
   float colorMode;
 
   // Constructor
-  Rect(int ta, int tb, int tc, int td) {
+  Frame(int ta, int tb, int tc, int td) {
     a = ta;
     b = tb;
     c = tc;

@@ -1,25 +1,19 @@
 class Button {
+  /*-----------------------------------Objects-----------------------------------*/
   ModesText[] modesText = new ModesText[5];
 
   int nRectX, nRectY, nRectW, nRectH; //x and y position, width and height dimensions
-  color initColor = color(100, 0, 200, 100); // initial color of button
-  color clickedColor =color(100, 0, 200, 200); // color after click
-  color rectHighlight = color(100, 0, 200, 150); // mouse over the button color
+  color initColor; // initial color of button
+  color clickedColor = colors[0]; // color after click
+  color rectHighlight = colors[1]; // mouse over the button color
   boolean rectOver = false; // mouse over the button
   boolean toggle = false; // toggle change color
-  boolean overRect(float x, float y, float width, float height) {
-    if (mouseX >= x && mouseX <= x+width && 
-      mouseY >= y && mouseY <= y+height) {
-      return true;
-    } else {
-      return false;
-    }
-  }
   int index;
   int btnIndex;
   boolean mouseDown = true;
   int arrayNumber;
-
+  
+  /*-----------------------------------Start Constructor-----------------------------------*/
   Button(int trectX, int trectY, int trectW, int trectH, int ti, int arNum) {
     nRectW = trectW;
     nRectH = trectH;
@@ -32,21 +26,31 @@ class Button {
       modesText[i] = new ModesText(nColX*4-2, nColY*7+i*25-13);
     }
   }
-
-  /*Display Buttons*/
+  /*-----------------------------------End Constructor-----------------------------------*/
+  
+  /*-----------------------------------Start Methods-----------------------------------*/
   void display() {
     strokeWeight(1);
-    stroke(100, 0, 200);
+    stroke(colors[0]);
     fill(initColor);
-    if (toggle) {
-      initColor = clickedColor;
-    } else if (!toggle) {
-      initColor = color(100, 0, 200, 100);
-    }
-    if (rectOver) {
+
+    if (rectOver) { // when is cursor over the are the button highlights
       fill(rectHighlight);
     }
-    rect(nRectX, nRectY, nRectW, nRectH);
+    // toto musi byt pod condition rectOver inak mi nefunguje highlight
+    rect(nRectX, nRectY, nRectW, nRectH); // creating the button
+    fill(colors[0]);
+    ellipse(nRectX+nRectH/2, nRectY+nRectH/2, 3, 3);
+
+    if (toggle) { // color toggle on click between buttons in one array
+      initColor = clickedColor;
+      stroke(colors[3]);
+      fill(colors[3]);
+      ellipse(nRectX+nRectH/2, nRectY+nRectH/2, 3, 3);
+    } else if (!toggle) {
+      initColor = colors[3];
+    }
+
     /*modeText*/
     for (int i = 0; i < modesText.length; i++) {
       modesText[i].displayMode(i+1);
@@ -56,7 +60,8 @@ class Button {
 
   /*Hover and Update Position of Cursor*/
   void hover() {
-    if (overRect(nRectX, nRectY, nRectW, nRectH) ) {
+    if (mouseX >= nRectX && mouseX <= nRectX+nRectW && 
+      mouseY >= nRectY && mouseY <= nRectY+nRectH ) {
       rectOver = true;
     } else {
       rectOver = false;
@@ -92,4 +97,5 @@ class Button {
       toggle = !toggle;
     }
   }
+  /*-----------------------------------End Methods-----------------------------------*/
 }

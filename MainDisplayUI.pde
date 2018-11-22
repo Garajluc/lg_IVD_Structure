@@ -7,7 +7,7 @@ PImage flow;
 
 class MainDisplayUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect mainDisplayUp;
+  Frame mainDisplayUp;
   SwitchMainDisplay switchMainDisplayBottom;
   SwitchMainDisplay switchMainDisplayTop;
   Button[] mainDisplayButton = new Button[3];
@@ -21,7 +21,7 @@ class MainDisplayUI {
     text = loadImage("text.jpg");
     flow = loadImage("flow.jpg");
 
-    mainDisplayUp = new Rect(nColX*3+nBorder, 0, nColX*6, nColY*6);
+    mainDisplayUp = new Frame(nColX*3+nBorder, 0, nColX*6, nColY*6);
     switchMainDisplayTop = new SwitchMainDisplay(nColX*3+40+15, 50, nColX*6-30, nColY*3+20, location, wind, camera);
     switchMainDisplayBottom = new SwitchMainDisplay(nColX*3+55, nColY*4+20, nColX*6-30, nColY*2-40, wave, text, flow);
 

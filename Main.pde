@@ -1,8 +1,9 @@
 /*-----------------------------------Start Objects-----------------------------------*/
 /*Buttons*/
-Button[] controlButton = new Button[5];
+//Button[] controlButton = new Button[5];
+
 /*Icons*/
-Icons icons;
+//Icons icons;
 
 /*Digital Clock */
 DigitalClock digitalClock;
@@ -13,16 +14,16 @@ ControlPanelUI controlPanel;
 /*Engine Status UI*/
 EngineStatusUI engineStatus;
 /*Radar UI*/
-//radarUI radar;
+radarUI radar;
 /*Audio Visualiser UI*/
 AudioVisualiserUI audioVisualiser;
+QueryPanel queryPanel;
 /*Main Display UI*/
 MainDisplayUI mainDisplay;
 /*CarriageUI*/
 CarriageUI carriage;
 /*Air Condition UI*/
 AirConditionUI airCondition;
-
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -36,33 +37,25 @@ int currentButton1 = 0;
 int currentButton2 = 0;
 int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
-int[] colors = {#66C8CB, #19777B, #EBE719}; // Set of color palette
-
-
-
-
-
-
-Rect sideBarLeftUp;
-PImage radarBackground;
-
+int[] colors = {#66C8CB, #19777B, #EBE719, #000000}; // Set of color palette
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
 
   /*------Initiate the objects------*/
   /*Buttons*/
-  for (int i = 0; i < controlButton.length; i++) {
-    controlButton[i] = new Button(nBorder+20+(i*52), nColY*9-50, 52, 30, i, 0);
-  } 
+  //for (int i = 0; i < controlButton.length; i++) {
+  //  controlButton[i] = new Button(nBorder+20+(i*52), nColY*9-50, 52, 30, i, 0);
+  //} 
   /*Icons*/
-  icons = new Icons("icon_", 5, nBorder+20, nColY*8+30);
+  //icons = new Icons("icon_", 5, nBorder+20, nColY*8+30);
   /*Digital Clock*/
   digitalClock = new DigitalClock(55, 70);
   /*Radar UI*/
-  //radar = new radarUI(nBorder, nColY+40, 300, 160);
+  radar = new radarUI();
   /*Audio Visualiser*/
   audioVisualiser = new AudioVisualiserUI(nBorder+10, nColY*4, nColX*3-10, nColY*2);
+  queryPanel = new QueryPanel();
   /*Control Panel UI*/
   controlPanel = new ControlPanelUI(nColX*3+nBorder, nColY*6, nColX*6, nColY*3);
   /*Engine Status UI*/
@@ -75,13 +68,6 @@ void setup() {
   airCondition = new AirConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
-  
-  
-  
-  
-  
-  sideBarLeftUp = new Rect(nBorder, nColY, nColX*2, nColY*3-40);
-  radarBackground = loadImage ("layout/radar.png");
 /*-----------------------------------End Setup-----------------------------------*/
 }
 
@@ -99,18 +85,19 @@ void draw() {
 
   /*------Objects------*/
   /*Buttons*/
-  for (int i = 0; i < controlButton.length; i++) {
-    controlButton[i].display();
-    controlButton[i].hover();
-  }
+  //for (int i = 0; i < controlButton.length; i++) {
+  //  controlButton[i].display();
+  //  controlButton[i].hover();
+  //}
   /*Icons*/
-  icons.display();
+  //icons.display();
   /*Digital Clock and Date */
   digitalClock.display(colorModeSlider.value());
   /*Radar UI*/
-  //radar.display();
+  radar.display();
   /*Audio Visualiser UI*/
   audioVisualiser.display();
+  queryPanel.display();
   /*Engine Status UI*/
   engineStatus.display();
   /*Main Display UI*/
@@ -133,19 +120,13 @@ void draw() {
   }
 
   /*Color Mode Slider*/
-  if (controlButton[0].initColor == controlButton[0].clickedColor) {
-    colorModeSlider.display();
-    colorModeSlider.move();
-  }
-  if (controlButton[4].initColor == controlButton[4].clickedColor) {
-    audioVisualiser.on();
-  }
-  
-  
-  
-  
-  sideBarLeftUp.display();
-  image(radarBackground, 40, 80, 200, 200);
+  //if (controlButton[0].initColor == controlButton[0].clickedColor) {
+  //  colorModeSlider.display();
+  //  colorModeSlider.move();
+  //}
+  //if (controlButton[4].initColor == controlButton[4].clickedColor) {
+  //  audioVisualiser.on();
+  //}
 /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
@@ -153,8 +134,8 @@ void draw() {
 /*----------------------------------Start Mouse Functions----------------------------------*/
 void mousePressed() {
   /*Buttons*/
-  for (int i = 0; i < controlButton.length; i++) {
-    controlButton[i].toggleBtn();
+  for (int i = 0; i < queryPanel.queryButton.length; i++) {
+    queryPanel.queryButton[i].toggleBtn();
   }
   /*Switch Image Main Display*/
   mainDisplay.switchBottomDisplay();
