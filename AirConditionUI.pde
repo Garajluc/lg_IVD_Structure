@@ -33,7 +33,7 @@ class AirConditionUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarRightBottom.display(colorModeSlider.value(), "Carriage Conditions");
+    //sideBarRightBottom.display(colorModeSlider.value(), "Carriage Conditions");
     
     text("Heat:",x+20, y+50);
     text("Light:",x+20, y+80);

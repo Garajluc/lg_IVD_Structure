@@ -45,7 +45,7 @@ class ControlPanelUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarBottom.display(colorModeSlider.value(), "Control Panel");
+    //sideBarBottom.display(colorModeSlider.value(), "Control Panel");
     radialProgressBar.display(colorModeSlider.value(), speedSlider.value());
     speedSlider.display(colorModeSlider.value());
 

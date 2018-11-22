@@ -26,7 +26,7 @@ class radarUI {
   }
 
   void display() {
-    sideBarLeftUp.display(colorModeSlider.value(), "Radar");
+    //sideBarLeftUp.display(colorModeSlider.value(), "Radar");
     
     for (int i=0; i < arPulse.length; i++) {
       arPulse[i].display();

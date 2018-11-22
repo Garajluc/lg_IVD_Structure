@@ -22,6 +22,7 @@ MainDisplayUI mainDisplay;
 CarriageUI carriage;
 /*Air Condition UI*/
 AirConditionUI airCondition;
+
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -37,6 +38,12 @@ int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
 int[] colors = {#66C8CB, #19777B, #EBE719}; // Set of color palette
 
+
+
+
+
+
+Rect sideBarLeftUp;
 PImage radarBackground;
 
 /*-----------------------------------Start Setup-----------------------------------*/
@@ -69,6 +76,11 @@ void setup() {
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
   
+  
+  
+  
+  
+  sideBarLeftUp = new Rect(nBorder, nColY, nColX*2, nColY*3-40);
   radarBackground = loadImage ("layout/radar.png");
 /*-----------------------------------End Setup-----------------------------------*/
 }
@@ -129,6 +141,10 @@ void draw() {
     audioVisualiser.on();
   }
   
+  
+  
+  
+  sideBarLeftUp.display();
   image(radarBackground, 40, 80, 200, 200);
 /*-----------------------------------End Draw Loop-----------------------------------*/
 }

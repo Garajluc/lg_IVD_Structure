@@ -20,7 +20,7 @@ class EngineStatusUI {
   
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarLeftBottom.display(colorModeSlider.value(), "Engine Status");
+    //sideBarLeftBottom.display(colorModeSlider.value(), "Engine Status");
 
     for (int i = 0; i < engineConditionSlider0.length; i++) {
       engineConditionSlider0[i].displayEngine();

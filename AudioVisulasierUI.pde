@@ -30,7 +30,7 @@ class AudioVisualiserUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarLeftMiddle.display(colorModeSlider.value(), "Speaker");
+    //sideBarLeftMiddle.display(colorModeSlider.value(), "Speaker");
     // call ellipses
     stroke(100, 0, 200);
     for (int i = 0; i < 57; i++) {

@@ -14,7 +14,7 @@ class CarriageUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarRightUp.display(colorModeSlider.value(), "Carriage");
+    //sideBarRightUp.display(colorModeSlider.value(), "Carriage");
     for (int i = 0; i < carriage.length; i++) {
       carriage[i].display();
     }
