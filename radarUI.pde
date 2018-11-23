@@ -1,15 +1,15 @@
 class radarUI {
   Frame radarFrame;
-  PShape radarBackground;
+  PImage radarBackground;
   
   radarUI() {
     radarFrame = new Frame(nBorder, nColY, nColX*2, nColY*3-40);
-    radarBackground = loadShape ("layout/radar.svg");
+    radarBackground = loadImage ("layout/radar.png");
   }
   
  void  display() {
     radarFrame.display();
-    shape(radarBackground, nBorder, nColY);
+    image(radarBackground, nBorder, nColY);
   }
 }
 

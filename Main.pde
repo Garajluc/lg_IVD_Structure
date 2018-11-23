@@ -1,10 +1,4 @@
 /*-----------------------------------Start Objects-----------------------------------*/
-/*Buttons*/
-//Button[] controlButton = new Button[5];
-
-/*Icons*/
-//Icons icons;
-
 /*Digital Clock */
 DigitalClock digitalClock;
 /*Color Mode Slider*/
@@ -37,20 +31,18 @@ int currentButton1 = 0;
 int currentButton2 = 0;
 int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
-int[] colors = {#66C8CB, #19777B, #EBE719, #000000}; // Set of color palette
+int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
+PFont pressStart;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
+  pixelDensity(displayDensity());
+  smooth(2);
+  pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
 
   /*------Initiate the objects------*/
-  /*Buttons*/
-  //for (int i = 0; i < controlButton.length; i++) {
-  //  controlButton[i] = new Button(nBorder+20+(i*52), nColY*9-50, 52, 30, i, 0);
-  //} 
-  /*Icons*/
-  //icons = new Icons("icon_", 5, nBorder+20, nColY*8+30);
   /*Digital Clock*/
-  digitalClock = new DigitalClock(55, 70);
+  digitalClock = new DigitalClock(40, 55);
   /*Radar UI*/
   radar = new radarUI();
   /*Audio Visualiser*/
@@ -76,21 +68,14 @@ void setup() {
 void draw() {  
   background(colorModeSlider.value());
   fill(255);
-  textSize(32);
-  text("C-MIST", 50, 40);
+  textFont(pressStart); // setting the overall font
+  textSize(10); // the smalest still readable size of font
 
   /*Background*/
   pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
   pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
 
   /*------Objects------*/
-  /*Buttons*/
-  //for (int i = 0; i < controlButton.length; i++) {
-  //  controlButton[i].display();
-  //  controlButton[i].hover();
-  //}
-  /*Icons*/
-  //icons.display();
   /*Digital Clock and Date */
   digitalClock.display(colorModeSlider.value());
   /*Radar UI*/
@@ -118,15 +103,6 @@ void draw() {
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
   }
-
-  /*Color Mode Slider*/
-  //if (controlButton[0].initColor == controlButton[0].clickedColor) {
-  //  colorModeSlider.display();
-  //  colorModeSlider.move();
-  //}
-  //if (controlButton[4].initColor == controlButton[4].clickedColor) {
-  //  audioVisualiser.on();
-  //}
 /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 

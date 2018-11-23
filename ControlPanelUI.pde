@@ -8,7 +8,7 @@ class ControlPanelUI {
   ProgressBarPressure[] progressBarPressure = new ProgressBarPressure[12];
   ProgressBarPressure[] progressBarPressure1 = new ProgressBarPressure[12];
   ProgressBarPressure[] progressBarPressure2 = new ProgressBarPressure[12];
-
+  /*-----------------------------------Variables-----------------------------------*/
   int x, y, w, h;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
