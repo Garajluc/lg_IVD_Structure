@@ -49,7 +49,7 @@ void setup() {
   audioVisualiser = new AudioVisualiserUI(nBorder+10, nColY*4, nColX*3-10, nColY*2);
   queryPanel = new QueryPanel();
   /*Control Panel UI*/
-  controlPanel = new ControlPanelUI(nColX*3+nBorder, nColY*6, nColX*6, nColY*3);
+  controlPanel = new ControlPanelUI(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
   /*Engine Status UI*/
   engineStatus = new EngineStatusUI();
   /*Main Display UI*/
@@ -60,16 +60,14 @@ void setup() {
   carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
-/*-----------------------------------End Setup-----------------------------------*/
+  /*-----------------------------------End Setup-----------------------------------*/
 }
 
 
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {  
   background(colorModeSlider.value());
-  fill(255);
-  textFont(pressStart); // setting the overall font
-  textSize(10); // the smalest still readable size of font
+  fill(colors[4]);
 
   /*Background*/
   pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
@@ -85,10 +83,10 @@ void draw() {
   queryPanel.display();
   /*Engine Status UI*/
   engineStatus.display();
-  /*Main Display UI*/
-  mainDisplay.display();
   /*Control Panel UI*/
   controlPanel.display();
+  /*Main Display UI*/
+  mainDisplay.display();
   /*Carriage UI*/
   carriage.display();
   /*Air Condition UI*/
@@ -98,12 +96,12 @@ void draw() {
   if (currentButton3 == 3) {
     stroke(100, 0, 200);
     fill(100, 0, 200, 100);
-    rect(nColX*3+40+15, nColY*2,nColX*6-30, nColY*2-40);
-    fill(255,0,0);
+    rect(nColX*3+40+15, nColY*2, nColX*6-30, nColY*2-40);
+    fill(255, 0, 0);
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
   }
-/*-----------------------------------End Draw Loop-----------------------------------*/
+  /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
 

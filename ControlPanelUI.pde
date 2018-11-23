@@ -1,15 +1,16 @@
 class ControlPanelUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame controlPanelFrame;
+
+  ProgressBarPressure[] progressBarPressure = new ProgressBarPressure[2];
+
   SpeedSlider speedSlider;
   RadialProgressBar radialProgressBar;
   Button[] speedModeButton = new Button[5];
   Button[] controlModeButton = new Button[2];
-  ProgressBarPressure[] progressBarPressure = new ProgressBarPressure[12];
-  ProgressBarPressure[] progressBarPressure1 = new ProgressBarPressure[12];
-  ProgressBarPressure[] progressBarPressure2 = new ProgressBarPressure[12];
   /*-----------------------------------Variables-----------------------------------*/
   int x, y, w, h;
+  float currentValue;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   ControlPanelUI(int tx, int ty, int tw, int th) {
@@ -18,9 +19,14 @@ class ControlPanelUI {
     w = tw;
     h = th;
 
-    controlPanelFrame = new Frame(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
+    controlPanelFrame = new Frame(x, y, w, h);
     radialProgressBar = new RadialProgressBar(x+300, y+170, 150);
     speedSlider = new SpeedSlider(x+160, y+45, 30, 125, 0.3);
+
+    /*--------------Pressure Progress Bar--------------*/
+    for (int i = 0; i < progressBarPressure.length; i++) {
+      progressBarPressure[i] = new ProgressBarPressure(x+i*50, y, 9+i*(-2));
+    }
 
     /*--------------Buttons--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
@@ -29,16 +35,6 @@ class ControlPanelUI {
     }
     for (int i = 0; i < controlModeButton.length; i++) {
       controlModeButton[i] = new Button(x+45+(i*55), y+nColY*3-50, 50, 30, i, 0);
-    } 
-    /*--------------Pressure Progress Bar--------------*/
-    for (int i = 0; i < progressBarPressure.length; i++) {
-      progressBarPressure[i] = new ProgressBarPressure(nColX*8-50, i*10+nColY*7-25);
-    }
-    for (int i = 0; i < progressBarPressure1.length; i++) {
-      progressBarPressure1[i] = new ProgressBarPressure(nColX*8+50, i*10+nColY*7-25);
-    }
-    for (int i = 0; i < progressBarPressure2.length; i++) {
-      progressBarPressure2[i] = new ProgressBarPressure(nColX*8, i*10+nColY*7-25);
     }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
@@ -46,9 +42,25 @@ class ControlPanelUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     controlPanelFrame.display();
+
     radialProgressBar.display(colorModeSlider.value(), speedSlider.value());
     speedSlider.display(colorModeSlider.value());
-
+    /*--------------Title--------------*/
+    fill(colors[0]); // #FFF
+    textFont(pressStart);
+    textSize(12);
+    text("Control Panel", x+15, y+20);
+    /*--------------Message--------------*/
+    fill(colors[3], 0);
+    stroke(colors[0]);
+    rect(x+15, y+30, 160, 115);
+    /*--------------Stops--------------*/
+    rect(x+15, y+155, nColX*6+70, 35);
+    /*--------------Pressure Progress Bar--------------*/
+    ///*Pressure Progress Bar_One - follow the speed value*/
+    for (int i = 0; i < progressBarPressure.length; i++) {
+      progressBarPressure[i].display(radialProgressBar.currentValue);
+    }
     /*--------------Button--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
       if (currentButton3 != i)  speedModeButton[i].toggle = false;
@@ -59,50 +71,6 @@ class ControlPanelUI {
     for (int i = 0; i < controlModeButton.length; i++) {
       controlModeButton[i].display();
       controlModeButton[i].hover();
-    }
-
-    /*--------------Pressure Progress Bar--------------*/
-    /*Pressure Progress Bar_Random*/
-    for (int i = 0; i < progressBarPressure.length; i++) {
-      progressBarPressure[i].display();
-    }
-    if (frameCount % (60 * 0.65) == 1) {
-      float rn = floor(random(progressBarPressure.length));
-      for (int i = 0; i < progressBarPressure.length; i++) {
-        if (i<rn) {
-          progressBarPressure[i].colorA = 125;
-        } else {
-          progressBarPressure[i].colorA = lerpColor(progressBarPressure[i].from, progressBarPressure[i].to, (float(i)/(i+5)));
-        }
-      }
-    }
-    /*Pressure Progress Bar_One - follow the speed value*/
-    for (int i = 0; i < progressBarPressure1.length; i++) {
-      progressBarPressure1[i].display();
-    }
-    if (frameCount % (60 * 0.65) == 1) {
-      float rn = 13-map(radialProgressBar.currentValue, 0, 1, 0, 15);
-      for (int i = 0; i < progressBarPressure1.length; i++) {
-        if (i<rn) {
-          progressBarPressure1[i].colorA = 125;
-        } else {
-          progressBarPressure1[i].colorA = lerpColor(progressBarPressure1[i].from, progressBarPressure1[i].to, (float(i)/(i+5)));
-        }
-      }
-    }
-    /*Pressure Progress Bar_Two - follow the speed value*/
-    for (int i = 0; i < progressBarPressure2.length; i++) {
-      progressBarPressure2[i].display();
-    }
-    if (frameCount % (60 * 0.65) == 1) {
-      float rn = map(radialProgressBar.currentValue, 0, 1, 0, 15);
-      for (int i = 0; i < progressBarPressure2.length; i++) {
-        if (i<rn) {
-          progressBarPressure2[i].colorA = 125;
-        } else {
-          progressBarPressure2[i].colorA = lerpColor(progressBarPressure2[i].from, progressBarPressure2[i].to, (float(i)/(i+5)));
-        }
-      }
     }
   }
   /*-----------------------------------End Method-----------------------------------*/

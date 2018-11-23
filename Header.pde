@@ -23,6 +23,7 @@ class Header {
 
     noStroke();
     fill(colors[4]);
+    textFont(pressStart); // setting the overall font
     textSize(24);
     text("C-MIST", x+5,y+17);
     textSize(10);
