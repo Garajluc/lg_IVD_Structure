@@ -7,7 +7,8 @@ PImage flow;
 
 class MainDisplayUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Frame mainDisplayUp;
+  Frame mainDisplayHeader;
+  Frame mainDiplayUpFrame;
   SwitchMainDisplay switchMainDisplayBottom;
   SwitchMainDisplay switchMainDisplayTop;
   Button[] mainDisplayButton = new Button[3];
@@ -21,7 +22,9 @@ class MainDisplayUI {
     text = loadImage("text.jpg");
     flow = loadImage("flow.jpg");
 
-    mainDisplayUp = new Frame(nColX*3+nBorder, 0, nColX*6, nColY*6);
+    mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
+    mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);
+    
     switchMainDisplayTop = new SwitchMainDisplay(nColX*3+40+15, 50, nColX*6-30, nColY*3+20, location, wind, camera);
     switchMainDisplayBottom = new SwitchMainDisplay(nColX*3+55, nColY*4+20, nColX*6-30, nColY*2-40, wave, text, flow);
 
@@ -35,7 +38,9 @@ class MainDisplayUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    //mainDisplayUp.display(colorModeSlider.value(), "Main Display");
+    mainDisplayHeader.display();
+    mainDiplayUpFrame.display();
+    
     switchMainDisplayBottom.display();
     switchMainDisplayTop.display();
     if (mousePressed) {

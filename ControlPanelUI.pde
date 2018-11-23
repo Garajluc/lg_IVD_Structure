@@ -1,6 +1,6 @@
 class ControlPanelUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Frame sideBarBottom;
+  Frame controlPanelFrame;
   SpeedSlider speedSlider;
   RadialProgressBar radialProgressBar;
   Button[] speedModeButton = new Button[5];
@@ -18,7 +18,7 @@ class ControlPanelUI {
     w = tw;
     h = th;
 
-    sideBarBottom = new Frame(x, y, w, h);
+    controlPanelFrame = new Frame(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
     radialProgressBar = new RadialProgressBar(x+300, y+170, 150);
     speedSlider = new SpeedSlider(x+160, y+45, 30, 125, 0.3);
 
@@ -45,7 +45,7 @@ class ControlPanelUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    //sideBarBottom.display(colorModeSlider.value(), "Control Panel");
+    controlPanelFrame.display();
     radialProgressBar.display(colorModeSlider.value(), speedSlider.value());
     speedSlider.display(colorModeSlider.value());
 

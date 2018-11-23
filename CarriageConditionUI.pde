@@ -1,6 +1,6 @@
-class AirConditionUI {
+class CarriageConditionUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Frame sideBarRightBottom;
+  Frame carriageConditionFrame;
   Button[] airConditionButton = new Button[5];
   RandomSlider[] airConditionSlider = new RandomSlider[6];
   RandomSlider heatSlider;
@@ -10,13 +10,13 @@ class AirConditionUI {
   int w,h; // dimension
 
   /*-----------------------------------Start Constructor-----------------------------------*/
-  AirConditionUI(int tx, int ty, int tw, int th) {
+  CarriageConditionUI(int tx, int ty, int tw, int th) {
     x = tx;
     y = ty;
     w = tw;
     h = th;
     
-    sideBarRightBottom = new Frame(x,y,w,h);
+    carriageConditionFrame = new Frame(nColX*9+nBorder, nColY*6, nColX*3, nColY*2+40);
     /*--------------Buttons--------------*/
     for (int i = 0; i < airConditionButton.length; i++) {
       airConditionButton[i] = new Button(x+(i*52)+20, y+nColY*3-50, 52, 30, i, 1);
@@ -33,7 +33,7 @@ class AirConditionUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    //sideBarRightBottom.display(colorModeSlider.value(), "Carriage Conditions");
+    carriageConditionFrame.display();
     
     text("Heat:",x+20, y+50);
     text("Light:",x+20, y+80);

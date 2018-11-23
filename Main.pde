@@ -1,6 +1,6 @@
 /*-----------------------------------Start Objects-----------------------------------*/
 /*Digital Clock */
-DigitalClock digitalClock;
+Header header;
 /*Color Mode Slider*/
 ColorModeSlider colorModeSlider;
 /*Control Panel UI*/
@@ -16,8 +16,8 @@ QueryPanel queryPanel;
 MainDisplayUI mainDisplay;
 /*CarriageUI*/
 CarriageUI carriage;
-/*Air Condition UI*/
-AirConditionUI airCondition;
+/*Carriage Condition UI*/
+CarriageConditionUI carriageCondition;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -42,7 +42,7 @@ void setup() {
 
   /*------Initiate the objects------*/
   /*Digital Clock*/
-  digitalClock = new DigitalClock(40, 55);
+  header = new Header(40, 55);
   /*Radar UI*/
   radar = new radarUI();
   /*Audio Visualiser*/
@@ -57,7 +57,7 @@ void setup() {
   /*Carriage UI*/
   carriage = new CarriageUI();
   /*Air Condition UI*/
-  airCondition = new AirConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
+  carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
 /*-----------------------------------End Setup-----------------------------------*/
@@ -77,7 +77,7 @@ void draw() {
 
   /*------Objects------*/
   /*Digital Clock and Date */
-  digitalClock.display(colorModeSlider.value());
+  header.display(colorModeSlider.value());
   /*Radar UI*/
   radar.display();
   /*Audio Visualiser UI*/
@@ -92,7 +92,7 @@ void draw() {
   /*Carriage UI*/
   carriage.display();
   /*Air Condition UI*/
-  airCondition.display();
+  carriageCondition.display();
 
   /*Warning message*/
   if (currentButton3 == 3) {

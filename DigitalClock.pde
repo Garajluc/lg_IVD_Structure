@@ -1,15 +1,15 @@
-class DigitalClock {
+class Header {
   /*-----------------------------------Objects-----------------------------------*/
   Frame headerFrame;
   /*-----------------------------------Variables-----------------------------------*/
-  int x;
-  int y;
+  int x; // x position of text
+  int y; // y position
   int hour, minute, second;
   int day, month, year;
-  float colorMode;
+  float colorMode; // color value form range "0-255" form "light screen manager" 
 
   /*-----------------------------------Start Constructor-----------------------------------*/
-  DigitalClock(int tx, int ty) {    
+  Header(int tx, int ty) {    
     headerFrame = new Frame(nBorder, nColY/2, nColX*2, nColY/2);
 
     x = tx;
