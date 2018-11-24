@@ -7,16 +7,21 @@ class RadialProgressBar {
   float colorMode;
   float increment = 0.001;
   float currentValue;
+  PImage speedmeter;
 
 
   RadialProgressBar(int tx, int ty, int td) {
     x = tx;
     y = ty;
     d = td;
+    speedmeter = loadImage("layout/speedmeter.png");
   }
 
   void display(float colorMode, float targetValue) {
     noStroke();
+    imageMode(CENTER);
+    image (speedmeter, x,y);
+    imageMode(CORNER);
     if (currentButton3 == 0) {
       if ( currentValue <= targetValue) {
         currentValue = currentValue + increment;
@@ -46,6 +51,8 @@ class RadialProgressBar {
     speed = nf(int(currentValue*100));
     fill(255-colorMode);
     arc(x, y, d, d, radians(180), radians(180)+radians(deg)); 
+    fill(colors[3]);
+    ellipse(x, y, 88, 88);
     fill(colorMode);
     fill(255, 0, 0);
     textSize(32);

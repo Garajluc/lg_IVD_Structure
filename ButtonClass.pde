@@ -1,6 +1,6 @@
 class Button {
   /*-----------------------------------Objects-----------------------------------*/
-  ModesText[] modesText = new ModesText[5];
+  //ModesText[] modesText = new ModesText[5];
 
   int nRectX, nRectY, nRectW, nRectH; //x and y position, width and height dimensions
   color initColor; // initial color of button
@@ -22,13 +22,13 @@ class Button {
     btnIndex = ti;
     arrayNumber = arNum;
     /*modeText*/
-    for (int i = 0; i < modesText.length; i++) {
-      modesText[i] = new ModesText(nColX*4-2, nColY*7+i*25-13);
-    }
+    //for (int i = 0; i < modesText.length; i++) {
+    //  modesText[i] = new ModesText(nColX*4-2, nColY*7+i*25-13);
+    //}
   }
   /*-----------------------------------End Constructor-----------------------------------*/
   
-  /*-----------------------------------Start Methods-----------------------------------*/
+  ///*-----------------------------------Start Methods-----------------------------------*/
   void display() {
     strokeWeight(1);
     stroke(colors[0]);
@@ -52,9 +52,9 @@ class Button {
     }
 
     /*modeText*/
-    for (int i = 0; i < modesText.length; i++) {
-      modesText[i].displayMode(i+1);
-    }
+    //for (int i = 0; i < modesText.length; i++) {
+    //  modesText[i].displayMode(i+1);
+    //}
     noStroke();
   }
 
