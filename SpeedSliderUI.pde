@@ -14,6 +14,8 @@ class SpeedSlider {
   float currentValue;
   float targetValue;
   float inverCurrentValue;
+  //PImage speedmeter;
+
 
   SpeedSlider(int tx, int ty, int tw, int th, float tv) {
     x = tx;
@@ -22,12 +24,13 @@ class SpeedSlider {
     h = th;
     inverCurrentValue = tv;
     currentValue = 1.0 - inverCurrentValue;
+    //speedmeter = loadImage("layout/speedmeter.png");
   }
 
   void display(float colorMode) {
-    stroke(255-colorMode);
-    fill(colorMode);
-    rect(x, y, w, h);
+    stroke(colors[0]); // outline
+    fill(colors[3]); // up fill
+    rect(x, y-3, w, h+3);
 
     bHover = false;
 
@@ -77,8 +80,8 @@ class SpeedSlider {
     }
     currentValue = 1.0 - inverCurrentValue;
     noStroke();
-    fill(255-colorMode);
-    rect(x+1, y + (currentValue * h), w-1, inverCurrentValue * h);
+    fill(colors[0]);
+    rect(x+3, y+(currentValue*h)-2, w-5, inverCurrentValue*h);
     fill(0);
   }
 }

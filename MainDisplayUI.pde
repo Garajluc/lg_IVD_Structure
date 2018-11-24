@@ -4,10 +4,17 @@ PImage wind;
 PImage wave;
 PImage text;
 PImage flow;
+int x = nColX*2+nBorder;
+int y = nColY;
+int w = nColX*7;
+PImage mouse;
 
 class MainDisplayUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect mainDisplayUp;
+  Frame mainDisplayHeader;
+  Frame mainDiplayUpFrame;
+  Frame mainDisplayBottom;
+
   SwitchMainDisplay switchMainDisplayBottom;
   SwitchMainDisplay switchMainDisplayTop;
   Button[] mainDisplayButton = new Button[3];
@@ -19,15 +26,20 @@ class MainDisplayUI {
     wind = loadImage("wind_map.png");
     wave = loadImage("wave.jpg");
     text = loadImage("text.jpg");
-    flow = loadImage("flow.jpg");
+    flow = loadImage("flow.jpg");  
 
-    mainDisplayUp = new Rect(nColX*3+nBorder, 0, nColX*6, nColY*6);
-    switchMainDisplayTop = new SwitchMainDisplay(nColX*3+40+15, 50, nColX*6-30, nColY*3+20, location, wind, camera);
-    switchMainDisplayBottom = new SwitchMainDisplay(nColX*3+55, nColY*4+20, nColX*6-30, nColY*2-40, wave, text, flow);
+    mouse = loadImage("layout/mouse.png");
+
+    switchMainDisplayTop = new SwitchMainDisplay(x, y, w, nColY*3+40, location, wind, camera);
+    switchMainDisplayBottom = new SwitchMainDisplay(x, y*4+40, w, nColY+40, wave, text, flow);
+
+    mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
+    mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);
+    mainDisplayBottom = new Frame(nColX*2+nBorder, nColY*4+40, nColX*7, nColY+40);
 
     /*--------------Buttons--------------*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
-      mainDisplayButton[i] = new Button((nColX*6+nBorder+50)+i*80, nColY*6, 75, 20, i, 2);
+      mainDisplayButton[i] = new Button(x+i*80, y*4+20, 75, 20, i, 2);
       if (i == currentButton2) mainDisplayButton[i].toggle = true;
     }
   }
@@ -35,55 +47,45 @@ class MainDisplayUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    //mainDisplayUp.display(colorModeSlider.value(), "Main Display");
     switchMainDisplayBottom.display();
     switchMainDisplayTop.display();
-    if (mousePressed) {
-      /*Switch Image Main Display*/
-      if (mouseX >= nColX*6+nBorder+50 && 
-        mouseX <= nColX*6+nBorder+50+75 && 
-        mouseY >= nColY*6 && 
-        mouseY <= nColY*6+20) {
-        switchMainDisplayTop.screenZero();
-      } else if (mouseX >= nColX*6+nBorder+50+80 && 
-        mouseX <= nColX*6+nBorder+50+80+75 && 
-        mouseY >=nColY*6 && 
-        mouseY <= nColY*6+20) {
-        switchMainDisplayTop.screenOne();
-      } else if (mouseX >= nColX*6+nBorder+50+160 && 
-        mouseX <= nColX*6+nBorder+50+160+75 && 
-        mouseY >= nColY*6 && 
-        mouseY <= nColY*6+20) {
-        switchMainDisplayTop.screenTwo();
-      }
-    }
+
     /*Main Display Buttons*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
       if (currentButton2 != i)  mainDisplayButton[i].toggle = false;
-      mainDisplayButton[i].display();
+      mainDisplayButton[i].display(4, 8);
       mainDisplayButton[i].hover();
       mainDisplayButton[i].pressed();
     }
 
-    // lines over mouse on main display
-    if (mouseX >  nColX*3+55 && 
-      mouseX <  nColX*3+25+nColX*6 && 
-      mouseY > 50 && mouseY < nColY*4-40) {
-      strokeWeight(1);
-      stroke(100, 0, 200);
-      line(mouseX, 50, mouseX, nColY*4-40);
-      line(nColX*3+55, mouseY, nColX*3+25+nColX*6, mouseY);
-      rectMode(CENTER);
-      fill(100, 0, 200, 100);
-      rect(mouseX, mouseY, 20, 20);
-      rectMode(CORNER);
-      noStroke();
+    if (mousePressed) {
+      /*Switch Image Main Display*/
+      if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
+        switchMainDisplayTop.screenZero();
+      } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
+        switchMainDisplayTop.screenOne();
+      } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
+        switchMainDisplayTop.screenTwo();
+      }
     }
+
+    // lines over mouse on main display
+    if (mouseX >  x && 
+      mouseX <  x+w && 
+      mouseY > y && mouseY < y+nColY*3+40) {
+      imageMode(CENTER);
+      image(mouse, mouseX, mouseY);
+      imageMode(CORNER);
+    }
+
+    mainDisplayHeader.display();
+    mainDisplayHeader.title("Main Display");
+    mainDiplayUpFrame.display();
   }
 
   void switchBottomDisplay() {
-    if (mouseX >= nColX*3+55 && mouseX <= nColX*3+55+nColX*6-30 && 
-      mouseY >= nColY*4+20 && mouseY <= nColY*4+20+nColY*2-40) {
+    if (mouseX >= x && mouseX <= x+w && 
+      mouseY >= y*4+40 && mouseY <= y*4+40+nColY+40) {
       switchMainDisplayBottom.switchScreen();
     }
   }

@@ -1,20 +1,25 @@
 class CarriageUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect sideBarRightUp;
-  Carriage[] carriage = new Carriage[5];
+  Frame headerCarriageFrame;
+  Frame carriageFrame;
+  Carriage[] carriage = new Carriage[7];
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   CarriageUI() {
-    sideBarRightUp = new Rect(nColX*9+nBorder, 0, nColX*3, nColY*6);
+    headerCarriageFrame = new Frame(nColX*9+nBorder, nColY/2, nColX*3, nColY/2);
+    carriageFrame = new Frame(nColX*9+nBorder, nColY, nColX*3, nColY*5);
+    
     for (int i = 0; i < carriage.length; i++) {
-      carriage[i] = new Carriage(nBorder+nColX*9+20, 45+i*85, 150, 70);
+      carriage[i] = new Carriage(nBorder+nColX*9+15, nColY+nColY/2+i*50, 130, 35);
     }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarRightUp.display(colorModeSlider.value(), "Carriage");
+    headerCarriageFrame.display();
+    headerCarriageFrame.title("Carriage");
+    carriageFrame.display();
     for (int i = 0; i < carriage.length; i++) {
       carriage[i].display();
     }

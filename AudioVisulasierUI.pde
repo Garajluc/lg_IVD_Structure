@@ -4,9 +4,12 @@
 import ddf.minim.analysis.*;
 import ddf.minim.*;
 
+/*-----------------------------------Class-----------------------------------*/
 class AudioVisualiserUI {
   /*-----------------------------------Objects-----------------------------------*/
-  Rect sideBarLeftMiddle;
+  Frame audioFrame;
+  PImage audio;
+
   Minim minim;
   AudioPlayer jingle;
   AudioInput input;
@@ -17,7 +20,9 @@ class AudioVisualiserUI {
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   AudioVisualiserUI(int tx, int ty, int tw, int th) {
-    sideBarLeftMiddle = new Rect(nBorder, nColY*3+40, nColX*3, nColY*3-40);
+    audioFrame = new Frame(nBorder, 3*nColY+nColY/2, nColX*2, nColY*2+40);
+    audio = loadImage("layout/audio.png");
+    
     minim = new Minim(this);
     input = minim.getLineIn();
     fft = new FFT(input.bufferSize(), input.sampleRate());
@@ -30,27 +35,29 @@ class AudioVisualiserUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    sideBarLeftMiddle.display(colorModeSlider.value(), "Speaker");
-    // call ellipses
-    stroke(100, 0, 200);
-    for (int i = 0; i < 57; i++) {
-      ellipse(x+i*5, y+h/2, 0, 5);
+    audioFrame.display();
+    image(audio,nBorder, 3*nColY+nColY/2);
+    
+    // ellipses
+    stroke(colors[0]);
+    for (int i = 0; i < 33; i++) {
+      ellipse(x+20+i*5, 4*nColY+40, 0, 5);
     }
   }
 
   /*Turn on and off*/
   void on() {
-    // ellipses in turn off mode
-    fill(255, 0, 0);
-    ellipse(x+15, y+5, 10, 10);
-    // text Rec and ellipses in turn on mode
-    textSize(15);
-    text("REC", x+25, y+10);
+    // text
+    fill(colors[2]);
+    ellipse(x+2*nColX-50, 4*nColY-30, 5, 5);
+    textSize(12);
+    text("REC", x+2*nColX-40, 4*nColY-20);
+    // ellipse
     fft.forward(input.mix);
-    for (int i = 0; i < 57; i++) {
+    for (int i = 0; i < 33; i++) {
       noFill();
-      stroke(100, 0, 200);
-      ellipse(x+i*5, y+h/2, 0, fft.getBand(i)+5);
+      stroke(colors[0]);
+      ellipse(x+20+i*5, 4*nColY+40, 0, fft.getBand(i)+5);
     }
     noFill();
     noStroke();
