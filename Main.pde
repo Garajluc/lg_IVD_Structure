@@ -28,7 +28,7 @@ float modesButtonIndex;
 boolean toggle = false;
 int index = 0;
 int currentButton1 = 0;
-int currentButton2 = 0;
+int currentButton2 = 0; 
 int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
@@ -110,6 +110,9 @@ void mousePressed() {
   /*Buttons*/
   for (int i = 0; i < queryPanel.queryButton.length; i++) {
     queryPanel.queryButton[i].toggleBtn();
+  }
+  for (int i = 0; i < controlPanel.lightDoorButton.length; i++) {
+    controlPanel.lightDoorButton[i].toggleBtn();
   }
   /*Switch Image Main Display*/
   mainDisplay.switchBottomDisplay();

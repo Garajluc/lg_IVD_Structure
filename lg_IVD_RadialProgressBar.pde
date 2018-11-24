@@ -19,9 +19,6 @@ class RadialProgressBar {
 
   void display(float colorMode, float targetValue) {
     noStroke();
-    imageMode(CENTER);
-    image (speedmeter, x,y);
-    imageMode(CORNER);
     if (currentButton3 == 0) {
       if ( currentValue <= targetValue) {
         currentValue = currentValue + increment;
@@ -29,7 +26,7 @@ class RadialProgressBar {
       if (currentValue >= targetValue) {
         currentValue = currentValue - increment;
       }
-      deg = currentValue*180;
+      deg = currentValue*240;
     } else if (currentButton3 == 1) {
       targetValue = 0.25;
     } else if (currentButton3 == 2) {
@@ -46,17 +43,30 @@ class RadialProgressBar {
     if (currentValue >= targetValue) {
       currentValue = currentValue - increment;
     }
-    deg = currentValue*180;
+    deg = currentValue*240;
 
-    speed = nf(int(currentValue*100));
-    fill(255-colorMode);
-    arc(x, y, d, d, radians(180), radians(180)+radians(deg)); 
-    fill(colors[3]);
-    ellipse(x, y, 88, 88);
-    fill(colorMode);
-    fill(255, 0, 0);
-    textSize(32);
-    text(int(speed)+1, 620, 80*8+40);
+    speed = nf(int(currentValue*240));
+    fill(colors[0]);
+    println(deg);
+    arc(x, y, d, d, radians(145), radians(215)+radians(deg-65)); // outside circle
+    fill(colors[3]); // black
+    ellipse(x, y, 88, 88); // inside circle
+    fill(colors[0]);
+    textAlign(CENTER);
+    fill(colors[0]);
+    textSize(24);
+    text(int(speed)+1, x, y);
+    fill(colors[0]);
+    textSize(12);
+    text("Km/h", x, y+15);
+    fill(colors[1]);
+    text("Arrival", x, y+35);
+    fill(colors[0]);
+    text("16:25 PM", x, y+50);
+    textAlign(CORNER);
     fill(0);
+    imageMode(CENTER);
+    image (speedmeter, x, y);
+    imageMode(CORNER);
   }
 }
