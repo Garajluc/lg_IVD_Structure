@@ -37,14 +37,14 @@ class SwitchMainDisplay {
   }
 
   void drawScreenZero() {
-    image(image1,x,y,w,h);
+    image(image1,x+1,y,w,h);
   }
 
   void drawScreenOne() {
-    image(image2,x,y,w,h);
+    image(image2,x+1,y,w,h);
   }
   void drawScreenTwo() {
-    image(image3,x,y,w,h);
+    image(image3,x+1,y,w,h);
   }
 
   void switchScreen() {
