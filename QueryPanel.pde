@@ -20,7 +20,7 @@ class QueryPanel {
 
   void display() {
     for (int i = 0; i < queryButton.length; i++) {
-      queryButton[i].display();
+      queryButton[i].display(0,0);
       queryButton[i].hover();
     }
     // conditions must be inside the loop to be updated everytame the state changes

@@ -50,7 +50,7 @@ class ControlPanelUI {
     /*--------------Title--------------*/
     fill(colors[0]); // #FFF
     textFont(pressStart);
-    textSize(12);
+    textSize(10);
     text("Control Panel", x+15, y+20);
     /*--------------Message--------------*/
     fill(colors[3], 0);
@@ -61,13 +61,13 @@ class ControlPanelUI {
     /*--------------Button--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
       if (currentButton3 != i)  speedModeButton[i].toggle = false;
-      speedModeButton[i].display();
+      speedModeButton[i].display(4,8);
       speedModeButton[i].hover();
       speedModeButton[i].pressed();
     }
     
     for (int i = 0; i < lightDoorButton.length; i++) {
-      lightDoorButton[i].display();
+      lightDoorButton[i].display(4,8);
       lightDoorButton[i].hover();
     }
     /*-----------------------------------End Method-----------------------------------*/

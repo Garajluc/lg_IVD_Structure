@@ -12,7 +12,7 @@ class Button {
   int btnIndex;
   boolean mouseDown = true;
   int arrayNumber;
-  
+
   /*-----------------------------------Start Constructor-----------------------------------*/
   Button(int trectX, int trectY, int trectW, int trectH, int ti, int arNum) {
     nRectW = trectW;
@@ -27,18 +27,20 @@ class Button {
     //}
   }
   /*-----------------------------------End Constructor-----------------------------------*/
-  
+
   ///*-----------------------------------Start Methods-----------------------------------*/
-  void display() {
+  void display(int offx, int offy) {
     strokeWeight(1);
     stroke(colors[0]);
+    fill(colors[3]);
+    rect(nRectX, nRectY, nRectW, nRectH); // creating the button
     fill(initColor);
 
     if (rectOver) { // when is cursor over the are the button highlights
       fill(rectHighlight);
     }
     // toto musi byt pod condition rectOver inak mi nefunguje highlight
-    rect(nRectX, nRectY, nRectW, nRectH); // creating the button
+    rect(nRectX+offx, nRectY+offx, nRectW-offy, nRectH-offy);
     fill(colors[0]);
     ellipse(nRectX+nRectH/2, nRectY+nRectH/2, 3, 3);
 

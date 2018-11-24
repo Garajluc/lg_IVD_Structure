@@ -21,11 +21,15 @@ class Frame {
     strokeWeight(1);
     noFill();
     rect(a, b, c, d);
-    // text
-    //fill(colors[0]); // color of text 
-    //textSize(16);
-    //text(text, a+10,b+20); // text and its position
     noFill();
     noStroke();
+  }
+
+  void title(String text) {
+    fill(colors[4]);
+    textFont(pressStart);
+    textSize(16);
+    text(text, a+10, b+30);
+    textSize(10);
   }
 }

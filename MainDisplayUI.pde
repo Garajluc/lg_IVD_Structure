@@ -65,7 +65,7 @@ class MainDisplayUI {
     /*Main Display Buttons*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
       if (currentButton2 != i)  mainDisplayButton[i].toggle = false;
-      mainDisplayButton[i].display();
+      mainDisplayButton[i].display(4,8);
       mainDisplayButton[i].hover();
       mainDisplayButton[i].pressed();
     }
