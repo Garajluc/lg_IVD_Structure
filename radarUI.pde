@@ -2,6 +2,8 @@ class radarUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame radarFrame;
   radarPulse[] arPulse = new radarPulse[1];
+  radarTarget[] target1 = new radarTarget[2];
+  radarTarget[] target2 = new radarTarget[2];
   PImage radarBackground;
 
   /*-----------------------------------Variables-----------------------------------*/
@@ -16,6 +18,13 @@ class radarUI {
     for (int i = 0; i < arPulse.length; i++) {
       arPulse[i] = new radarPulse(x, y, i * r);
     }
+    
+    for (int i = 0; i < target1.length; i++) {
+      target1[i] = new radarTarget(x,y);
+    }
+    for (int i = 0; i < target2.length; i++) {
+      target2[i] = new radarTarget(x,y);
+    }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -29,21 +38,12 @@ class radarUI {
     for (int i=0; i < arPulse.length; i++) {
       arPulse[i].display();
     }
-
-
-    float g = arPulse[0].diameter;
-    float k = map(g, 0, 120, 0, 255);
     
-    // vypocet r
-    int o = 20;
-    int a = 20;
-    float tang = atan(20/20);
-    float h = o/sin(tang);
-
-    if (g/2 > int(h)-5) {
-      noStroke();
-      fill(255, 255-k);
-      ellipse(x+20, y+20, 10, 10);
+    for(int i =0; i < target1.length; i++) {
+      target1[i].display(arPulse[0].diameter, 5, 20+i*8, 20-i*15);
+    }
+    for(int i =0; i < target2.length; i++) {
+      target2[i].display(arPulse[0].diameter, 5, 25-i*12, 15-i*3);
     }
   }
   /*-----------------------------------Start Method-----------------------------------*/
