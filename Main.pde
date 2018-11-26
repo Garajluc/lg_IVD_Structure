@@ -1,5 +1,3 @@
-//Audio
-import processing.sound.*;
 /*-----------------------------------Start Objects-----------------------------------*/
 /*Digital Clock */
 Header header;
@@ -12,7 +10,7 @@ EngineStatusUI engineStatus;
 /*Radar UI*/
 radarUI radar;
 /*Audio Visualiser UI*/
-//AudioVisualiserUI audioVisualiser;
+AudioVisualiserUI audioVisualiser;
 QueryPanel queryPanel;
 /*Main Display UI*/
 MainDisplayUI mainDisplay;
@@ -20,9 +18,6 @@ MainDisplayUI mainDisplay;
 CarriageUI carriage;
 /*Carriage Condition UI*/
 CarriageConditionUI carriageCondition;
-//Audio
-AudioIn in;
-Amplitude amp;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -38,11 +33,6 @@ int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
-//Audio
-Float ampscalar = 100.0;
-Float[] amps = new Float[160];
-int wx = 50;
-int wy = 320;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
@@ -56,7 +46,7 @@ void setup() {
   /*Radar UI*/
   radar = new radarUI(nBorder, nColY, nColX*2, nColY*2+40, 59);
   /*Audio Visualiser*/
-  //audioVisualiser = new AudioVisualiserUI(nBorder+10, nColY*4, nColX*3-10, nColY*2);
+  audioVisualiser = new AudioVisualiserUI(nBorder+20, nColY*4+30, this);
   queryPanel = new QueryPanel();
   /*Control Panel UI*/
   controlPanel = new ControlPanelUI(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
@@ -70,14 +60,6 @@ void setup() {
   carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
-  // Audio
-  amp = new Amplitude(this);
-  in = new AudioIn(this, 0);
-  in.start();
-  amp.input(in);
-  for(int i = 0; i < amps.length; i++){
-    amps[i] = 0.0;
-  }
   /*-----------------------------------End Setup-----------------------------------*/
 }
 
@@ -97,14 +79,14 @@ void draw() {
   /*Radar UI*/
   radar.display();
   /*Audio Visualiser UI*/
-  //audioVisualiser.display();
+  audioVisualiser.display();
   queryPanel.display();
   /*Engine Status UI*/
   engineStatus.display();
-  /*Control Panel UI*/
-  controlPanel.display();
   /*Main Display UI*/
   mainDisplay.display();
+  /*Control Panel UI*/
+  controlPanel.display();
   /*Carriage UI*/
   carriage.display();
   /*Air Condition UI*/
@@ -118,16 +100,7 @@ void draw() {
     fill(255, 0, 0);
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
-  }
-  //Audio
-  stroke(255);
-  for(int i = 0; i < amps.length -1; i++){
-    amps[i] = amps[i+1];
-  }
-  amps[amps.length - 1] = amp.analyze();
-  for(int i = 0; i < amps.length; i++){
-    line(wx + i,wy - amps[i] * ampscalar,wx + i,wy + amps[i] * ampscalar);
-  }
+  }  
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 

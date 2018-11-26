@@ -1,66 +1,70 @@
-////Reference:
-////https://www.youtube.com/watch?v=XS62cBK9E7w
-///*-----------------------------------Library-----------------------------------*/
-//import ddf.minim.analysis.*;
-//import ddf.minim.*;
+/*-----------------------------------Library-----------------------------------*/
+import processing.sound.*;
 
-///*-----------------------------------Class-----------------------------------*/
-//class AudioVisualiserUI {
-//  /*-----------------------------------Objects-----------------------------------*/
-//  Frame audioFrame;
-//  PImage audio;
+/*-----------------------------------Class-----------------------------------*/
+class AudioVisualiserUI {
+  /*-----------------------------------Objects-----------------------------------*/
+  Frame audioFrame;
+  PImage audio;
+  AudioIn in;
+  Amplitude amp;
+  Float ampscalar = 100.0;
+  Float[] amps = new Float[160];
+  int x;
+  int y;
+  /*-----------------------------------Start Constructor-----------------------------------*/
+  AudioVisualiserUI(int tx, int ty, PApplet pa) {
+    audioFrame = new Frame(nBorder, 3*nColY+nColY/2, nColX*2, nColY*2+40);
+    audio = loadImage("layout/audio.png");
 
-//  Minim minim;
-//  AudioPlayer jingle;
-//  AudioInput input;
-//  FFT fft;
+    amp = new Amplitude(pa);
+    in = new AudioIn(pa, 0);
+    in.start();
+    amp.input(in);
+    for (int i = 0; i < amps.length; i++) {
+      amps[i] = 0.0;
+    }
+    x = tx;
+    y = ty;
+  }
+  /*-----------------------------------End Constructor-----------------------------------*/
 
-//  int[][] colo=new int[300][3];
-//  int x, y, w, h;
+  /*-----------------------------------Start Method-----------------------------------*/
+  void display() {
+    audioFrame.display();
+    image(audio, nBorder, 3*nColY+nColY/2);
 
-//  /*-----------------------------------Start Constructor-----------------------------------*/
-//  AudioVisualiserUI(int tx, int ty, int tw, int th) {
-//    audioFrame = new Frame(nBorder, 3*nColY+nColY/2, nColX*2, nColY*2+40);
-//    audio = loadImage("layout/audio.png");
-    
-//    minim = new Minim(this);
-//    input = minim.getLineIn();
-//    fft = new FFT(input.bufferSize(), input.sampleRate());
-//    x = tx;
-//    y = ty;
-//    w = tw;
-//    h = th;
-//  }
-//  /*-----------------------------------End Constructor-----------------------------------*/
+    stroke(colors[1]);
+    for (int i = 0; i < amps.length -1; i++) {
+      amps[i] = amps[i+1];
+    }
+    amps[amps.length - 1] = amp.analyze();
+    for (int i = 0; i < amps.length; i++) {
+      line(x + i, y - amps[i] * ampscalar, x + i, y + amps[i] * ampscalar);
+    }
+    // ellipses
+    //stroke(colors[0]);
+    //for (int i = 0; i < 33; i++) {
+    //  ellipse(x+20+i*5, 4*nColY+40, 0, 5);
+    //}
+  }
 
-//  /*-----------------------------------Start Method-----------------------------------*/
-//  void display() {
-//    audioFrame.display();
-//    image(audio,nBorder, 3*nColY+nColY/2);
-    
-//    // ellipses
-//    stroke(colors[0]);
-//    for (int i = 0; i < 33; i++) {
-//      ellipse(x+20+i*5, 4*nColY+40, 0, 5);
-//    }
-//  }
-
-//  /*Turn on and off*/
-//  void on() {
-//    // text
-//    fill(colors[2]);
-//    ellipse(x+2*nColX-50, 4*nColY-30, 5, 5);
-//    textSize(12);
-//    text("REC", x+2*nColX-40, 4*nColY-20);
-//    // ellipse
-//    fft.forward(input.mix);
-//    for (int i = 0; i < 33; i++) {
-//      noFill();
-//      stroke(colors[0]);
-//      ellipse(x+20+i*5, 4*nColY+40, 0, fft.getBand(i)+5);
-//    }
-//    noFill();
-//    noStroke();
-//  }
-//  /*-----------------------------------End Method-----------------------------------*/
-//}
+  ///*Turn on and off*/
+  //void on() {
+  //  // text
+  //  fill(colors[2]);
+  //  ellipse(x+2*nColX-50, 4*nColY-30, 5, 5);
+  //  textSize(12);
+  //  text("REC", x+2*nColX-40, 4*nColY-20);
+  //  // ellipse
+  //  fft.forward(input.mix);
+  //  for (int i = 0; i < 33; i++) {
+  //    noFill();
+  //    stroke(colors[0]);
+  //    ellipse(x+20+i*5, 4*nColY+40, 0, fft.getBand(i)+5);
+  //  }
+  //  noFill();
+  //  noStroke();
+  //}
+  /*-----------------------------------End Method-----------------------------------*/
+}
