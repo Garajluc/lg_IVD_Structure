@@ -33,6 +33,11 @@ int currentButton3 = 0;
 color strokeColor = color(100, 0, 200);
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
+
+//line radar
+//float an=0;
+//int rl = 59;
+
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
@@ -45,7 +50,7 @@ void setup() {
   /*Digital Clock*/
   header = new Header(40, 55);
   /*Radar UI*/
-  radar = new radarUI();
+  radar = new radarUI(nBorder, nColY, nColX*2, nColY*2+40, 59);
   /*Audio Visualiser*/
   audioVisualiser = new AudioVisualiserUI(nBorder+10, nColY*4, nColX*3-10, nColY*2);
   queryPanel = new QueryPanel();
@@ -102,14 +107,7 @@ void draw() {
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
   }
-
-  //float g = radar.arPulse[0].diameter;
-  //float h = map(g, 0, 120, 0, 255);
-  //if (g > 40) {
-  //  fill(255, 255-h);
-  //  ellipse(150, 200, 10, 10);
-  //}
-  ///*-----------------------------------End Draw Loop-----------------------------------*/
+  /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
 
