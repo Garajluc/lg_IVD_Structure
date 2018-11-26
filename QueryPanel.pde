@@ -29,7 +29,7 @@ class QueryPanel {
       colorModeSlider.move();
     }
     if (queryButton[4].initColor == queryButton[4].clickedColor) {
-      audioVisualiser.on();
+      //audioVisualiser.on();
     }
   }
 }
