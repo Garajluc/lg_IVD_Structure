@@ -38,6 +38,7 @@ void setup() {
   size(1280, 720);
   pixelDensity(displayDensity());
   smooth(2);
+  //background(0);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
 
   /*------Initiate the objects------*/
@@ -66,7 +67,7 @@ void setup() {
 
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {  
-  background(colorModeSlider.value());
+  background(0);
   fill(colors[4]);
 
   /*Background*/
@@ -101,7 +102,14 @@ void draw() {
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
   }
-  /*-----------------------------------End Draw Loop-----------------------------------*/
+
+  //float g = radar.arPulse[0].diameter;
+  //float h = map(g, 0, 120, 0, 255);
+  //if (g > 40) {
+  //  fill(255, 255-h);
+  //  ellipse(150, 200, 10, 10);
+  //}
+  ///*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
 

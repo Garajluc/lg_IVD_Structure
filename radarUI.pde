@@ -1,57 +1,50 @@
 class radarUI {
+  /*-----------------------------------Objects-----------------------------------*/
   Frame radarFrame;
+  radarPulse[] arPulse = new radarPulse[1];
   PImage radarBackground;
-  
+
+  /*-----------------------------------Variables-----------------------------------*/
+  int x = nBorder + nColX; // X center of image and pulses
+  int y = nColY*2+20; // Y center of image and pulses
+  int r = 60; // diameter of ellipse when the next one is displayed
+
+  /*-----------------------------------Start Constructor-----------------------------------*/
   radarUI() {
     radarFrame = new Frame(nBorder, nColY, nColX*2, nColY*3-40);
     radarBackground = loadImage ("layout/radar.png");
+    for (int i = 0; i < arPulse.length; i++) {
+      arPulse[i] = new radarPulse(x, y, i * r);
+    }
   }
-  
- void  display() {
+  /*-----------------------------------End Constructor-----------------------------------*/
+
+  /*-----------------------------------Start Method-----------------------------------*/
+  void  display() {
     radarFrame.display();
-    image(radarBackground, nBorder, nColY);
-  }
-}
+    imageMode(CENTER);
+    image(radarBackground, x, y);
+    imageMode(CORNER);
+
+    for (int i=0; i < arPulse.length; i++) {
+      arPulse[i].display();
+    }
 
 
-
-
-//// Reference: Week6 "jr_IVD_radarPulse_remix.zip"
-//class radarUI {
-//  Rect sideBarLeftUp;
-//  radarPulse[] arPulse = new radarPulse[5];
-//  radarTarget[] arTargets = new radarTarget[5];
-
-//  int x;
-//  int y;
-//  int w;
-//  int h;
-
-//  radarUI(int tx, int ty, int tw, int th) {
-//    x = tx;
-//    y = ty;
-//    w = tw;
-//    h = th;
-//    // Outlines of the radar window
-//    sideBarLeftUp = new Rect(nBorder, nColY, nColX*2, nColY*3-40);
-
-//    for (int i = 0; i < arPulse.length; i++) {
-//      arPulse[i] = new radarPulse(w/2+x, h/2+y, i * 50);
-//    }
-//    for (int i = 0; i < arTargets.length; i++) {
-//      arTargets[i] = new radarTarget(w/2+x, h/2+y, 3);
-//    }
-//  }
-
-//  void display() {
-//    //sideBarLeftUp.display(colorModeSlider.value(), "Radar");
+    float g = arPulse[0].diameter;
+    float k = map(g, 0, 120, 0, 255);
     
-//    for (int i=0; i < arPulse.length; i++) {
-//      arPulse[i].display();
-//    }
-//    for (int i=0; i < arTargets.length; i++) {
-//      arTargets[i].display();
-//    }
-//    noFill();
-//  }
-//}
+    // vypocet r
+    int o = 20;
+    int a = 20;
+    float tang = atan(20/20);
+    float h = o/sin(tang);
+
+    if (g/2 > int(h)-5) {
+      noStroke();
+      fill(255, 255-k);
+      ellipse(x+20, y+20, 10, 10);
+    }
+  }
+  /*-----------------------------------Start Method-----------------------------------*/
+}

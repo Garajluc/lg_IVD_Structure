@@ -5,7 +5,7 @@ class RadialProgressBar {
   float deg; //degree
   String speed;
   float colorMode;
-  float increment = 0.001;
+  float increment = 0.0004;
   float currentValue;
   PImage speedmeter;
 
@@ -47,7 +47,6 @@ class RadialProgressBar {
 
     speed = nf(int(currentValue*240));
     fill(colors[0]);
-    println(deg);
     arc(x, y, d, d, radians(145), radians(215)+radians(deg-65)); // outside circle
     fill(colors[3]); // black
     ellipse(x, y, 88, 88); // inside circle
