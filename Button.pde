@@ -21,7 +21,7 @@ class Button {
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
-  ///*-----------------------------------Start Methods-----------------------------------*/
+  /*-----------------------------------Start Methods-----------------------------------*/
   void display(int offx, int offy) { // offx, offy = offset from outlined rectangle 
     // outlined rectangle
     strokeWeight(1);
@@ -33,8 +33,8 @@ class Button {
     if (rectOver) { // when is cursor over the are the button highlights
       fill(rectHighlight);
     }
-    
-    // toto musi byt pod condition rectOver inak mi nefunguje highlight
+
+    // this part has to be under highlighting 
     rect(nRectX+offx, nRectY+offx, nRectW-offy, nRectH-offy);
     fill(colors[0]);
     ellipse(nRectX+nRectH/2, nRectY+nRectH/2, 3, 3);
@@ -70,16 +70,16 @@ class Button {
         }
         /*Specification whitch of buttons array I am cliking on*/
         if (arrayNumber == 1) { // 1 = carriage condition
-        /* if array of carriage condition buttons is clicked 
-        then pass the value of index of the specific 
-        index of clicked button to the varieable carriageConditionButtonIndexArr*/          
+          /* if array of carriage condition buttons is clicked 
+           then pass the value of index of the specific 
+           index of clicked button to the varieable carriageConditionButtonIndexArr*/
           carriageConditionButtonArrIndex = btnIndex;
         } else if (arrayNumber == 2) { // 2 = main display
           mainDisplayButtonArr = btnIndex;
-              println("cB2");
+          println("cB2");
         } else if (arrayNumber == 3) { // 3 = control panel
           controlPanelButtonArr = btnIndex;
-              println("cB3");
+          println("cB3");
         }
       } else if (!mousePressed) {
         mouseDown = false;
