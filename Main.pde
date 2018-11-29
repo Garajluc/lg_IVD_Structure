@@ -27,9 +27,9 @@ int nColY = 80; // 9*80=720
 float modesButtonIndex;
 boolean toggle = false;
 int index = 0;
-int currentButton1 = 0;
-int currentButton2 = 0; 
-int currentButton3 = 0;
+int currentButton1 = 0; // index of query buttons
+int currentButton2 = 0; // index of display buttons
+int currentButton3 = 0; // index of control panel
 color strokeColor = color(100, 0, 200);
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;

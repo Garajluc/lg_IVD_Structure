@@ -1,39 +1,33 @@
-// Variation fo the slider from the lecture "jr_slidersFill" Week3
-class SpeedSlider {
-  int x;
-  int y;
-  int w;
-  int h;
-  float colorMode;
-
-  float value() {
-    return inverCurrentValue;
-  }
-
-  boolean bHover;
+/*Speed Slider UI used inside Control Panel UI*/
+class SpeedSliderUI {
+  int x,y,w,h; // x and y position, width and height
+  boolean bHover; // indicates if the mouse is over specific area
+  
   float currentValue;
   float targetValue;
-  float inverCurrentValue;
+  float inverCurrentValue; // starting position (height) of blue rectangle
   //PImage speedmeter;
+  float colorMode;
 
 
-  SpeedSlider(int tx, int ty, int tw, int th, float tv) {
+  SpeedSliderUI(int tx, int ty, int tw, int th, float tinverCurrentValue) {
     x = tx;
     y = ty;
     w = tw;
     h = th;
-    inverCurrentValue = tv;
+    inverCurrentValue = tinverCurrentValue;
     currentValue = 1.0 - inverCurrentValue;
     //speedmeter = loadImage("layout/speedmeter.png");
   }
 
   void display(float colorMode) {
+    /*Outline rectangle*/
     stroke(colors[0]); // outline
-    fill(colors[3]); // up fill
+    fill(colors[3]); // #000000 fill
     rect(x, y-3, w, h+3);
 
+    /*Setting mouse hover boolean */
     bHover = false;
-
     if (
       mouseX > x &&
       mouseX < x + w &&

@@ -8,8 +8,9 @@ class Button {
   color rectHighlight = colors[1]; // mouse over the button color
   boolean rectOver = false; // mouse over the button
   boolean toggle = false; // toggle change color
-  int index;
-  int btnIndex;
+
+  int btnIndex; // button index passed into constructor
+  
   boolean mouseDown = true;
   int arrayNumber;
 
@@ -21,10 +22,14 @@ class Button {
     nRectY = trectY;
     btnIndex = ti;
     arrayNumber = arNum;
+    
+    
     /*modeText*/
     //for (int i = 0; i < modesText.length; i++) {
     //  modesText[i] = new ModesText(nColX*4-2, nColY*7+i*25-13);
     //}
+    
+    
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -74,15 +79,24 @@ class Button {
     if (rectOver) {
       if (mousePressed && !mouseDown) {
         mouseDown = true;
-        if (!toggle) toggle = !toggle;
-        if (arrayNumber == 1) {
+        /*When is diffrent button clicked the color changes*/
+        if (!toggle) {
+          toggle = !toggle;
+        }
+        /*Connecting specific value of button according to button index from array*/
+        if (arrayNumber == 1) { // if index=1 (the second element of array)
           currentButton1=btnIndex;
+          println("cB1");
         } else if (arrayNumber == 2) {
           currentButton2=btnIndex;
-        } else if (arrayNumber == 3) {
-          currentButton3=btnIndex;
+              println("cB2");
         }
-      } else if (!mousePressed) {
+        else if (arrayNumber == 3) {
+          currentButton3=btnIndex;
+              println("cB3");
+        }
+      } 
+      else if (!mousePressed) {
         mouseDown = false;
       }
     }
