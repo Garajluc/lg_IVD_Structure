@@ -1,38 +1,30 @@
 /*-----------------------------------Start Objects-----------------------------------*/
-/*Digital Clock */
 Header header;
-/*Color Mode Slider*/
 ColorModeSlider colorModeSlider;
-/*Control Panel UI*/
 ControlPanelUI controlPanel;
-/*Engine Status UI*/
 EngineStatusUI engineStatus;
-/*Radar UI*/
 radarUI radar;
-/*Audio Visualiser UI*/
 AudioVisualiserUI audioVisualiser;
 QueryPanel queryPanel;
-/*Main Display UI*/
 MainDisplayUI mainDisplay;
-/*CarriageUI*/
 CarriageUI carriage;
-/*Carriage Condition UI*/
 CarriageConditionUI carriageCondition;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
+// Layout
 int nBorder = 40; // 2*40=80
 int nColX = 100; // 12*100=1200
 int nColY = 80; // 9*80=720
-float modesButtonIndex;
-boolean toggle = false;
-int index = 0;
-int currentButton1 = 0; // index of query buttons
-int currentButton2 = 0; // index of display buttons
-int currentButton3 = 0; // index of control panel
-color strokeColor = color(100, 0, 200);
+//Buttons
+int carriageConditionButtonArrIndex = 0; // index of corriage condition buttons
+int mainDisplayButtonArr = 0; // index of the main display buttons
+int controlPanelButtonArr = 0; // index of control panel
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
+//boolean toggle = false;
+//float modesButtonIndex;
+//int index = 0;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
@@ -41,24 +33,15 @@ void setup() {
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
 
   /*------Initiate the objects------*/
-  /*Digital Clock*/
   header = new Header(40, 55);
-  /*Radar UI*/
   radar = new radarUI(nBorder, nColY, nColX*2, nColY*2+40, 59);
-  /*Audio Visualiser*/
   audioVisualiser = new AudioVisualiserUI(nBorder+20, nColY*4+30, this);
   queryPanel = new QueryPanel();
-  /*Control Panel UI*/
   controlPanel = new ControlPanelUI(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
-  /*Engine Status UI*/
   engineStatus = new EngineStatusUI();
-  /*Main Display UI*/
   mainDisplay = new MainDisplayUI();
-  /*Carriage UI*/
   carriage = new CarriageUI();
-  /*Air Condition UI*/
   carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
-  /*Color Mode Slider*/
   colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
   /*-----------------------------------End Setup-----------------------------------*/
 }
@@ -74,26 +57,18 @@ void draw() {
   pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
 
   /*------Objects------*/
-  /*Digital Clock and Date */
   header.display(colorModeSlider.value());
-  /*Radar UI*/
   radar.display();
-  /*Audio Visualiser UI*/
   audioVisualiser.display();
   queryPanel.display();
-  /*Engine Status UI*/
   engineStatus.display();
-  /*Main Display UI*/
   mainDisplay.display();
-  /*Control Panel UI*/
   controlPanel.display();
-  /*Carriage UI*/
   carriage.display();
-  /*Air Condition UI*/
   carriageCondition.display();
 
   /*Warning message*/
-  if (currentButton3 == 3) {
+  if (controlPanelButtonArr == 3) {
     stroke(100, 0, 200);
     fill(100, 0, 200, 100);
     rect(nColX*3+40+15, nColY*2, nColX*6-30, nColY*2-40);

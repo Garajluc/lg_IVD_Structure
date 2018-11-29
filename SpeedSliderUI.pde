@@ -36,10 +36,10 @@ class SpeedSliderUI {
       bHover = true;
     }
 
-    if (currentButton3 == 0 && bHover && mousePressed) {
+    if (controlPanelButtonArr == 0 && bHover && mousePressed) {
       inverCurrentValue = 1.0 - ((mouseY - y)/float(h));
       constrain(currentValue, 0.0, 1.0);
-    } else if (currentButton3 == 1) { 
+    } else if (controlPanelButtonArr == 1) { 
       if (currentValue < 0.75) {
         currentValue += + 0.001;
         inverCurrentValue = 1.0-currentValue;
@@ -47,7 +47,7 @@ class SpeedSliderUI {
         currentValue -= 0.001;
         inverCurrentValue = 1.0-currentValue;
       }
-    } else if (currentButton3 == 2) {
+    } else if (controlPanelButtonArr == 2) {
       if (currentValue < 0.5) {
         currentValue += + 0.001;
         inverCurrentValue = 1.0-currentValue;
@@ -55,7 +55,7 @@ class SpeedSliderUI {
         currentValue -= 0.001;
         inverCurrentValue = 1.0-currentValue;
       }
-    } else if (currentButton3 == 3) {
+    } else if (controlPanelButtonArr == 3) {
       if (currentValue < 0.25) {
         currentValue += + 0.001;
         inverCurrentValue = 1.0-currentValue;
@@ -63,7 +63,7 @@ class SpeedSliderUI {
         currentValue -= 0.001;
         inverCurrentValue = 1.0-currentValue;
       }
-    } else if (currentButton3 == 4) {
+    } else if (controlPanelButtonArr == 4) {
       if (currentValue > 1) {
         currentValue += + 0.001;
         inverCurrentValue = 1.0-currentValue;

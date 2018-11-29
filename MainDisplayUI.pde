@@ -40,7 +40,7 @@ class MainDisplayUI {
     /*--------------Buttons--------------*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
       mainDisplayButton[i] = new Button(x+i*80, y*4+20, 75, 20, i, 2);
-      if (i == currentButton2) mainDisplayButton[i].toggle = true;
+      if (i == mainDisplayButtonArr) mainDisplayButton[i].toggle = true;
     }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
@@ -52,7 +52,7 @@ class MainDisplayUI {
 
     /*Main Display Buttons*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
-      if (currentButton2 != i)  mainDisplayButton[i].toggle = false;
+      if (mainDisplayButtonArr != i)  mainDisplayButton[i].toggle = false;
       mainDisplayButton[i].display(4, 8);
       mainDisplayButton[i].hover();
       mainDisplayButton[i].pressed();

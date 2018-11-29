@@ -32,10 +32,10 @@ class ControlPanelUI {
         by = y+33+(i*40-120);
       }
       speedModeButton[i] = new Button(bx, by, 70, 20, i, 3);
-      if (i == currentButton3) speedModeButton[i].toggle = true;
+      if (i == controlPanelButtonArr) speedModeButton[i].toggle = true;
     }
     
-    for (int i = 0; i < lightDoorButton.length; i++) {
+     for (int i = 0; i < lightDoorButton.length; i++) {
       lightDoorButton[i] = new Button(nColX*8+55, y+73+i*40, 70, 20, i, 3);
     }
   }
@@ -60,7 +60,7 @@ class ControlPanelUI {
     rect(x+15, y+155, nColX*6+70, 35);
     /*--------------Button--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
-      if (currentButton3 != i)  speedModeButton[i].toggle = false;
+      if (controlPanelButtonArr != i)  speedModeButton[i].toggle = false;
       speedModeButton[i].display(4,8);
       speedModeButton[i].hover();
       speedModeButton[i].pressed();

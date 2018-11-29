@@ -21,7 +21,7 @@ class CarriageConditionUI {
     /*--------------Buttons--------------*/
     for (int i = 0; i < airConditionButton.length; i++) {
       airConditionButton[i] = new Button(x+(i*40)+10, y+nColY*2-5, 40, 35, i, 1);
-      if (i == currentButton1) airConditionButton[i].toggle = true;
+      if (i == carriageConditionButtonArrIndex) airConditionButton[i].toggle = true;
     }
     /*--------------Sliders--------------*/
     for (int i = 0; i < airConditionSlider.length; i++) {
@@ -43,7 +43,7 @@ class CarriageConditionUI {
     text("Light:", x+20, y+60);
     text("Air Condition:", x+20, y+80);
     for (int i = 0; i < airConditionButton.length; i++) {
-      if (currentButton1 != i)  airConditionButton[i].toggle = false;
+      if (carriageConditionButtonArrIndex != i)  airConditionButton[i].toggle = false;
       airConditionButton[i].display(4, 8);
       airConditionButton[i].hover();
       airConditionButton[i].pressed();

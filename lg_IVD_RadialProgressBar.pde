@@ -19,7 +19,7 @@ class RadialProgressBar {
 
   void display(float colorMode, float targetValue) {
     noStroke();
-    if (currentButton3 == 0) {
+    if (controlPanelButtonArr == 0) {
       if ( currentValue <= targetValue) {
         currentValue = currentValue + increment;
       } 
@@ -27,13 +27,13 @@ class RadialProgressBar {
         currentValue = currentValue - increment;
       }
       deg = currentValue*240;
-    } else if (currentButton3 == 1) {
+    } else if (controlPanelButtonArr == 1) {
       targetValue = 0.25;
-    } else if (currentButton3 == 2) {
+    } else if (controlPanelButtonArr == 2) {
       targetValue = 0.50;
-    } else if (currentButton3 == 3) {
+    } else if (controlPanelButtonArr == 3) {
       targetValue = 0.75;
-    } else if (currentButton3 == 4) {
+    } else if (controlPanelButtonArr == 4) {
       targetValue = 1.0;
     }
 
