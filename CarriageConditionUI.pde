@@ -5,7 +5,7 @@ class CarriageConditionUI {
   //RandomSlider[] airConditionSlider = new RandomSlider[4];
   //RandomSlider[] airConditionSlider1 = new RandomSlider[4];
   //RandomSlider heatSlider;
-  //RandomSlider lightSlider;
+  Slider lightSlider;
 
   int x, y; // position
   int w, h; // dimension
@@ -31,7 +31,7 @@ class CarriageConditionUI {
     //  airConditionSlider1[i] = new RandomSlider(x+180+i*30, nColY*7+10, 5, 50, i*3);
     //}
     //heatSlider = new RandomSlider(x+nColX+20, y+35, nColX*2-80, 5, 2);
-    //lightSlider = new RandomSlider(x+nColX+20, y+55, nColX*2-80, 5, 3.5);
+    lightSlider = new Slider(x+nColX+20, y+50, 160, 9, 0.5);
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -57,7 +57,8 @@ class CarriageConditionUI {
     //}
 
     //heatSlider.displayVerticalSlider();
-    //lightSlider.displayVerticalSlider();
+    lightSlider.display(2,2);
+    lightSlider.lightSlider();
   }
   /*-----------------------------------End Method-----------------------------------*/
 }

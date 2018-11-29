@@ -4,7 +4,7 @@ class Slider {
   boolean bHover; // indicates if the mouse is over specific area
   float currentValue; // current value of speed = height of black rectangle
   float targetValue; // starting position (height) of blue rectangle
-
+  int offx, offy; // offset of fill rectangle 
   float colorMode;
   /*-----------------------------------Constructor Start-----------------------------------*/
   Slider(int tx, int ty, int tw, int th, float ttargetValue) {
@@ -12,26 +12,26 @@ class Slider {
     y = ty;
     w = tw;
     h = th;
-    targetValue = ttargetValue;
+    targetValue = 0;
     currentValue = 1.0 - targetValue;
   }
   /*-----------------------------------Constructor End-----------------------------------*/
 
   /*-----------------------------------Method Start-----------------------------------*/
-  void display() {
+  void display(int offx, int offy) {
     /*Outline rectangle*/
     stroke(colors[0]); // outline
     fill(colors[3]); // #000000 fill
-    rect(x, y-3, w, h+3);
+    rect(x-offx, y-offy, w+(2*offx)-1, h+(2*offy)-1);
 
     /*Blue fill rectangle*/
     currentValue = 1.0 - targetValue;
     noStroke();
     fill(colors[0]);
     if ( w < h ) { // vertical slider
-      rect(x+3, y+(currentValue*h), w-5, targetValue*h-3);
+      rect(x, y+(currentValue*h), w, targetValue*h);
     } else if ( w > h) { // horizontal slider
-      rect(x+3, y,targetValue*w-5, h-3);
+      rect(x, y,targetValue*w, h);
     }
     fill(0);
 
