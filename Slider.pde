@@ -72,6 +72,41 @@ class Slider {
     }
   }
 
+  void engineSlider(float yoff, float speed) {
+    constrain(currentValue, 0.0, 1.0);
+    float n = map(controlPanel.radialProgressBar.currentValue,0,1,1,0); // ide od 1 po 0
+    println(n);
+    if (controlPanelButtonArr == 0) { // Manual - ON/OFF!!!
+      if (currentValue < map(n+yoff,1+yoff,0,1,0)) {
+        currentValue += + speed;
+        targetValue = 1.0-currentValue;
+        
+      } else if (currentValue > map(n+yoff,1+yoff,0,1,0)) { 
+        currentValue -= speed; // ide dole od 1 po 0
+        targetValue = 1.0-currentValue;
+        
+      }
+    } else if (controlPanelButtonArr == 1) { // Mode A speed 1/4
+      if (currentValue < 0.75) {
+        currentValue += + 0.001;
+        targetValue = 1.0-currentValue;
+      } else if (currentValue > 0.75) { 
+        currentValue -= 0.001;
+        targetValue = 1.0-currentValue;
+      }
+    } else if (controlPanelButtonArr == 2) { // Mode B speed 1/2
+      if (currentValue < 0.5) {
+        currentValue += + 0.001;
+        targetValue = 1.0-currentValue;
+      } else if (currentValue > 0.5) {
+        currentValue -= 0.001;
+        targetValue = 1.0-currentValue;
+      }
+    } else if (controlPanelButtonArr == 3) {
+      // Autonomus driving
+    }
+  }
+
   void speedSlider(float colorMode) {
     if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
       targetValue = 1.0 - ((mouseY - y)/float(h));
