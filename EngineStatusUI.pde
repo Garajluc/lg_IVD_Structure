@@ -31,11 +31,11 @@ class EngineStatusUI {
 
     for (int i = 0; i < engineConditionSliderLeft.length; i++) {
       engineConditionSliderLeft[i].display(2,2);
-      engineConditionSliderLeft[i].verticalSlider();
+      engineConditionSliderLeft[i].engineSlider(0.001+0.001*i);
     }
     for (int i = 0; i < engineConditionSliderRight.length; i++) {
       engineConditionSliderRight[i].display(2,2);
-      engineConditionSliderRight[i].verticalSlider();
+      engineConditionSliderRight[i].engineSlider(0.001+0.001*i);
     }
   }
   /*-----------------------------------End Method-----------------------------------*/

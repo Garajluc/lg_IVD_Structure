@@ -72,6 +72,36 @@ class Slider {
     }
   }
 
+  void engineSlider(float speed) {    
+    if (controlPanelButtonArr == 0) { // Manual - ON/OFF!!!
+      if (currentValue < controlPanel.radialProgressBar.currentValue) {
+        currentValue += + speed;
+        targetValue = 1.0-currentValue;
+      } else if (currentValue > controlPanel.radialProgressBar.currentValue) {
+        currentValue -= speed;
+        targetValue = 1.0-currentValue;
+      }
+    } else if (controlPanelButtonArr == 1) { // Mode A speed 1/4
+      if (currentValue < 0.75) {
+        currentValue += + 0.001;
+        targetValue = 1.0-currentValue;
+      } else if (currentValue > 0.75) { 
+        currentValue -= 0.001;
+        targetValue = 1.0-currentValue;
+      }
+    } else if (controlPanelButtonArr == 2) { // Mode B speed 1/2
+      if (currentValue < 0.5) {
+        currentValue += + 0.001;
+        targetValue = 1.0-currentValue;
+      } else if (currentValue > 0.5) {
+        currentValue -= 0.001;
+        targetValue = 1.0-currentValue;
+      }
+    } else if (controlPanelButtonArr == 3) {
+      // Autonomus driving
+    }
+  }
+
   void speedSlider(float colorMode) {
     if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
       targetValue = 1.0 - ((mouseY - y)/float(h));

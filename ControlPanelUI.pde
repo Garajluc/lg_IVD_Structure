@@ -1,7 +1,7 @@
 class ControlPanelUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame controlPanelFrame;
-  PressureUI pressureUI;
+  FuelUI fuelUI;
   Slider speedSlider;
   RadialProgressBar radialProgressBar;
   Button[] speedModeButton = new Button[4];
@@ -19,7 +19,7 @@ class ControlPanelUI {
     h = th;
 
     controlPanelFrame = new Frame(x, y, w, h);
-    pressureUI = new PressureUI(x+25, y);
+    fuelUI = new FuelUI(x+25, y);
     speedSlider = new Slider (x+nColX*3+20, y+33, 11, 112, 0.1);
     radialProgressBar = new RadialProgressBar(x+nColX*4+33, y+nColY+10, 100);
     /*--------------Buttons--------------*/
@@ -44,7 +44,9 @@ class ControlPanelUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     controlPanelFrame.display();
-    pressureUI.display(radialProgressBar.currentValue);
+    
+    fuelUI.display(radialProgressBar.currentValue);
+    
     radialProgressBar.display(colorModeSlider.value(), speedSlider.targetValue);
     speedSlider.display(2, 2);
     speedSlider.speedSlider(colorModeSlider.value());
