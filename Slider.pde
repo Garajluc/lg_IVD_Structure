@@ -75,7 +75,6 @@ class Slider {
   void engineSlider(float yoff, float speed) {
     constrain(currentValue, 0.0, 1.0);
     float n = map(controlPanel.radialProgressBar.currentValue,0,1,1,0); // ide od 1 po 0
-    println(n);
     if (controlPanelButtonArr == 0) { // Manual - ON/OFF!!!
       if (currentValue < map(n+yoff,1+yoff,0,1,0)) {
         currentValue += + speed;
