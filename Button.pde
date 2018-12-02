@@ -76,10 +76,8 @@ class Button {
           carriageConditionButtonArrIndex = btnIndex;
         } else if (arrayNumber == 2) { // 2 = main display
           mainDisplayButtonArr = btnIndex;
-          println("cB2");
         } else if (arrayNumber == 3) { // 3 = control panel
           controlPanelButtonArr = btnIndex;
-          println("cB3");
         }
       } else if (!mousePressed) {
         mouseDown = false;

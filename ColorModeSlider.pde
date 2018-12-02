@@ -5,9 +5,6 @@ class ColorModeSlider {
   int x, y, w, h;
   /*color*/
   float a;
-  //float value() {
-  //  return a;
-  //}
   /*fixed rectangle*/
   float mRectY;
   float increment = 2;

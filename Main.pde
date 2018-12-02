@@ -73,6 +73,14 @@ void draw() {
     textSize(16);
     text("Warning Message", nColX*3+40+35, nColY*2+20);
   }  
+
+  //if (controlPanel.speedModeButton[3].initColor == controlPanel.speedModeButton[3].clickedColor ) {
+  //  controlPanel.vagon();
+  //  if (controlPanel.xpos > (controlPanel.tv)-1) {
+  //    println("xpos" + controlPanel.xpos + "=" + "tv" + controlPanel.tv);
+  //    controlPanel.speedModeButton[3].clickedColor = colors[1];
+  //  }
+  //}
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
