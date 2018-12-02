@@ -6,6 +6,8 @@ class radarUI {
   radarTarget[] target2 = new radarTarget[2];
   PImage radarBackground;
   PImage arrowRadar;
+  Slider sliderLeft[] = new Slider[4];
+  Slider sliderDown[] = new Slider[4];
 
   /*-----------------------------------Variables-----------------------------------*/
   int x, y, w, h; // center position of image and pulses
@@ -33,6 +35,13 @@ class radarUI {
     for (int i = 0; i < target2.length; i++) {
       target2[i] = new radarTarget(x+w/2, y+h/2);
     }
+
+    for (int i = 0; i < sliderLeft.length; i++) {
+      sliderLeft[i] = new Slider(x+15, y+15+i*7, 20, 4, 0.3*i);
+    }
+    for (int i = 0; i < sliderDown.length; i++) {
+      sliderDown[i] = new Slider(x+160+i*7, nColY*2+y+25, 4, 20, 0.3*i);
+    }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -52,8 +61,9 @@ class radarUI {
     for (int i =0; i < target2.length; i++) {
       target2[i].display(arPulse[0].diameter, 5, 25-i*12, 15-i*3);
     }
-    arrow();
-    lineRot();
+    arrow(); // yellow arrow 
+    lineRot(); // rotating line
+    slider();
   }
 
   void arrow() {
@@ -72,6 +82,13 @@ class radarUI {
     line(nBorder + nColX, nColY*2+20, nBorder + nColX+cos(an)*r, nColY*2+20+sin(an)*r);
   }
 
-
+  void slider() {
+    for (int i =0; i < sliderLeft.length; i++) {
+      sliderLeft[i].randomSlider();
+    }
+    for (int i =0; i < sliderDown.length; i++) {
+      sliderDown[i].randomSlider();
+    }
+  }
   /*-----------------------------------Start Method-----------------------------------*/
 }

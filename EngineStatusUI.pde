@@ -1,65 +1,42 @@
 class EngineStatusUI {
+  /*-----------------------------------Objects-----------------------------------*/
   Frame engineFrame;
-  //PImage engineBackground;
-  
+  PImage engineBackground;
+  Slider[] engineConditionSliderLeft = new Slider[4];
+  Slider[] engineConditionSliderRight = new Slider[4];
+
+  /*-----------------------------------Start Constructor-----------------------------------*/
   EngineStatusUI() {
     engineFrame = new Frame(nBorder, nColY*6, nColX*2, nColY*2+40);
-    //engineBackground = loadImage ("layout/engine.png");
+    engineBackground = loadImage ("layout/scale.png");
+
+    /*--------------Random Sliders--------------*/
+    for (int i = 0; i < engineConditionSliderLeft.length; i++) {
+      engineConditionSliderLeft[i] = new Slider(nBorder+15+i*18, nColY*6+33, 9, 98, i*0.2);
+    }
+    for (int i = 0; i < engineConditionSliderRight.length; i++) {
+      engineConditionSliderRight[i] = new Slider(nColX+60+i*18, nColY*6+33, 9, 98, i*0.3);
+    }
   }
-  
- void  display() {
+  /*-----------------------------------End Constructor-----------------------------------*/
+
+  /*-----------------------------------Start Method-----------------------------------*/
+  void display() {
+    fill(colors[0]);
+    text("Engine", nBorder+15, nColY*6+20);
     engineFrame.display();
-    //image(engineBackground, nBorder, nColY*6);
+    image(engineBackground, nBorder+nColX-6, nColY*6+30);
+    stroke(colors[0]);
+    rect(nBorder+15, nColY*6+155, nColX*2-30, 35);
+
+    for (int i = 0; i < engineConditionSliderLeft.length; i++) {
+      engineConditionSliderLeft[i].display(2,2);
+      engineConditionSliderLeft[i].verticalSlider();
+    }
+    for (int i = 0; i < engineConditionSliderRight.length; i++) {
+      engineConditionSliderRight[i].display(2,2);
+      engineConditionSliderRight[i].verticalSlider();
+    }
   }
-  
-  ///*-----------------------------------Objects-----------------------------------*/
-  //Frame sideBarLeftBottom;
-  //RandomSlider[] engineConditionSlider0 = new RandomSlider[4];
-  //RandomSlider[] engineConditionSlider1 = new RandomSlider[4];
-
-  ///*-----------------------------------Start Constructor-----------------------------------*/
-  //EngineStatusUI() {
-  //  sideBarLeftBottom = new Frame(nBorder, nColY*6, nColX*3, nColY*3);
-    
-  //  /*--------------Random Sliders--------------*/
-  //  for (int i = 0; i < engineConditionSlider0.length; i++) {
-  //    engineConditionSlider0[i] = new RandomSlider(nBorder+20+i*30, nColY*6+30, 15, 130, i*2);
-  //  }
-  //  for (int i = 0; i < engineConditionSlider1.length; i++) {
-  //    engineConditionSlider1[i] = new RandomSlider(nColX*2+13+i*30, nColY*6+30, 15, 130, i*3);
-  //  }
-  //}
-  ///*-----------------------------------End Constructor-----------------------------------*/
-  
-  ///*-----------------------------------Start Method-----------------------------------*/
-  //void display() {
-  //  //sideBarLeftBottom.display(colorModeSlider.value(), "Engine Status");
-
-  //  for (int i = 0; i < engineConditionSlider0.length; i++) {
-  //    engineConditionSlider0[i].displayEngine();
-  //  }
-  //  for (int i = 0; i < engineConditionSlider1.length; i++) {
-  //    engineConditionSlider1[i].displayEngine();
-  //  }
-    
-  //  // I am going to replace it with image
-  //  //strokeWeight(1);
-  //  //stroke(255);
-  //  //line(nColX*2-10, nColY*8, nColX*2-10, nColY*6+50);
-    
-  //  //line(nColX*2-20, nColY*8,nColX*2, nColY*8);
-  //  //line(nColX*2-15, nColY*8-10,nColX*2-5, nColY*8-10);
-  //  //line(nColX*2-15, nColY*8-20,nColX*2-5, nColY*8-20);
-  //  //line(nColX*2-15, nColY*8-30,nColX*2-5, nColY*8-30);
-  //  //line(nColX*2-15, nColY*8-40,nColX*2-5, nColY*8-40);
-  //  //line(nColX*2-20, nColY*8-50,nColX*2, nColY*8-50);
-  //  //line(nColX*2-15, nColY*8-60,nColX*2-5, nColY*8-60);
-  //  //line(nColX*2-15, nColY*8-70,nColX*2-5, nColY*8-70);
-  //  //line(nColX*2-15, nColY*8-80,nColX*2-5, nColY*8-80);
-  //  //line(nColX*2-15, nColY*8-90,nColX*2-5, nColY*8-90);
-  //  //line(nColX*2-20, nColY*8-100,nColX*2, nColY*8-100);
-
-  //  noStroke();
-  //}
-  ///*-----------------------------------End Method-----------------------------------*/
+  /*-----------------------------------End Method-----------------------------------*/
 }

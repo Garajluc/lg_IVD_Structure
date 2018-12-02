@@ -20,7 +20,7 @@ class ControlPanelUI {
 
     controlPanelFrame = new Frame(x, y, w, h);
     pressureUI = new PressureUI(x+25, y);
-    speedSlider = new Slider (x+nColX*3+20, y+33, 11, 107, 0.1);
+    speedSlider = new Slider (x+nColX*3+20, y+33, 11, 112, 0.1);
     radialProgressBar = new RadialProgressBar(x+nColX*4+33, y+nColY+10, 100);
     /*--------------Buttons--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
@@ -34,8 +34,8 @@ class ControlPanelUI {
       speedModeButton[i] = new Button(bx, by, 70, 20, i, 3);
       if (i == controlPanelButtonArr) speedModeButton[i].toggle = true;
     }
-    
-     for (int i = 0; i < lightDoorButton.length; i++) {
+
+    for (int i = 0; i < lightDoorButton.length; i++) {
       lightDoorButton[i] = new Button(nColX*8+55, y+73+i*40, 70, 20, i, 3);
     }
   }
@@ -46,7 +46,7 @@ class ControlPanelUI {
     controlPanelFrame.display();
     pressureUI.display(radialProgressBar.currentValue);
     radialProgressBar.display(colorModeSlider.value(), speedSlider.targetValue);
-    speedSlider.display(2,2);
+    speedSlider.display(2, 2);
     speedSlider.speedSlider(colorModeSlider.value());
     /*--------------Title--------------*/
     fill(colors[0]); // #FFF
@@ -62,13 +62,13 @@ class ControlPanelUI {
     /*--------------Button--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
       if (controlPanelButtonArr != i)  speedModeButton[i].toggle = false;
-      speedModeButton[i].display(4,8);
+      speedModeButton[i].display(4, 8);
       speedModeButton[i].hover();
       speedModeButton[i].pressed();
     }
-    
+
     for (int i = 0; i < lightDoorButton.length; i++) {
-      lightDoorButton[i].display(4,8);
+      lightDoorButton[i].display(4, 8);
       lightDoorButton[i].hover();
     }
     /*-----------------------------------End Method-----------------------------------*/

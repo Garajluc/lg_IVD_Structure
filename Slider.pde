@@ -12,7 +12,7 @@ class Slider {
     y = ty;
     w = tw;
     h = th;
-    targetValue = 0;
+    targetValue = ttargetValue;
     currentValue = 1.0 - targetValue;
   }
   /*-----------------------------------Constructor End-----------------------------------*/
@@ -31,14 +31,13 @@ class Slider {
     if ( w < h ) { // vertical slider
       rect(x, y+(currentValue*h), w, targetValue*h);
     } else if ( w > h) { // horizontal slider
-      rect(x, y,targetValue*w, h);
+      rect(x, y, targetValue*w, h);
     }
     fill(0);
 
     /*Setting mouse hover boolean */
     bHover = false;
-    if (
-      mouseX > x &&
+    if (mouseX > x &&
       mouseX < x + w &&
       mouseY > y &&
       mouseY < y + h) {
@@ -46,10 +45,30 @@ class Slider {
     }
   }
 
-  void lightSlider() {
+  void horisontalSlider() {
     if (controlPanelButtonArr == 0 && bHover && mousePressed) {
       targetValue =((mouseX - x)/float(w));
       constrain(currentValue, 0.0, 1.0);
+    }
+  }
+
+  void verticalSlider() {
+    if (controlPanelButtonArr == 0 && bHover && mousePressed) {
+      targetValue =1.0-((mouseY -y)/float(h));
+      constrain(currentValue, 0.0, 1.0);
+    }
+  }
+
+  void randomSlider() {
+    stroke(colors[1]);
+    fill(colors[1]);
+    targetValue = targetValue + 0.03;
+    if ( w < h ) { // vertical slider
+      float n = 1-noise(targetValue) * h;
+      rect(x, y, w, n);
+    } else if ( w > h) { // horizontal slider
+      float n = noise(targetValue) * w;
+      rect(x, y, n, h);
     }
   }
 

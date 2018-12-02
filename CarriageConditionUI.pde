@@ -2,9 +2,10 @@ class CarriageConditionUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame carriageConditionFrame;
   Button[] airConditionButton = new Button[7];
-  //RandomSlider[] airConditionSlider = new RandomSlider[4];
-  //RandomSlider[] airConditionSlider1 = new RandomSlider[4];
-  //RandomSlider heatSlider;
+  
+  Slider[] airConditionSliderLeft = new Slider[4];
+  Slider[] airConditionSliderRight = new Slider[4];
+  Slider heatSlider;
   Slider lightSlider;
 
   int x, y; // position
@@ -24,14 +25,14 @@ class CarriageConditionUI {
       if (i == carriageConditionButtonArrIndex) airConditionButton[i].toggle = true;
     }
     /*--------------Sliders--------------*/
-    //for (int i = 0; i < airConditionSlider.length; i++) {
-    //  airConditionSlider[i] = new RandomSlider(x+30+i*30, nColY*7+10, 5, 50, i*3);
-    //}
-    //for (int i = 0; i < airConditionSlider1.length; i++) {
-    //  airConditionSlider1[i] = new RandomSlider(x+180+i*30, nColY*7+10, 5, 50, i*3);
-    //}
-    //heatSlider = new RandomSlider(x+nColX+20, y+35, nColX*2-80, 5, 2);
-    lightSlider = new Slider(x+nColX+20, y+50, 160, 9, 0.5);
+    for (int i = 0; i < airConditionSliderLeft.length; i++) {
+      airConditionSliderLeft[i] = new Slider(x+30+i*30, nColY*7+10, 6, 50, i*0.2);
+    }
+    for (int i = 0; i < airConditionSliderRight.length; i++) {
+      airConditionSliderRight[i] = new Slider(x+180+i*30, nColY*7+10, 6, 50, i*0.2);
+    }
+    heatSlider = new Slider(x+nColX+20, y+35, 160, 6, 0.5);
+    lightSlider = new Slider(x+nColX+20, y+50, 160, 6, 0.5);
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -49,16 +50,19 @@ class CarriageConditionUI {
       airConditionButton[i].pressed();
     }
 
-    //for (int i = 0; i < airConditionSlider.length; i++) {
-    //  airConditionSlider[i].displayAir();
-    //}
-    //for (int i = 0; i < airConditionSlider1.length; i++) {
-    //  airConditionSlider1[i].displayAir();
-    //}
+    for (int i = 0; i < airConditionSliderLeft.length; i++) {
+      airConditionSliderLeft[i].display(2,2);
+      airConditionSliderLeft[i].verticalSlider();
+    }
+    for (int i = 0; i < airConditionSliderRight.length; i++) {
+      airConditionSliderRight[i].display(2,2);
+      airConditionSliderRight[i].verticalSlider();
+    }
 
-    //heatSlider.displayVerticalSlider();
+    heatSlider.display(2,2);
+    heatSlider.horisontalSlider();
     lightSlider.display(2,2);
-    lightSlider.lightSlider();
+    lightSlider.horisontalSlider();
   }
   /*-----------------------------------End Method-----------------------------------*/
 }
