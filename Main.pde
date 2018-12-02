@@ -39,7 +39,7 @@ void setup() {
   mainDisplay = new MainDisplayUI();
   carriage = new CarriageUI();
   carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
-  colorModeSlider = new ColorModeSlider(nColX*3+55, 50, nColX*6-30, nColY*3+20);
+  colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   /*-----------------------------------End Setup-----------------------------------*/
 }
 
@@ -54,7 +54,7 @@ void draw() {
   pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
 
   /*------Objects------*/
-  header.display(colorModeSlider.value());
+  header.display(colorModeSlider.a);
   radar.display();
   audioVisualiser.display();
   queryPanel.display();

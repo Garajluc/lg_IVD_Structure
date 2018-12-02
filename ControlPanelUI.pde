@@ -45,9 +45,9 @@ class ControlPanelUI {
   void display() {
     controlPanelFrame.display();
     pressureUI.display(radialProgressBar.currentValue);
-    radialProgressBar.display(colorModeSlider.value(), speedSlider.targetValue);
+    radialProgressBar.display(colorModeSlider.a, speedSlider.targetValue);
     speedSlider.display(2, 2);
-    speedSlider.speedSlider(colorModeSlider.value());
+    speedSlider.speedSlider(colorModeSlider.a);
     /*--------------Title--------------*/
     fill(colors[0]); // #FFF
     textFont(pressStart);
