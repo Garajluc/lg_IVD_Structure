@@ -46,14 +46,14 @@ class Slider {
   }
 
   void horisontalSlider() {
-    if (controlPanelButtonArr == 0 && bHover && mousePressed) {
+    if (bHover && mousePressed) {
       targetValue =((mouseX - x)/float(w));
       constrain(currentValue, 0.0, 1.0);
     }
   }
 
   void verticalSlider() {
-    if (controlPanelButtonArr == 0 && bHover && mousePressed) {
+    if (bHover && mousePressed) {
       targetValue =1.0-((mouseY -y)/float(h));
       constrain(currentValue, 0.0, 1.0);
     }

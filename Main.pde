@@ -22,9 +22,6 @@ int mainDisplayButtonArr = 0; // index of the main display buttons
 int controlPanelButtonArr = 0; // index of control panel
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
-//boolean toggle = false;
-//float modesButtonIndex;
-//int index = 0;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
