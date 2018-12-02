@@ -24,12 +24,16 @@ class QueryPanel {
       queryButton[i].hover();
     }
     // conditions must be inside the loop to be updated everytame the state changes
-    if (queryButton[0].initColor == queryButton[0].clickedColor) {
+    /*Display Color mode slider*/
+    if (queryButton[0].initColor == queryButton[0].clickedColor
+      && queryButton[19].initColor == queryButton[19].clickedColor) {
       colorModeSlider.display();
       colorModeSlider.move();
     }
-    if (queryButton[4].initColor == queryButton[4].clickedColor) {
-      //audioVisualiser.on();
+    /*Record Audio*/
+    if (queryButton[4].initColor == queryButton[4].clickedColor 
+      && queryButton[9].initColor == queryButton[9].clickedColor) {
+      audioVisualiser.on();
     }
   }
 }

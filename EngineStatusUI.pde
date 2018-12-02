@@ -23,6 +23,7 @@ class EngineStatusUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     fill(colors[0]);
+    textSize(10);
     text("Engine", nBorder+15, nColY*6+20);
     engineFrame.display();
     image(engineBackground, nBorder+nColX-6, nColY*6+30);
