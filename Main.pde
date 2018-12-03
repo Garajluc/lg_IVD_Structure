@@ -46,7 +46,7 @@ void setup() {
 
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {  
-  background(0);
+  background(0 + colorModeSlider.a);
   fill(colors[4]);
 
   /*Background*/

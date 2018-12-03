@@ -44,11 +44,10 @@ class RadialProgressBar {
       currentValue = currentValue - increment;
     }
     deg = currentValue*240;
-
     speed = nf(int(currentValue*240));
     fill(colors[0]);
     arc(x, y, d, d, radians(145), radians(215)+radians(deg-65)); // outside circle
-    fill(colors[3]); // black
+    fill(0 + colorModeSlider.a); // black
     ellipse(x, y, 88, 88); // inside circle
     fill(colors[0]);
     textAlign(CENTER);

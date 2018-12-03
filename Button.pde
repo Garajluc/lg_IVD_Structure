@@ -10,6 +10,7 @@ class Button {
   boolean mouseDown = true; // boolean for duble chenking if the mouse is pressed 
   int arrayNumber; // indicates whitch one of buttons array was clicked
 
+
   /*-----------------------------------Start Constructor-----------------------------------*/
   Button(int trectX, int trectY, int trectW, int trectH, int ti, int arNum) {
     nRectW = trectW;
@@ -26,7 +27,7 @@ class Button {
     // outlined rectangle
     strokeWeight(1);
     stroke(colors[0]);
-    fill(colors[3]); // #000000
+    fill(0 + colorModeSlider.a); // #000000
     rect(nRectX, nRectY, nRectW, nRectH);
     fill(initColor);
 
@@ -41,11 +42,11 @@ class Button {
 
     if (toggle) { // color toggle on click between buttons in one array
       initColor = clickedColor;
-      stroke(colors[3]);
-      fill(colors[3]);
+      stroke(0 + colorModeSlider.a);
+      fill(0 + colorModeSlider.a);
       ellipse(nRectX+nRectH/2, nRectY+nRectH/2, 3, 3);
     } else if (!toggle) {
-      initColor = colors[3];
+      initColor = color(colorModeSlider.a);
     }
     noStroke();
   }
@@ -65,9 +66,11 @@ class Button {
       if (mousePressed && !mouseDown) {
         mouseDown = true;
         /*When is diffrent button clicked the color changes*/
+        
         if (!toggle) {
           toggle = !toggle;
         }
+        
         /*Specification whitch of buttons array I am cliking on*/
         if (arrayNumber == 1) { // 1 = carriage condition
           /* if array of carriage condition buttons is clicked 

@@ -21,7 +21,7 @@ class Slider {
   void display(int offx, int offy) {
     /*Outline rectangle*/
     stroke(colors[0]); // outline
-    fill(colors[3]); // #000000 fill
+    fill(0 + colorModeSlider.a); // #000000 fill
     rect(x-offx, y-offy, w+(2*offx)-1, h+(2*offy)-1);
 
     /*Blue fill rectangle*/

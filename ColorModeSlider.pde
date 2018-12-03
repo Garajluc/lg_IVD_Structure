@@ -46,9 +46,8 @@ class ColorModeSlider {
         targetValue=x-8+w;
       }
     }
-    
-    a=map(currentValue, 90, 180, 0, 35);
-    println(a);
+
+    a=map(currentValue, 70, 220, 0, 35);
     if ( currentValue <= targetValue) {
       currentValue = currentValue + increment;
     } 
