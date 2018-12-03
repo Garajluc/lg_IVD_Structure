@@ -14,6 +14,9 @@ class radarUI {
   float r; // diameter of ellipse when the next one is displayed
   float xoff = 0.0; // arrow rotation: increasing value
   float an = 0; // line rotation: increasing value
+  float n;
+  
+  float xx;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   radarUI(int tx, int ty, int tw, int th, float tr) {
@@ -67,10 +70,12 @@ class radarUI {
   }
 
   void arrow() {
-    xoff = xoff + .0005;
-    float n = noise(xoff) * 10;
     pushMatrix();
     translate(nBorder+nColX, nColY+nColY+20);
+    if (controlPanel.increment > 0) {
+      xoff = xoff + .0005;
+      n = noise(xoff) * 10;
+    }
     rotate(n);
     image (arrowRadar, 0, 0);
     popMatrix();

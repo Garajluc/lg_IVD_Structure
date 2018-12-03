@@ -44,10 +44,10 @@ class EngineStatusUI {
     text("BC", nBorder+100, nColY*8+25);
     
     fill(colors[0]);
-    text(nf(int(engineConditionSliderLeft[0].currentValue*100),4), nBorder+50, nColY*8+10);
-    text(nf(int(engineConditionSliderLeft[3].currentValue*100),4), nBorder+50, nColY*8+25);
-    text(nf(int(engineConditionSliderRight[1].currentValue*100),4), nBorder+130, nColY*8+10);
-    text(nf(int(engineConditionSliderRight[3].currentValue*100),4), nBorder+130, nColY*8+25);
+    text(nf(int(engineConditionSliderLeft[0].currentValue*100),3), nBorder+50, nColY*8+10);
+    text(nf(int(engineConditionSliderLeft[2].currentValue*100),3), nBorder+50, nColY*8+25);
+    text(nf(int(engineConditionSliderRight[0].currentValue*100),3), nBorder+130, nColY*8+10);
+    text(nf(int(engineConditionSliderRight[3].currentValue*100),3), nBorder+130, nColY*8+25);
 
     for (int i = 0; i < engineConditionSliderLeft.length; i++) {
       engineConditionSliderLeft[i].display(2, 2);

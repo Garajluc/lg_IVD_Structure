@@ -31,10 +31,10 @@ class RadialProgressBar {
       targetValue = 0.25;
     } else if (controlPanelButtonArr == 2) {
       targetValue = 0.50;
-    } else if (controlPanelButtonArr == 3) {
-      targetValue = 0.75;
-    } else if (controlPanelButtonArr == 4) {
-      targetValue = 1.0;
+    } else if (controlPanelButtonArr == 3) { // Break - quick return to 0 speed
+      if (currentValue > 0) {
+        currentValue -= 0.001;
+      }
     }
 
     if ( currentValue <= targetValue) {
@@ -54,7 +54,7 @@ class RadialProgressBar {
     textAlign(CENTER);
     fill(colors[0]);
     textSize(24);
-    text(int(speed)+1, x, y);
+    text(int(speed), x, y);
     fill(colors[0]);
     textSize(12);
     text("Km/h", x, y+15);
