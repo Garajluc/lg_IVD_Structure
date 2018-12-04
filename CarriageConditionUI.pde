@@ -2,7 +2,7 @@ class CarriageConditionUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame carriageConditionFrame;
   Button[] airConditionButton = new Button[7];
-  
+
   Slider[] airConditionSliderLeft = new Slider[4];
   Slider[] airConditionSliderRight = new Slider[4];
   Slider heatSlider;
@@ -24,6 +24,7 @@ class CarriageConditionUI {
       airConditionButton[i] = new Button(x+(i*40)+10, y+nColY*2-5, 40, 35, i, 1);
       if (i == carriageConditionButtonArrIndex) airConditionButton[i].toggle = true;
     }
+
     /*--------------Sliders--------------*/
     for (int i = 0; i < airConditionSliderLeft.length; i++) {
       airConditionSliderLeft[i] = new Slider(x+30+i*30, nColY*7+10, 6, 50, i*0.2);
@@ -52,18 +53,19 @@ class CarriageConditionUI {
       airConditionButton[i].pressed();
     }
 
+
     for (int i = 0; i < airConditionSliderLeft.length; i++) {
-      airConditionSliderLeft[i].display(2,2);
+      airConditionSliderLeft[i].display(2, 2);
       airConditionSliderLeft[i].verticalSlider();
     }
     for (int i = 0; i < airConditionSliderRight.length; i++) {
-      airConditionSliderRight[i].display(2,2);
+      airConditionSliderRight[i].display(2, 2);
       airConditionSliderRight[i].verticalSlider();
     }
 
-    heatSlider.display(2,2);
+    heatSlider.display(2, 2);
     heatSlider.horisontalSlider();
-    lightSlider.display(2,2);
+    lightSlider.display(2, 2);
     lightSlider.horisontalSlider();
   }
   /*-----------------------------------End Method-----------------------------------*/

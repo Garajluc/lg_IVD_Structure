@@ -9,7 +9,8 @@ AudioVisualiserUI audioVisualiser;
 QueryPanel queryPanel;
 MainDisplayUI mainDisplay;
 CarriageUI carriage;
-CarriageConditionUI carriageCondition;
+//CarriageConditionUI carriageCondition;
+CarriageConditionUI[] carriageCondition = new CarriageConditionUI[7];
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -40,8 +41,12 @@ void setup() {
   engineStatus = new EngineStatusUI();
   mainDisplay = new MainDisplayUI();
   carriage = new CarriageUI();
-  carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
+  //carriageCondition = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
+  
+  for (int i = 0; i < carriageCondition.length; i++) {
+      carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
+    }
   /*-----------------------------------End Setup-----------------------------------*/
 }
 
@@ -49,9 +54,9 @@ void setup() {
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {
   /*Welcome Screen*/
-  welcomeScreen.display();
+  //welcomeScreen.display();
   /*Draw after the code was passed*/
-  if (welcomeScreen.start) {
+  //if (welcomeScreen.start) {
     background(0 + colorModeSlider.a);
     fill(colors[4]);
 
@@ -68,8 +73,25 @@ void draw() {
     mainDisplay.display();
     controlPanel.display();
     carriage.display();
-    carriageCondition.display();
-  }
+    //carriageCondition.display();
+   
+    
+    if (carriageConditionButtonArrIndex == 0) {
+      carriageCondition[0].display();
+    } else if (carriageConditionButtonArrIndex == 1) {
+      carriageCondition[1].display();
+    } else if (carriageConditionButtonArrIndex == 2) {
+      carriageCondition[2].display();
+    } else if (carriageConditionButtonArrIndex == 3) {
+      carriageCondition[3].display();
+    } else if (carriageConditionButtonArrIndex == 4) {
+      carriageCondition[4].display();
+    } else if (carriageConditionButtonArrIndex == 5) {
+      carriageCondition[5].display();
+    } else if (carriageConditionButtonArrIndex == 6) {
+      carriageCondition[6].display();
+    }
+  //}
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
