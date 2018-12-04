@@ -16,7 +16,7 @@ class PressureBar {
     }
   }
 
-  void display(float radialProgressBarCurrentVal) {    
+  void display(float radialProgressBarCurrentVal, float xfuel, float xend) {    
     /*Pressure Progress Bar_One - follow the speed value*/
     for (int i = 0; i < pressureBarRectangles.length; i++) {
       pressureBarRectangles[i].display();
@@ -24,10 +24,9 @@ class PressureBar {
     
     // changing the color of separate pieces
     //float relationNumber = relativeSpeed-map(radialProgressBarCurrentVal, 0, 1, 0,10); // 10 is a number of pieces
-    float relationNumber = map(controlPanel.cv, 300, 903, 0,10); // 10 is a number of pieces
+    float relationNumber = map(controlPanel.cv, xfuel, xend, 0,10); // 10 is a number of pieces
     for (int i = 0; i < pressureBarRectangles.length; i++) {
       if (i < relationNumber) {
-        println(i);
         pressureBarRectangles[i].colorA = color(colors[0], 100); // color of inactive pieces
       } 
       else {
