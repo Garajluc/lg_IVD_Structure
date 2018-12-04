@@ -11,16 +11,17 @@ class ControlPanelUI {
   float currentValue; // currentValue from the .......
   int bx, by; // position of buttons
 
-  float cv;
-  float tv;
-  float increment;
+  float cv; // current position of the train between stops
+  //float tv;
+  float increment; // speed of the train according tu current value of radialProgressBar
 
   String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "BREAK"};
 
   PImage arrowYellow;
   PImage arrowBlue;
-
-  boolean pressed = false;
+  
+  /*show weather condition*/
+  boolean pressed = false; 
   boolean mouseDown;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
@@ -30,7 +31,7 @@ class ControlPanelUI {
     w = tw;
     h = th;
     cv = 275;
-    tv=275;
+    //tv;
     arrowYellow = loadImage("layout/arrow_yellow.png");
     arrowBlue = loadImage("layout/arrow_blue.png");
     controlPanelFrame = new Frame(x, y, w, h);

@@ -39,6 +39,8 @@ class CarriageConditionUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     carriageConditionFrame.display();
+    textSize(10);
+    fill(colors[0]);
     text("Carrigae Condition", x+20, y+20);
     text("Temperatue:", x+20, y+40);
     text("Light:", x+20, y+60);
