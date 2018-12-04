@@ -28,7 +28,7 @@ void setup() {
   pixelDensity(displayDensity());
   smooth(2);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
-
+  
   /*------Initiate the objects------*/
   header = new Header(40, 55);
   radar = new radarUI(nBorder, nColY, nColX*2, nColY*2+40, 59);
@@ -64,23 +64,6 @@ void draw() {
   carriage.display();
   carriageCondition.display();
 
-  /*Warning message*/
-  if (controlPanelButtonArr == 3) {
-    stroke(100, 0, 200);
-    fill(100, 0, 200, 100);
-    rect(nColX*3+40+15, nColY*2, nColX*6-30, nColY*2-40);
-    fill(255, 0, 0);
-    textSize(16);
-    text("Warning Message", nColX*3+40+35, nColY*2+20);
-  }  
-
-  //if (controlPanel.speedModeButton[3].initColor == controlPanel.speedModeButton[3].clickedColor ) {
-  //  controlPanel.vagon();
-  //  if (controlPanel.xpos > (controlPanel.tv)-1) {
-  //    println("xpos" + controlPanel.xpos + "=" + "tv" + controlPanel.tv);
-  //    controlPanel.speedModeButton[3].clickedColor = colors[1];
-  //  }
-  //}
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 

@@ -28,9 +28,9 @@ class RadialProgressBar {
       }
       deg = currentValue*240;
     } else if (controlPanelButtonArr == 1) {
-      targetValue = 0.25;
+      targetValue = 0.5;
     } else if (controlPanelButtonArr == 2) {
-      targetValue = 0.50;
+      targetValue = 1;
     } else if (controlPanelButtonArr == 3) { // Break - quick return to 0 speed
       if (currentValue > 0) {
         currentValue -= 0.001;

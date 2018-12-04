@@ -15,11 +15,12 @@ class ControlPanelUI {
   //float tv;
   float increment; // speed of the train according tu current value of radialProgressBar
 
-  String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "BREAK"};
+  String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "STOP"};
 
   PImage arrowYellow;
   PImage arrowBlue;
-  
+  PImage arrowSpeedRadialBar;
+
   /*show weather condition*/
   boolean pressed = false; 
   boolean mouseDown;
@@ -34,6 +35,7 @@ class ControlPanelUI {
     //tv;
     arrowYellow = loadImage("layout/arrow_yellow.png");
     arrowBlue = loadImage("layout/arrow_blue.png");
+    arrowSpeedRadialBar = loadImage("layout/arrowSpeed.png");
     controlPanelFrame = new Frame(x, y, w, h);
     pressureUI = new PressureUI(x+25, y);
     speedSlider = new Slider (x+nColX*3+20, y+33, 11, 112, 0);
@@ -64,6 +66,10 @@ class ControlPanelUI {
     radialProgressBar.display(colorModeSlider.a, speedSlider.targetValue);
     speedSlider.display(2, 2);
     speedSlider.speedSlider(colorModeSlider.a);
+
+    float radialSpeedCurrentVal = map(radialProgressBar.currentValue, 0, 1, 0, 112);
+    image(arrowSpeedRadialBar, x+nColX*3+5, y+140-radialSpeedCurrentVal);
+
     /*--------------Title--------------*/
     fill(colors[0]); // #FFF
     textFont(pressStart);
@@ -142,12 +148,12 @@ class ControlPanelUI {
       }
     }
     if (pressed) {
-          fill(colors[3]);
-        rect(x+15, y+30, 180, 115);
-        fill(colors[0]);
-        text("Edinburgh", x+25, y+50);
-        // API for forecast for Edinburgh
-      }
+      fill(colors[3]);
+      rect(x+15, y+30, 180, 115);
+      fill(colors[0]);
+      text("Edinburgh", x+25, y+50);
+      // API for forecast for Edinburgh
+    }
   }
 
   /*move the train from one stop to another*/
