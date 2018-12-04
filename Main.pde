@@ -1,4 +1,5 @@
 /*-----------------------------------Start Objects-----------------------------------*/
+WelcomeScreen welcomeScreen;
 Header header;
 ColorModeSlider colorModeSlider;
 ControlPanelUI controlPanel;
@@ -28,8 +29,9 @@ void setup() {
   pixelDensity(displayDensity());
   smooth(2);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
-  
+
   /*------Initiate the objects------*/
+  welcomeScreen = new WelcomeScreen();
   header = new Header(40, 55);
   radar = new radarUI(nBorder, nColY, nColX*2, nColY*2+40, 59);
   audioVisualiser = new AudioVisualiserUI(nBorder+20, nColY*4+30, this);
@@ -45,25 +47,29 @@ void setup() {
 
 
 /*-----------------------------------Start Draw Loop-----------------------------------*/
-void draw() {  
-  background(0 + colorModeSlider.a);
-  fill(colors[4]);
+void draw() {
+  /*Welcome Screen*/
+  welcomeScreen.display();
+  /*Draw after the code was passed*/
+  if (welcomeScreen.start) {
+    background(0 + colorModeSlider.a);
+    fill(colors[4]);
 
-  /*Background*/
-  pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
-  pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
+    /*Background*/
+    pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
+    pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
 
-  /*------Objects------*/
-  header.display(colorModeSlider.a);
-  radar.display();
-  audioVisualiser.display();
-  queryPanel.display();
-  engineStatus.display();
-  mainDisplay.display();
-  controlPanel.display();
-  carriage.display();
-  carriageCondition.display();
-
+    /*------Objects------*/
+    header.display(colorModeSlider.a);
+    radar.display();
+    audioVisualiser.display();
+    queryPanel.display();
+    engineStatus.display();
+    mainDisplay.display();
+    controlPanel.display();
+    carriage.display();
+    carriageCondition.display();
+  }
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
