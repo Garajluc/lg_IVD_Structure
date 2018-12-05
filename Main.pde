@@ -85,21 +85,10 @@ void draw() {
     airConditionButton[i].hover();
     airConditionButton[i].pressed();
   }
-
-  if (carriageConditionButtonArrIndex == 0) {
-    carriageCondition[0].display();
-  } else if (carriageConditionButtonArrIndex == 1) {
-    carriageCondition[1].display();
-  } else if (carriageConditionButtonArrIndex == 2) {
-    carriageCondition[2].display();
-  } else if (carriageConditionButtonArrIndex == 3) {
-    carriageCondition[3].display();
-  } else if (carriageConditionButtonArrIndex == 4) {
-    carriageCondition[4].display();
-  } else if (carriageConditionButtonArrIndex == 5) {
-    carriageCondition[5].display();
-  } else if (carriageConditionButtonArrIndex == 6) {
-    carriageCondition[6].display();
+  for (int i=0; i < carriageCondition.length; i++) {
+    if (carriageConditionButtonArrIndex == i) {
+      carriageCondition[i].display();
+    } 
   }
   //}
   /*-----------------------------------End Draw Loop-----------------------------------*/

@@ -85,7 +85,7 @@ class Slider {
     }
   }
 
-  void speedSlider(float colorMode) {
+  void speedSlider() {
     if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
       targetValue = 1.0 - ((mouseY - y)/float(h));
       constrain(currentValue, 0.0, 1.0);

@@ -52,6 +52,18 @@ class CarriageUI {
       fill(colors[2], fadeCurrentValue);
       text("!- APPROACHING THE STATION -!", nColX*9+45, nColY+25);
     }
+    
+    for (int i=0; i < carriage.length; i++) {
+      text("Temp:", nBorder+nColX*9+20, nColY+57+i*50);
+      text("°C", nBorder+nColX*9+128, nColY+57+i*50);
+      text("Light:", nBorder+nColX*9+20, nColY+75+i*50);
+      text("%", nBorder+nColX*9+135, nColY+75+i*50);
+      float heat = map(1-carriageCondition[i].heatSlider.currentValue, 0, 1, 0, 45);
+      textAlign(RIGHT);
+      text(int(nf((heat), 0, 0)), nBorder+nColX*9+128, nColY+57+i*50);
+      text(int(nf((1-carriageCondition[i].lightSlider.currentValue)*100, 0, 0)), nBorder+nColX*9+128, nColY+75+i*50);
+      textAlign(LEFT);
+    }
   }
   /*-----------------------------------End Method-----------------------------------*/
 }

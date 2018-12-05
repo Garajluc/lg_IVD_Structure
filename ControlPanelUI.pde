@@ -65,7 +65,7 @@ class ControlPanelUI {
     pressureUI.display(radialProgressBar.currentValue);
     radialProgressBar.display(colorModeSlider.a, speedSlider.targetValue);
     speedSlider.display(2, 2);
-    speedSlider.speedSlider(colorModeSlider.a);
+    speedSlider.speedSlider();
 
     float radialSpeedCurrentVal = map(radialProgressBar.currentValue, 0, 1, 0, 112);
     image(arrowSpeedRadialBar, x+nColX*3+5, y+140-radialSpeedCurrentVal);
