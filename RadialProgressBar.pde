@@ -33,7 +33,7 @@ class RadialProgressBar {
       targetValue = 1;
     } else if (controlPanelButtonArr == 3) { // Break - quick return to 0 speed
       if (currentValue > 0) {
-        currentValue -= 0.001;
+        currentValue -= 0.0003;
       }
     }
 

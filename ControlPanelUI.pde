@@ -15,7 +15,7 @@ class ControlPanelUI {
   //float tv;
   float increment; // speed of the train according tu current value of radialProgressBar
 
-  String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "STOP"};
+  String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "STOP", "LIGHT", "DOOR"};
 
   PImage arrowYellow;
   PImage arrowBlue;
