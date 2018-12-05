@@ -96,7 +96,7 @@ void draw() {
   }
 
   if (controlPanel.radialProgressBar.currentValue > 0 && !soundIsPlaying) {
-    train.loop();
+    train.play();
     soundIsPlaying = true;
   } else if (controlPanel.radialProgressBar.currentValue < 0 && soundIsPlaying) {
     train.pause();
