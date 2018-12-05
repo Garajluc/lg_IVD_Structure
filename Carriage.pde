@@ -24,21 +24,27 @@ class Carriage {
     rect(x, y+5, w, h);
     ellipse(x+nColX*2+30, y+10, 5, 5);
     ellipse(x+nColX*2+30, y+30, 5, 5);
-    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+    textSize(10);
+    fill(colors[0]);
+    text("Open", x+nColX*2+38, y+14);
+    text("Close", x+nColX*2+38, y+35);
+    stroke(colors[0]);
+    fill(colors[0]);
+    ellipse(x+nColX*2+30, y+30, 5, 5);
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor && controlPanel.increment <= 0) {
       stroke(colors[0]);
       fill(colors[0]);
       ellipse(x+nColX*2+30, y+30, 5, 5);
-      fill(colors[0]);
-      text("Open", x+nColX*2+38, y+14);
-    } else if (controlPanel.lightDoorButton[1].initColor == controlPanel.lightDoorButton[1].clickedColor) {
-      stroke(colors[2]);
+    } else if (controlPanel.lightDoorButton[1].initColor == controlPanel.lightDoorButton[1].clickedColor && controlPanel.increment <= 0) {
+      stroke(colors[2]); // yellow
       fill(colors[2]);
       ellipse(x+nColX*2+30, y+10, 5, 5);
       fill(colors[2]);
       textSize(10);
       text("Open", x+nColX*2+38, y+14);
+      stroke(colors[0]);
+      fill(colors[3]);
+      ellipse(x+nColX*2+30, y+30, 5, 5);
     }
-    fill(colors[0]);
-    text("Close", x+nColX*2+38, y+35);
   }
 }

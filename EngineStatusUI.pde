@@ -49,6 +49,7 @@ class EngineStatusUI {
     text(nf(int(engineConditionSliderRight[0].currentValue*100),3), nBorder+130, nColY*8+10);
     text(nf(int(engineConditionSliderRight[3].currentValue*100),3), nBorder+130, nColY*8+25);
 
+    //println(engineConditionSliderRight[0].targetValue);
     for (int i = 0; i < engineConditionSliderLeft.length; i++) {
       engineConditionSliderLeft[i].display(2, 2);
       engineConditionSliderLeft[i].engineSlider(0.5+2*i,0.001);
