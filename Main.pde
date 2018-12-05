@@ -47,7 +47,6 @@ void setup() {
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   train = new SoundFile(this, "train.wav");
-  //train.loop();
   for (int i = 0; i < carriageCondition.length; i++) {
     carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   }

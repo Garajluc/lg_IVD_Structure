@@ -24,6 +24,12 @@ class ControlPanelUI {
   /*show weather condition*/
   boolean pressed = false; 
   boolean mouseDown;
+  // Forecast API
+  XML xml;
+  String apiKey = "c7120b3fe6f6c4699847bff6325327d8";
+  String city;
+  
+  int timer;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   ControlPanelUI(int tx, int ty, int tw, int th) {
@@ -40,6 +46,7 @@ class ControlPanelUI {
     pressureUI = new PressureUI(x+25, y);
     speedSlider = new Slider (x+nColX*3+20, y+33, 11, 112, 0);
     radialProgressBar = new RadialProgressBar(x+nColX*4+33, y+nColY+10, 100);
+
     /*--------------Buttons--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
       if (i < 3) {
@@ -94,10 +101,18 @@ class ControlPanelUI {
       speedModeButton[i].pressed();
     }
 
-    for (int i = 0; i < lightDoorButton.length; i++) {
-      lightDoorButton[i].display(4, 8);
-      lightDoorButton[i].hover();
+    //for (int i = 0; i < lightDoorButton.length; i++) {
+    //  lightDoorButton[i].display(4, 8);
+    //  lightDoorButton[i].hover();
+    //}
+
+    lightDoorButton[0].display(4, 8);
+    lightDoorButton[0].hover();
+    lightDoorButton[1].display(4, 8);
+    if (controlPanel.radialProgressBar.currentValue <= 0) {
+      lightDoorButton[1].hover();
     }
+
     /*Button text*/
     fill(colors[1]);
     for (int i = 0; i < buttonFunction.length; i++) {
@@ -110,8 +125,6 @@ class ControlPanelUI {
       }
       text(buttonFunction[i], bx, by);
     }
-    //println(speedModeButton[2].btnIndex); // tuto si zobrazujem cisto index 2
-    // ak index kliknuteho textu sa rovna speedModeButton[i].btnIndex tak sa zmeni farba inak sa zmeni naspat
   }
 
 
@@ -143,20 +156,47 @@ class ControlPanelUI {
     text("London", 245+157*4, y+168);
 
     // Edinburgh
-    if (dist(275, y+180, mouseX, mouseY) <= 5) { // if I click Edinburgh
-      if (mousePressed && !mouseDown) {
-        pressed = !pressed;
-        mouseDown = true;
-      } else if (!mousePressed) {
-        mouseDown = false;
-      }
-    }
-    if (pressed) {
-      fill(colors[3]);
-      rect(x+15, y+30, 180, 115);
-      fill(colors[0]);
-      text("Edinburgh", x+25, y+50);
-      // API for forecast for Edinburgh
+    //if (dist(275, y+180, mouseX, mouseY) <= 5
+    //    || dist(432, y+180, mouseX, mouseY) <= 5
+    //    || dist(589, y+180, mouseX, mouseY) <= 5
+    //    || dist(746, y+180, mouseX, mouseY) <= 5
+    //    || dist(903, y+180, mouseX, mouseY) <= 5) {
+    //  // API for forecast for Edinburghck Edinburgh
+    //  //if (mousePressed && !mouseDown) {
+    //  //  pressed = !pressed;
+    //  //  mouseDown = true;
+    //  //} else if (!mousePressed) {
+    //  //  mouseDown = false;
+    //  //}
+    //}
+
+    if (dist(275, y+180, mouseX, mouseY) <= 5) {
+      
+      //if (millis()-timer > 2000) {
+      //  fill(colors[3]);
+      //  rect(x+15, y+30, 180, 115);
+      //  fill(colors[0]);
+      //  city = "Edinburgh";
+      //  String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + apiKey;
+      //  xml = loadXML(url); 
+      //  XML childrenCity = xml.getChild("city");
+      //  String name = childrenCity.getString("name");
+      //  XML childrenSunRise = xml.getChild("city/sun");
+      //  String sunrise = childrenSunRise.getString("rise");
+      //  XML childrenSunSet = xml.getChild("city/sun");
+      //  String sunset = childrenSunSet.getString("set");
+      //  XML childrenWind = xml.getChild("wind/speed");
+      //  String windSpeed = childrenWind.getString("value");
+      //  XML childrenClouds = xml.getChild("clouds");
+      //  String clouds = childrenClouds.getString("name");
+      //  text(name, x+25, y+50);
+      //  text(sunrise, x+25, y+70);
+      //  text(sunset, x+25, y+85);
+      //  text("Wind Speed", x+25, y+100);
+      //  text(windSpeed + " Calm", x+125, y+100);
+      //  text(clouds, x+25, y+115);
+      //  timer = millis();
+      //}
     }
   }
 
