@@ -67,8 +67,12 @@ class ControlPanelUI {
     speedSlider.display(2, 2);
     speedSlider.speedSlider();
 
-    float radialSpeedCurrentVal = map(radialProgressBar.currentValue, 0, 1, 0, 112);
-    image(arrowSpeedRadialBar, x+nColX*3+5, y+140-radialSpeedCurrentVal);
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+      float radialSpeedCurrentVal = map(radialProgressBar.currentValue, 0, 1, 0, 112);
+      image(arrowSpeedRadialBar, x+nColX*3+5, y+140-radialSpeedCurrentVal);
+    } else {
+      image(arrowSpeedRadialBar, x+nColX*3+5, y+140);
+    }
 
     /*--------------Title--------------*/
     fill(colors[0]); // #FFF
@@ -158,14 +162,16 @@ class ControlPanelUI {
 
   /*move the train from one stop to another*/
   void move(float radiaBarCurrentValue) {
-    increment = radiaBarCurrentValue*0.2;
-    if (cv < 903) {
-      cv = cv + increment;
-    } else if (cv > 903) {
-      cv = 903;
-    }
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+      increment = radiaBarCurrentValue*0.2;
+      if (cv < 903) {
+        cv = cv + increment;
+      } else if (cv > 903) {
+        cv = 903;
+      }
 
-    if (mouseX > 0 && mouseX < 100 && mouseY >0 && mouseY < 100) {
+      if (mouseX > 0 && mouseX < 100 && mouseY >0 && mouseY < 100) {
+      }
     }
   }
   /*-----------------------------------End Method-----------------------------------*/

@@ -18,8 +18,27 @@ class RadialProgressBar {
   }
 
   void display(float colorMode, float targetValue) {
-    noStroke();
-    if (controlPanelButtonArr == 0) {
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+
+      noStroke();
+      if (controlPanelButtonArr == 0) {
+        if ( currentValue <= targetValue) {
+          currentValue = currentValue + increment;
+        } 
+        if (currentValue >= targetValue) {
+          currentValue = currentValue - increment;
+        }
+        deg = currentValue*240;
+      } else if (controlPanelButtonArr == 1) {
+        targetValue = 0.5;
+      } else if (controlPanelButtonArr == 2) {
+        targetValue = 1;
+      } else if (controlPanelButtonArr == 3) { // Break - quick return to 0 speed
+        if (currentValue > 0) {
+          currentValue -= 0.0003;
+        }
+      }
+
       if ( currentValue <= targetValue) {
         currentValue = currentValue + increment;
       } 
@@ -27,26 +46,11 @@ class RadialProgressBar {
         currentValue = currentValue - increment;
       }
       deg = currentValue*240;
-    } else if (controlPanelButtonArr == 1) {
-      targetValue = 0.5;
-    } else if (controlPanelButtonArr == 2) {
-      targetValue = 1;
-    } else if (controlPanelButtonArr == 3) { // Break - quick return to 0 speed
-      if (currentValue > 0) {
-        currentValue -= 0.0003;
-      }
+      speed = nf(int(currentValue*240));
+      fill(colors[0]);
+      arc(x, y, d, d, radians(145), radians(215)+radians(deg-65)); // outside circle
     }
-
-    if ( currentValue <= targetValue) {
-      currentValue = currentValue + increment;
-    } 
-    if (currentValue >= targetValue) {
-      currentValue = currentValue - increment;
-    }
-    deg = currentValue*240;
-    speed = nf(int(currentValue*240));
-    fill(colors[0]);
-    arc(x, y, d, d, radians(145), radians(215)+radians(deg-65)); // outside circle
+    noStroke();
     fill(0 + colorModeSlider.a); // black
     ellipse(x, y, 88, 88); // inside circle
     fill(colors[0]);

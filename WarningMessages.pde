@@ -39,9 +39,7 @@ class WarningMessages {
       fill(colors[2]);
       textSize(14);
       text("!- DOORS OPEN -!", nColX*9+45, nColY+25);
-    }
-
-    
+    } 
   }
 
   void carriageCondition() {
@@ -50,7 +48,7 @@ class WarningMessages {
         fill(colors[2]);
         textSize(18);
         text("!", nColX*11+16, nColY+66+i*50);
-        if(mouseX >nColX*11 && mouseX < nColX*11+40 && mouseY > nColY+50+i*50 && mouseY < nColY+80+i*50) {
+        if (mouseX >nColX*11 && mouseX < nColX*11+40 && mouseY > nColY+50+i*50 && mouseY < nColY+80+i*50) {
           carriageCondition[i].heatSlider.targetValue = 0.5;
         }
       }

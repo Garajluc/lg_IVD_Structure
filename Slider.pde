@@ -6,7 +6,7 @@ class Slider {
   float targetValue; // starting position (height) of blue rectangle
   int offx, offy; // offset of fill rectangle 
   float colorMode;
-  
+
   float increment;
   /*-----------------------------------Constructor Start-----------------------------------*/
   Slider(int tx, int ty, int tw, int th, float ttargetValue) {
@@ -90,27 +90,29 @@ class Slider {
   }
 
   void speedSlider() {
-    if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
-      targetValue = 1.0 - ((mouseY - y)/float(h));
-      constrain(currentValue, 0.0, 1.0);
-    } else if (controlPanelButtonArr == 1) { // Mode A speed 1/4
-      if (currentValue < 0.5) {
-        currentValue += + 0.001;
-        targetValue = 1.0-currentValue;
-      } else if (currentValue > 0.5) { 
-        currentValue -= 0.001;
-        targetValue = 1.0-currentValue;
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+      if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
+        targetValue = 1.0 - ((mouseY - y)/float(h));
+        constrain(currentValue, 0.0, 1.0);
+      } else if (controlPanelButtonArr == 1) { // Mode A speed 1/4
+        if (currentValue < 0.5) {
+          currentValue += + 0.001;
+          targetValue = 1.0-currentValue;
+        } else if (currentValue > 0.5) { 
+          currentValue -= 0.001;
+          targetValue = 1.0-currentValue;
+        }
+      } else if (controlPanelButtonArr == 2) { // Mode B speed 1/2
+        if (currentValue < 0) {
+          currentValue += + 0.001;
+          targetValue = 1.0-currentValue;
+        } else if (currentValue > 0) {
+          currentValue -= 0.001;
+          targetValue = 1.0-currentValue;
+        }
+      } else if (controlPanelButtonArr == 3) {
+        targetValue = 0;
       }
-    } else if (controlPanelButtonArr == 2) { // Mode B speed 1/2
-      if (currentValue < 0) {
-        currentValue += + 0.001;
-        targetValue = 1.0-currentValue;
-      } else if (currentValue > 0) {
-        currentValue -= 0.001;
-        targetValue = 1.0-currentValue;
-      }
-    } else if (controlPanelButtonArr == 3) {
-      targetValue = 0;
     }
     /*Skusala som to zjednodusit ale nieco je tam dodobane*/
     //if (controlPanelButtonArr == 0 && bHover && mousePressed) { // Manual - ON/OFF!!!
