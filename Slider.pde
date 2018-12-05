@@ -6,6 +6,8 @@ class Slider {
   float targetValue; // starting position (height) of blue rectangle
   int offx, offy; // offset of fill rectangle 
   float colorMode;
+  
+  float increment;
   /*-----------------------------------Constructor Start-----------------------------------*/
   Slider(int tx, int ty, int tw, int th, float ttargetValue) {
     x = tx;
@@ -45,10 +47,12 @@ class Slider {
     }
   }
 
-  void horisontalSlider() {
+  void horisontalSlider(float increment) {
     if (bHover && mousePressed) {
       targetValue =((mouseX - x)/float(w));
       constrain(currentValue, 0.0, 1.0);
+    } else if (targetValue < 1) {
+      targetValue += increment;
     }
   }
 

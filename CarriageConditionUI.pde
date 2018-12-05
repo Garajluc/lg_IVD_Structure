@@ -42,8 +42,6 @@ class CarriageConditionUI {
     text("Light:", x+20, y+60);
     text("Air Condition:", x+20, y+80);
 
-
-
     for (int i = 0; i < airConditionSliderLeft.length; i++) {
       airConditionSliderLeft[i].display(2, 2);
       airConditionSliderLeft[i].verticalSlider();
@@ -54,9 +52,9 @@ class CarriageConditionUI {
     }
 
     heatSlider.display(2, 2);
-    heatSlider.horisontalSlider();
+    heatSlider.horisontalSlider(0.0002);
     lightSlider.display(2,2);
-    lightSlider.horisontalSlider();
+    lightSlider.horisontalSlider(0);
   }
   /*-----------------------------------End Method-----------------------------------*/
 }

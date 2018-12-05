@@ -4,12 +4,16 @@ class CarriageUI {
   Frame carriageFrame;
   Carriage[] carriage = new Carriage[7];
   WarningMessages warningStationApproaching;
+  WarningMessages warningDoorOpen;
+  WarningMessages warningHightTemperature;
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   CarriageUI() {
     headerCarriageFrame = new Frame(nColX*9+nBorder, nColY/2, nColX*3, nColY/2);
     carriageFrame = new Frame(nColX*9+nBorder, nColY, nColX*3, nColY*5);
     warningStationApproaching = new WarningMessages();
+    warningDoorOpen = new WarningMessages();
+    warningHightTemperature = new WarningMessages();
 
     for (int i = 0; i < carriage.length; i++) {
       carriage[i] = new Carriage(nBorder+nColX*9+15, nColY+nColY/2+i*50, 130, 35);
@@ -23,6 +27,8 @@ class CarriageUI {
     headerCarriageFrame.title("Carriage");
     carriageFrame.display();
     warningStationApproaching.approachStation();
+    warningDoorOpen.doorOpen();
+    warningHightTemperature.carriageCondition();
     for (int i = 0; i < carriage.length; i++) {
       carriage[i].display();
     }
@@ -40,13 +46,8 @@ class CarriageUI {
       text(int(nf((1-carriageCondition[i].lightSlider.currentValue)*100, 0, 0)), nBorder+nColX*9+128, nColY+75+i*50);
       textAlign(LEFT);
     }
+    
   
-  
-  if (controlPanel.lightDoorButton[1].initColor == controlPanel.lightDoorButton[1].clickedColor && controlPanel.increment <= 0) {
-      fill(colors[2]);
-      textSize(14);
-      text("!- DOORS OPEN -!", nColX*9+45, nColY+25);
-    }
   }
   /*-----------------------------------End Method-----------------------------------*/
 }
