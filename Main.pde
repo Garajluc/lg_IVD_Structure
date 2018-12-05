@@ -1,4 +1,6 @@
 /*-----------------------------------Start Objects-----------------------------------*/
+import processing.sound.*;
+SoundFile train;
 WelcomeScreen welcomeScreen;
 Header header;
 ColorModeSlider colorModeSlider;
@@ -10,7 +12,6 @@ QueryPanel queryPanel;
 MainDisplayUI mainDisplay;
 CarriageUI carriage;
 CarriageConditionUI[] carriageCondition = new CarriageConditionUI[7];
-
 Button[] airConditionButton = new Button[7];
 /*-----------------------------------End Objects-----------------------------------*/
 
@@ -25,6 +26,8 @@ int mainDisplayButtonArr = 0; // index of the main display buttons
 int controlPanelButtonArr = 0; // index of control panel
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
+
+boolean soundIsPlaying = false;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720);
@@ -43,7 +46,8 @@ void setup() {
   mainDisplay = new MainDisplayUI();
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
-
+  train = new SoundFile(this, "train.wav");
+  //train.loop();
   for (int i = 0; i < carriageCondition.length; i++) {
     carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   }
@@ -88,7 +92,15 @@ void draw() {
   for (int i=0; i < carriageCondition.length; i++) {
     if (carriageConditionButtonArrIndex == i) {
       carriageCondition[i].display();
-    } 
+    }
+  }
+
+  if (controlPanel.radialProgressBar.currentValue > 0 && !soundIsPlaying) {
+    train.loop();
+    soundIsPlaying = true;
+  } else if (controlPanel.radialProgressBar.currentValue < 0 && soundIsPlaying) {
+    train.pause();
+    soundIsPlaying = false;
   }
   //}
   /*-----------------------------------End Draw Loop-----------------------------------*/
