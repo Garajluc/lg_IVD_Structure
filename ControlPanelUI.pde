@@ -4,19 +4,16 @@ class ControlPanelUI {
   PressureUI pressureUI;
   Slider speedSlider;
   RadialProgressBar radialProgressBar;
+  ScrollingText scrollingText;
   Button[] speedModeButton = new Button[4];
   Button[] lightDoorButton = new Button[2];
   /*-----------------------------------Variables-----------------------------------*/
   int x, y, w, h; // start point position: Left Up Corner of the Frame
   float currentValue; // currentValue from the .......
   int bx, by; // position of buttons
-
   float cv; // current position of the train between stops
-  //float tv;
   float increment; // speed of the train according tu current value of radialProgressBar
-
   String[] buttonFunction = {"MANUAL", "MODE A", "MODE B", "STOP", "LIGHT", "DOOR"};
-
   PImage arrowYellow;
   PImage arrowBlue;
   PImage arrowSpeedRadialBar;
@@ -28,7 +25,6 @@ class ControlPanelUI {
   XML xml;
   String apiKey = "c7120b3fe6f6c4699847bff6325327d8";
   String city;
-  int timer; // for opitmasiong calls per minute
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   ControlPanelUI(int tx, int ty, int tw, int th) {
@@ -45,7 +41,7 @@ class ControlPanelUI {
     pressureUI = new PressureUI(x+25, y);
     speedSlider = new Slider (x+nColX*3+20, y+33, 11, 112, 0);
     radialProgressBar = new RadialProgressBar(x+nColX*4+33, y+nColY+10, 100);
-
+    scrollingText = new ScrollingText();
     /*--------------Buttons--------------*/
     for (int i = 0; i < speedModeButton.length; i++) {
       if (i < 3) {
@@ -86,9 +82,12 @@ class ControlPanelUI {
     textSize(10);
     text("Control Panel", x+15, y+20);
     /*--------------Message--------------*/
+
     fill(colors[3], 0);
     stroke(colors[0]);
     rect(x+15, y+30, 180, 115);
+    scrollingText.display(nBorder+nColX*2, nColY*6);
+
     /*--------------Stops--------------*/
     stops();
     move(radialProgressBar.currentValue);
@@ -166,6 +165,7 @@ class ControlPanelUI {
       || dist(589, y+180, mouseX, mouseY) <= 5
       || dist(746, y+180, mouseX, mouseY) <= 5
       || dist(903, y+180, mouseX, mouseY) <= 5) {
+      textSize(10);
       fill(colors[3]);
       rect(x+15, y+30, 180, 115);
       fill(colors[0]);

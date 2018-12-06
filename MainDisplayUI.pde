@@ -47,7 +47,7 @@ class MainDisplayUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    switchMainDisplayBottom.display();
+    //switchMainDisplayBottom.display();
     switchMainDisplayTop.display();
 
     /*Main Display Buttons*/
@@ -83,11 +83,11 @@ class MainDisplayUI {
     mainDiplayUpFrame.display();
   }
 
-  void switchBottomDisplay() {
-    if (mouseX >= x && mouseX <= x+w && 
-      mouseY >= y*4+40 && mouseY <= y*4+40+nColY+40) {
-      switchMainDisplayBottom.switchScreen();
-    }
-  }
+  //void switchBottomDisplay() {
+  //  if (mouseX >= x && mouseX <= x+w && 
+  //    mouseY >= y*4+40 && mouseY <= y*4+40+nColY+40) {
+  //    switchMainDisplayBottom.switchScreen();
+  //  }
+  //}
   /*-----------------------------------End Method-----------------------------------*/
 }

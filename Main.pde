@@ -13,6 +13,7 @@ MainDisplayUI mainDisplay;
 CarriageUI carriage;
 CarriageConditionUI[] carriageCondition = new CarriageConditionUI[7];
 Button[] airConditionButton = new Button[7];
+Waves waves;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -30,7 +31,7 @@ PFont pressStart;
 boolean soundIsPlaying = false;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
-  size(1280, 720);
+  size(1280, 720, P3D);
   pixelDensity(displayDensity());
   smooth(2);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
@@ -47,6 +48,7 @@ void setup() {
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   train = new SoundFile(this, "train.wav");
+  waves = new Waves();
   for (int i = 0; i < carriageCondition.length; i++) {
     carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   }
@@ -94,13 +96,15 @@ void draw() {
   }
 
   if (controlPanel.radialProgressBar.currentValue > 0 && !soundIsPlaying) {
-    train.play();
+    train.loop();
     soundIsPlaying = true;
   } else if (controlPanel.radialProgressBar.currentValue < 0 && soundIsPlaying) {
     train.pause();
     soundIsPlaying = false;
   }
   //}
+  
+  waves.display();
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
@@ -114,6 +118,6 @@ void mousePressed() {
     controlPanel.lightDoorButton[i].toggleBtn();
   }
   /*Switch Image Main Display*/
-  mainDisplay.switchBottomDisplay();
+  //mainDisplay.switchBottomDisplay();
 }
 /*----------------------------------End Mouse Functions----------------------------------*/
