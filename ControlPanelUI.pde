@@ -86,7 +86,7 @@ class ControlPanelUI {
     fill(colors[3], 0);
     stroke(colors[0]);
     rect(x+15, y+30, 180, 115);
-    scrollingText.display(nBorder+nColX*2, nColY*6);
+    scrollingText.display(nBorder+nColX*2, nColY*6, 150);
 
     /*--------------Stops--------------*/
     stops();
@@ -111,6 +111,7 @@ class ControlPanelUI {
 
     /*Button text*/
     fill(colors[1]);
+    textSize(10);
     for (int i = 0; i < buttonFunction.length; i++) {
       if (i < 3) {
         bx = 90+nColX*7;

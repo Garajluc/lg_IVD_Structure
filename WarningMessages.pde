@@ -54,4 +54,35 @@ class WarningMessages {
       }
     }
   }
+  
+  void highSpeed() {
+    if(controlPanel.radialProgressBar.currentValue > 0.6) {
+      if (controlPanel.increment > 0) {
+        if (fadeCurrentValue ==  0) {
+          fadeTargetValue = 255;
+        } else if (fadeCurrentValue == 250) {
+          fadeTargetValue = 0;
+        }
+
+        if (fadeTargetValue > fadeCurrentValue) {
+          fadeCurrentValue = fadeCurrentValue + fade;
+        } else if (fadeTargetValue < fadeCurrentValue) {
+          fadeCurrentValue -= fade;
+          println(fadeCurrentValue);
+        }
+        
+        fill(colors[3],100);
+        rect(nColX*4, nColY*2, 400, 100);
+        textSize(20);
+        fill(colors[2], fadeCurrentValue);
+        textAlign(CENTER);
+        textMode(CENTER);
+        text("!- WARNING -!", width/2-40, nColY*3-50);
+        text("!- HIGH SPEED -!", width/2-40, nColY*3-25);
+        text("!- SLOW DOWN -!", width/2-40, nColY*3);
+        textMode(CORNER);
+        textAlign(LEFT);
+      }
+    }
+  }
 }

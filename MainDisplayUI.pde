@@ -17,6 +17,8 @@ class MainDisplayUI {
   Frame mainDisplayHeader;
   Frame mainDiplayUpFrame;
   Frame mainDisplayBottom;
+  Earthquake earthquake;
+  ScrollingText scrollingText;
 
   Button[] mainDisplayButton = new Button[3];
 
@@ -26,6 +28,9 @@ class MainDisplayUI {
     mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
     mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);
     mainDisplayBottom = new Frame(nColX*2+nBorder, nColY*4+40, nColX*7, nColY+40);
+    mouse = loadImage("layout/mouse.png");
+    earthquake = new Earthquake();
+    scrollingText = new ScrollingText();
 
     /*--------------Buttons--------------*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
@@ -48,11 +53,10 @@ class MainDisplayUI {
 
     /*Switch Image Main Display*/
     if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
-      
+      earthquake.display();
+      scrollingText.display(nColX*7+40, nColY*3, 50);
     } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
-      
     } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
-      
     }
 
     // lines over mouse on main display
@@ -82,7 +86,7 @@ class MainDisplayUI {
     }
     if (pressed) {
       fill(colors[0]);
-      rect(10,10,200,20);
+      rect(10, 10, 200, 20);
     }
   }
   /*-----------------------------------End Method-----------------------------------*/

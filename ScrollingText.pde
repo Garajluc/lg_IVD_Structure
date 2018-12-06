@@ -7,12 +7,12 @@ class ScrollingText {
   ScrollingText() {
   }
 
-  void display(int x, int y) {
+  void display(int x, int y, int l) {
     fill(colors[0]);
     textSize(8);
-    text(szText, x+20, y+35, 160, 100);
+    text(szText, x+20, y+35, l, 100);
     szText += sz.charAt(int(random(sz.length())));
-    if (szText.length() > 150) {
+    if (szText.length() > l) {
       szText = szText.substring(35);
     }
     nlipsum ++;

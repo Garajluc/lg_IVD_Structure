@@ -14,6 +14,7 @@ CarriageUI carriage;
 CarriageConditionUI[] carriageCondition = new CarriageConditionUI[7];
 Button[] airConditionButton = new Button[7];
 Waves waves;
+WarningMessages highSpeed;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
@@ -49,6 +50,7 @@ void setup() {
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   train = new SoundFile(this, "train.wav");
   waves = new Waves();
+  highSpeed = new WarningMessages();
   for (int i = 0; i < carriageCondition.length; i++) {
     carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   }
@@ -81,8 +83,8 @@ void draw() {
   engineStatus.display();
   mainDisplay.display();
   controlPanel.display();
-  carriage.display();   
-
+  carriage.display();
+  highSpeed.highSpeed();
   for (int i = 0; i < airConditionButton.length; i++) {
     if (carriageConditionButtonArrIndex != i)  airConditionButton[i].toggle = false;
     airConditionButton[i].display(4, 8);
