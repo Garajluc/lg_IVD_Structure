@@ -134,13 +134,13 @@ class ControlPanelUI {
     fill(colors[0]);
     stroke(colors[0]);
     ellipse(cv, y+180, 10, 10);
-    image(arrowYellow, x+130, y+180);
+    image(arrowYellow, x+120, y+180);
     image(arrowBlue, x+170, y+180);
-    image(arrowYellow, x+287, y+180);
+    image(arrowYellow, x+277, y+180);
     image(arrowBlue, x+327, y+180);
-    image(arrowYellow, x+444, y+180);
+    image(arrowYellow, x+434, y+180);
     image(arrowBlue, x+484, y+180);
-    image(arrowYellow, x+601, y+180);
+    image(arrowYellow, x+591, y+180);
     image(arrowBlue, x+641, y+180);
     text("Edinburgh", 260, y+168);
     text("Newcastle", 250+157, y+168);
@@ -166,7 +166,7 @@ class ControlPanelUI {
       || dist(746, y+180, mouseX, mouseY) <= 5
       || dist(903, y+180, mouseX, mouseY) <= 5) {
       textSize(10);
-      fill(colors[3]);
+      fill(0 + colorModeSlider.a);
       rect(x+15, y+30, 180, 115);
       fill(colors[0]);
       String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + apiKey;
