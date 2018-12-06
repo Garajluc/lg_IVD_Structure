@@ -6,6 +6,8 @@ class CarriageConditionUI {
   Slider[] airConditionSliderRight = new Slider[4];
   Slider heatSlider;
   Slider lightSlider;
+  Slider[] airConditionSliderLeftRand = new Slider[4];
+  Slider[] airConditionSliderRightRand = new Slider[4];
 
   int x, y; // position
   int w, h; // dimension
@@ -25,10 +27,18 @@ class CarriageConditionUI {
       airConditionSliderLeft[i] = new Slider(x+30+i*30, nColY*7+10, 6, 50, 0.4);
     }
     for (int i = 0; i < airConditionSliderRight.length; i++) {
-      airConditionSliderRight[i] = new Slider(x+180+i*30, nColY*7+10, 6, 50, 0.4);
+      airConditionSliderRight[i] = new Slider(x+180+i*30, nColY*7+10, 6, 50, 0);
     }
     heatSlider = new Slider(x+nColX+20, y+35, 160, 6, 0.5);
     lightSlider = new Slider(x+nColX+20, y+50, 160, 6, 0.5);
+
+    for (int i = 0; i < airConditionSliderLeftRand.length; i++) {
+      airConditionSliderLeftRand[i] = new Slider(x+180+i*30, nColY*7+59, 5, 50, 1*i);
+    }
+
+    for (int i = 0; i < airConditionSliderRightRand.length; i++) {
+      airConditionSliderRightRand[i] = new Slider(x+30+i*30, nColY*7+59, 5, 50, 1*i);
+    }
   }
   /*-----------------------------------End Constructor-----------------------------------*/
 
@@ -44,17 +54,23 @@ class CarriageConditionUI {
 
     for (int i = 0; i < airConditionSliderLeft.length; i++) {
       airConditionSliderLeft[i].display(2, 2);
-      airConditionSliderLeft[i].verticalSlider();
     }
     for (int i = 0; i < airConditionSliderRight.length; i++) {
       airConditionSliderRight[i].display(2, 2);
-      airConditionSliderRight[i].verticalSlider();
     }
 
     heatSlider.display(2, 2);
     heatSlider.horisontalSlider(0.0002);
-    lightSlider.display(2,2);
+    lightSlider.display(2, 2);
     lightSlider.horisontalSlider(0);
+
+    for (int i =0; i < airConditionSliderLeftRand.length; i++) {
+      airConditionSliderLeftRand[i].randomSlider(0.001);
+    }
+
+    for (int i =0; i < airConditionSliderRightRand.length; i++) {
+      airConditionSliderRightRand[i].randomSlider(0.005);
+    }
   }
   /*-----------------------------------End Method-----------------------------------*/
 }

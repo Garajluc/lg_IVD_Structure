@@ -89,10 +89,10 @@ class radarUI {
 
   void slider() {
     for (int i =0; i < sliderLeft.length; i++) {
-      sliderLeft[i].randomSlider();
+      sliderLeft[i].randomSlider(0.03);
     }
     for (int i =0; i < sliderDown.length; i++) {
-      sliderDown[i].randomSlider();
+      sliderDown[i].randomSlider(0.03);
     }
   }
   /*-----------------------------------Start Method-----------------------------------*/

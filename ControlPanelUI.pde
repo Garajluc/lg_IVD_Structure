@@ -28,8 +28,7 @@ class ControlPanelUI {
   XML xml;
   String apiKey = "c7120b3fe6f6c4699847bff6325327d8";
   String city;
-  
-  int timer;
+  int timer; // for opitmasiong calls per minute
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   ControlPanelUI(int tx, int ty, int tw, int th) {
@@ -101,11 +100,6 @@ class ControlPanelUI {
       speedModeButton[i].pressed();
     }
 
-    //for (int i = 0; i < lightDoorButton.length; i++) {
-    //  lightDoorButton[i].display(4, 8);
-    //  lightDoorButton[i].hover();
-    //}
-
     lightDoorButton[0].display(4, 8);
     lightDoorButton[0].hover();
     lightDoorButton[1].display(4, 8);
@@ -155,50 +149,50 @@ class ControlPanelUI {
     text("Peterborough", 240+157*3, y+168);
     text("London", 245+157*4, y+168);
 
-    // Edinburgh
-    //if (dist(275, y+180, mouseX, mouseY) <= 5
-    //    || dist(432, y+180, mouseX, mouseY) <= 5
-    //    || dist(589, y+180, mouseX, mouseY) <= 5
-    //    || dist(746, y+180, mouseX, mouseY) <= 5
-    //    || dist(903, y+180, mouseX, mouseY) <= 5) {
-    //  // API for forecast for Edinburghck Edinburgh
-    //  //if (mousePressed && !mouseDown) {
-    //  //  pressed = !pressed;
-    //  //  mouseDown = true;
-    //  //} else if (!mousePressed) {
-    //  //  mouseDown = false;
-    //  //}
-    //}
-
     if (dist(275, y+180, mouseX, mouseY) <= 5) {
-      
-      //if (millis()-timer > 2000) {
-      //  fill(colors[3]);
-      //  rect(x+15, y+30, 180, 115);
-      //  fill(colors[0]);
-      //  city = "Edinburgh";
-      //  String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + apiKey;
-      //  xml = loadXML(url); 
-      //  XML childrenCity = xml.getChild("city");
-      //  String name = childrenCity.getString("name");
-      //  XML childrenSunRise = xml.getChild("city/sun");
-      //  String sunrise = childrenSunRise.getString("rise");
-      //  XML childrenSunSet = xml.getChild("city/sun");
-      //  String sunset = childrenSunSet.getString("set");
-      //  XML childrenWind = xml.getChild("wind/speed");
-      //  String windSpeed = childrenWind.getString("value");
-      //  XML childrenClouds = xml.getChild("clouds");
-      //  String clouds = childrenClouds.getString("name");
-      //  text(name, x+25, y+50);
-      //  text(sunrise, x+25, y+70);
-      //  text(sunset, x+25, y+85);
-      //  text("Wind Speed", x+25, y+100);
-      //  text(windSpeed + " Calm", x+125, y+100);
-      //  text(clouds, x+25, y+115);
-      //  timer = millis();
-      //}
+      city = "Edinburgh";
+    } else if (dist(432, y+180, mouseX, mouseY) <= 5) {
+      city = "Newcastle";
+    } else if (dist(589, y+180, mouseX, mouseY) <= 5) {
+      city = "York";
+    } else if (dist(746, y+180, mouseX, mouseY) <= 5) {
+      city = "Peterborough";
+    } else if (dist(903, y+180, mouseX, mouseY) <= 5) {
+      city = "London";
+    }
+
+    if (dist(275, y+180, mouseX, mouseY) <= 5
+      || dist(432, y+180, mouseX, mouseY) <= 5
+      || dist(589, y+180, mouseX, mouseY) <= 5
+      || dist(746, y+180, mouseX, mouseY) <= 5
+      || dist(903, y+180, mouseX, mouseY) <= 5) {
+      fill(colors[3]);
+      rect(x+15, y+30, 180, 115);
+      fill(colors[0]);
+      String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + apiKey;
+      xml = loadXML(url); 
+      XML childrenCity = xml.getChild("city");
+      String name = childrenCity.getString("name");
+      XML childrenSunRise = xml.getChild("city/sun");
+      String sunrise = childrenSunRise.getString("rise");
+      XML childrenSunSet = xml.getChild("city/sun");
+      String sunset = childrenSunSet.getString("set");
+      XML childrenWind = xml.getChild("wind/speed");
+      String windSpeed = childrenWind.getString("value");
+      XML childrenWindName = xml.getChild("wind/speed");
+      String windName = childrenWindName.getString("name");
+      XML childrenClouds = xml.getChild("clouds");
+      String clouds = childrenClouds.getString("name");
+      text(name, x+25, y+50);
+      text(sunrise, x+25, y+70);
+      text(sunset, x+25, y+85);
+      text("Wind Speed", x+25, y+100);
+      text(windSpeed, x+125, y+100);
+      text(windName, x+25, y+115);
+      text(clouds, x+25, y+130);
     }
   }
+
 
   /*move the train from one stop to another*/
   void move(float radiaBarCurrentValue) {

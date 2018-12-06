@@ -63,10 +63,10 @@ class Slider {
     }
   }
 
-  void randomSlider() {
-    stroke(colors[1]);
-    fill(colors[1]);
-    targetValue = targetValue + 0.03;
+  void randomSlider(float speed) {
+    stroke(colors[0]);
+    fill(colors[0]);
+    targetValue = targetValue + speed;
     if ( w < h ) { // vertical slider
       float n = 1-noise(targetValue) * h;
       rect(x, y, w, n);
