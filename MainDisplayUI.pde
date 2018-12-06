@@ -18,23 +18,10 @@ class MainDisplayUI {
   Frame mainDiplayUpFrame;
   Frame mainDisplayBottom;
 
-  SwitchMainDisplay switchMainDisplayBottom;
-  SwitchMainDisplay switchMainDisplayTop;
   Button[] mainDisplayButton = new Button[3];
 
   /*-----------------------------------Start Constructor-----------------------------------*/
   MainDisplayUI() {
-    camera = loadImage("camera.jpg");
-    location = loadImage("location.png");
-    wind = loadImage("wind_map.png");
-    wave = loadImage("wave.jpg");
-    text = loadImage("text.jpg");
-    flow = loadImage("flow.jpg");  
-
-    mouse = loadImage("layout/mouse.png");
-
-    switchMainDisplayTop = new SwitchMainDisplay(x, y, w, nColY*3+40, location, wind, camera);
-    switchMainDisplayBottom = new SwitchMainDisplay(x, y*4+40, w, nColY+40, wave, text, flow);
 
     mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
     mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);
@@ -50,9 +37,6 @@ class MainDisplayUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    //switchMainDisplayBottom.display();
-    //switchMainDisplayTop.display();
-
     /*Main Display Buttons*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
       if (mainDisplayButtonArr != i)  mainDisplayButton[i].toggle = false;
@@ -64,10 +48,11 @@ class MainDisplayUI {
 
     /*Switch Image Main Display*/
     if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
-      //rect(10, 10, 50, 50);
+      
     } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
-      //rect(10, 10, 500, 500);
+      
     } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
+      
     }
 
     // lines over mouse on main display

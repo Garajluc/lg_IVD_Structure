@@ -102,7 +102,10 @@ class ControlPanelUI {
     lightDoorButton[0].display(4, 8);
     lightDoorButton[0].hover();
     lightDoorButton[1].display(4, 8);
-    if (controlPanel.radialProgressBar.currentValue <= 0) {
+    if (controlPanel.radialProgressBar.currentValue <= 0 
+      && speedModeButton[0].initColor != speedModeButton[0].clickedColor
+      && speedModeButton[1].initColor != speedModeButton[1].clickedColor
+      && speedModeButton[2].initColor != speedModeButton[2].clickedColor) {
       lightDoorButton[1].hover();
     }
 
