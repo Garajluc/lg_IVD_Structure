@@ -54,7 +54,7 @@ class MainDisplayUI {
     /*Switch Image Main Display*/
     if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
       earthquake.display();
-      scrollingText.display(nColX*7+40, nColY*3, 50);
+      scrollingText.display(nColX*8+60, nColY-20, 50);
     } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
     } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
     }
