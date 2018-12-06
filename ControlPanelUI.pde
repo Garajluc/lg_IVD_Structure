@@ -126,11 +126,11 @@ class ControlPanelUI {
     rect(x+15, y+155, nColX*6+70, 35);
     line(x+35, y+180, x+nColX*6+60, y+ 180);
     fill(0 + colorModeSlider.a);
-    ellipse(275, y+180, 10, 10);
-    ellipse(432, y+180, 10, 10);
-    ellipse(589, y+180, 10, 10);
-    ellipse(746, y+180, 10, 10);
-    ellipse(903, y+180, 10, 10);
+    ellipse(275, y+180, 20, 10);
+    ellipse(432, y+180, 20, 10);
+    ellipse(589, y+180, 20, 10);
+    ellipse(746, y+180, 20, 10);
+    ellipse(903, y+180, 20, 10);
     fill(colors[0]);
     stroke(colors[0]);
     ellipse(cv, y+180, 10, 10);

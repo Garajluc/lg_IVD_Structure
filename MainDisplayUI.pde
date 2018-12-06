@@ -9,6 +9,9 @@ int y = nColY;
 int w = nColX*7;
 PImage mouse;
 
+boolean screenOne = true;
+boolean mouseDown = false;
+
 class MainDisplayUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame mainDisplayHeader;
@@ -48,7 +51,7 @@ class MainDisplayUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     //switchMainDisplayBottom.display();
-    switchMainDisplayTop.display();
+    //switchMainDisplayTop.display();
 
     /*Main Display Buttons*/
     for (int i = 0; i < mainDisplayButton.length; i++) {
@@ -58,15 +61,13 @@ class MainDisplayUI {
       mainDisplayButton[i].pressed();
     }
 
-    if (mousePressed) {
-      /*Switch Image Main Display*/
-      if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
-        switchMainDisplayTop.screenZero();
-      } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
-        switchMainDisplayTop.screenOne();
-      } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
-        switchMainDisplayTop.screenTwo();
-      }
+
+    /*Switch Image Main Display*/
+    if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
+      //rect(10, 10, 50, 50);
+    } else if (mainDisplayButton[1].initColor == mainDisplayButton[0].clickedColor) {
+      //rect(10, 10, 500, 500);
+    } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
     }
 
     // lines over mouse on main display
@@ -81,13 +82,7 @@ class MainDisplayUI {
     mainDisplayHeader.display();
     mainDisplayHeader.title("Main Display");
     mainDiplayUpFrame.display();
-  }
 
-  //void switchBottomDisplay() {
-  //  if (mouseX >= x && mouseX <= x+w && 
-  //    mouseY >= y*4+40 && mouseY <= y*4+40+nColY+40) {
-  //    switchMainDisplayBottom.switchScreen();
-  //  }
-  //}
+  }
   /*-----------------------------------End Method-----------------------------------*/
 }
