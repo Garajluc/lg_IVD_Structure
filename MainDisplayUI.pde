@@ -9,7 +9,7 @@ int y = nColY;
 int w = nColX*7;
 PImage mouse;
 
-boolean screenOne = true;
+boolean pressed = true;
 boolean mouseDown = false;
 
 class MainDisplayUI {
@@ -68,6 +68,22 @@ class MainDisplayUI {
     mainDisplayHeader.title("Main Display");
     mainDiplayUpFrame.display();
 
+
+
+    if (mouseX >  0 && 
+      mouseX <  100 && 
+      mouseY > 0 && mouseY < 100) { // if I click Edinburgh
+      if (mousePressed && !mouseDown) {
+        pressed = !pressed;
+        mouseDown = true;
+      } else if (!mousePressed) {
+        mouseDown = false;
+      }
+    }
+    if (pressed) {
+      fill(colors[0]);
+      rect(10,10,200,20);
+    }
   }
   /*-----------------------------------End Method-----------------------------------*/
 }
