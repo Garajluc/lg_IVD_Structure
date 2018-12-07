@@ -49,5 +49,8 @@ class Waves {
       }
       endShape();
     }
+    
+    translate(-325, -395);
+    rotateX(-(PI/2.5));
   }
 }

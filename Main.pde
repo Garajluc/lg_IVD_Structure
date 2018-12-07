@@ -59,6 +59,7 @@ void setup() {
     airConditionButton[i] = new Button(nColX*9+nBorder+(i*40)+10, nColY*6+nColY*2-5, 40, 35, i, 1);
     if (i == carriageConditionButtonArrIndex) airConditionButton[i].toggle = true;
   }
+
   /*-----------------------------------End Setup-----------------------------------*/
 }
 
@@ -105,8 +106,12 @@ void draw() {
     soundIsPlaying = false;
   }
   //}
-  
+
+
   waves.display();
+  if (mainDisplay.mainDisplayButton[1].initColor == mainDisplay.mainDisplayButton[0].clickedColor) {
+    mainDisplay.sphere.display();
+  }
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
 
