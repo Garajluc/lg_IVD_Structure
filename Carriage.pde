@@ -2,6 +2,9 @@ class Carriage {
   int x, y, w, h;
   PImage carriage;
 
+  float yoffUp = 20;
+  float yoffDown = 20;
+
   Carriage(int tx, int ty, int tw, int th) {
     x = tx;
     y = ty;
@@ -46,5 +49,28 @@ class Carriage {
       fill(colors[3]);
       ellipse(x+nColX*2+30, y+30, 5, 5);
     }
+
+    if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
+      if (yoffUp < 20) {
+        yoffUp += 0.2;
+      }
+      if (yoffDown > 20) {
+        yoffDown -= 0.2;
+      }
+      stroke(colors[0]);
+      fill(colors[0]);
+    } else if (controlPanel.lightDoorButton[1].initColor == controlPanel.lightDoorButton[1].clickedColor) {
+      if (yoffUp > 5) {
+        yoffUp -= 0.2;
+      }
+      if (yoffDown < 35) {
+        yoffDown += 0.2;
+      }
+      stroke(colors[2]);
+      fill(colors[2]);
+    }
+
+    ellipse(x+nColX*2, y+yoffUp, 5, 5);
+    ellipse(x+nColX*2, y+yoffDown, 5, 5);
   }
 }
