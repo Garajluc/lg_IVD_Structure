@@ -19,13 +19,14 @@ class MainDisplayUI {
   Frame mainDisplayBottom;
   Earthquake earthquake;
   Sphere sphere;
+  //Surveillance surveillance;
   ScrollingText scrollingText;
   Slider[] sliderRotation = new Slider[2];
 
   Button[] mainDisplayButton = new Button[3];
 
   /*-----------------------------------Start Constructor-----------------------------------*/
-  MainDisplayUI() {
+  MainDisplayUI(PApplet pa) {
 
     mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
     mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);
@@ -74,18 +75,16 @@ class MainDisplayUI {
       for (int i = 0; i < sliderRotation.length; i++) {
         sliderRotation[i].display(2, 2);
         sliderRotation[i].horisontalSlider(0);
+        textSize(10);
+        fill(colors[0]);
+        float degreesX = map(sphere.angleX, 0, 5, 360, 0);
+        float degreesY = map(sphere.angleY, 0, 5, 360, 0);
+        text("X: " + int(nf(degreesX,0,0)) + "deg", nColX*2+60, nColY*2);
+        text("Y: " + int(nf(degreesY,0,0)) + "deg", nColX*2+60, nColY*2 +20);
       }
     } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
+      //surveillance.display();
     }
-
-    //// lines over mouse on main display
-    //if (mouseX >  x && 
-    //  mouseX <  x+w && 
-    //  mouseY > y && mouseY < y+nColY*3+40) {
-    //  imageMode(CENTER);
-    //  image(mouse, mouseX, mouseY);
-    //  imageMode(CORNER);
-    //}
 
     mainDisplayHeader.display();
     mainDisplayHeader.title("Main Display");
@@ -93,19 +92,15 @@ class MainDisplayUI {
 
 
 
-    if (mouseX >  0 && 
-      mouseX <  100 && 
-      mouseY > 0 && mouseY < 100) { // if I click Edinburgh
+    if (mouseX >  nColX*6+nBorder+70 && 
+      mouseX <  nColX*6+nBorder+70 +  nColX*3-90 && 
+      mouseY > nColY+nColY*1+90 && mouseY < nColY+nColY*1+90 + nColY*1+10) { // if I click Edinburgh
       if (mousePressed && !mouseDown) {
         pressed = !pressed;
         mouseDown = true;
       } else if (!mousePressed) {
         mouseDown = false;
       }
-    }
-    if (pressed) {
-      fill(colors[0]);
-      rect(10, 10, 200, 20);
     }
   }
   /*-----------------------------------End Method-----------------------------------*/

@@ -10,19 +10,18 @@ class Sphere {
   }
 
   void display() {
-    translate(nColX*6-20, -150);
-    //if (mousePressed) {
-      angleY = map(mainDisplay.sliderRotation[0].currentValue,0,1,0,360);
-      angleX = map(mainDisplay.sliderRotation[1].currentValue,0,1,0,360);
-    //}
+    translate(nColX*6-20, -140);
+
+    angleY = map(mainDisplay.sliderRotation[0].currentValue, 0, 1, 0, 5);
+    angleX = map(mainDisplay.sliderRotation[1].currentValue, 0, 1, 0, 5);
     rotateX(angleY);
     rotateY(angleX);
-
+    
     fill(0);
     stroke(colors[0]);
     strokeWeight(1);
     sphereDetail(40);
-    float r = 170;
+    float r = 190;
     sphere(r);
 
     for (TableRow row : table.rows()) {

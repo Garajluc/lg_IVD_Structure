@@ -1,5 +1,11 @@
-/*-----------------------------------Start Objects-----------------------------------*/
+/*-----------------------------------Libraries-----------------------------------*/
 import processing.sound.*;
+import processing.video.*;
+/*-----------------------------------Start Objects-----------------------------------*/
+Movie trainTimelaps;
+Movie insideTrain;
+
+//Movie shark;
 SoundFile train;
 WelcomeScreen welcomeScreen;
 Header header;
@@ -28,14 +34,20 @@ int mainDisplayButtonArr = 0; // index of the main display buttons
 int controlPanelButtonArr = 0; // index of control panel
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
-
+// Sound
 boolean soundIsPlaying = false;
+// Video
+
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720, P3D);
   pixelDensity(displayDensity());
   smooth(2);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
+
+  trainTimelaps = new Movie(this, "video/Train_Timelapse.mov");
+  insideTrain = new Movie(this, "video/insideTrain.mp4"); 
+  //shark = new Movie(this, "video/shark.mp4"); 
 
   /*------Initiate the objects------*/
   welcomeScreen = new WelcomeScreen();
@@ -45,7 +57,7 @@ void setup() {
   queryPanel = new QueryPanel();
   controlPanel = new ControlPanelUI(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
   engineStatus = new EngineStatusUI();
-  mainDisplay = new MainDisplayUI();
+  mainDisplay = new MainDisplayUI(this);
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   train = new SoundFile(this, "train.wav");
@@ -75,14 +87,40 @@ void draw() {
   /*Background*/
   pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
   pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
-
   /*------Objects------*/
   header.display(colorModeSlider.a);
   radar.display();
   audioVisualiser.display();
   queryPanel.display();
   engineStatus.display();
+  if (mainDisplay.mainDisplayButton[2].initColor == mainDisplay.mainDisplayButton[2].clickedColor) {
+    //image(shark, nColX*2+nBorder, nColY+nColY*1+40, nColX*3+50, nColY*1+40);
+    //shark.loop();
+
+    if (pressed) {
+      image(trainTimelaps, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+      if (controlPanel.increment > 0) {
+        trainTimelaps.loop();
+        trainTimelaps.speed(0.5);
+      } else if (controlPanel.increment <= 0) {
+        trainTimelaps.pause();
+      }
+      image(insideTrain, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+      insideTrain.loop();
+    } else if (!pressed) {      
+      image(insideTrain, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+      insideTrain.loop();
+      image(trainTimelaps, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+      if (controlPanel.increment > 0) {
+        trainTimelaps.loop();
+        trainTimelaps.speed(0.5);
+      } else if (controlPanel.increment <= 0) {
+        trainTimelaps.pause();
+      }
+    }
+  }
   mainDisplay.display();
+
   controlPanel.display();
   carriage.display();
   highSpeed.highSpeed();
@@ -107,9 +145,8 @@ void draw() {
   }
   //}
 
-
   waves.display();
-  if (mainDisplay.mainDisplayButton[1].initColor == mainDisplay.mainDisplayButton[0].clickedColor) {
+  if (mainDisplay.mainDisplayButton[1].initColor == mainDisplay.mainDisplayButton[1].clickedColor) {
     mainDisplay.sphere.display();
   }
   /*-----------------------------------End Draw Loop-----------------------------------*/
@@ -124,7 +161,9 @@ void mousePressed() {
   for (int i = 0; i < controlPanel.lightDoorButton.length; i++) {
     controlPanel.lightDoorButton[i].toggleBtn();
   }
-  /*Switch Image Main Display*/
-  //mainDisplay.switchBottomDisplay();
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
 /*----------------------------------End Mouse Functions----------------------------------*/
