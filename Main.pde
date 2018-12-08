@@ -97,7 +97,7 @@ void draw() {
     //image(shark, nColX*2+nBorder, nColY+nColY*1+40, nColX*3+50, nColY*1+40);
     //shark.loop();
 
-    if (pressed) {
+    if (!pressed) {
       image(trainTimelaps, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
       if (controlPanel.increment > 0) {
         trainTimelaps.loop();
@@ -107,7 +107,7 @@ void draw() {
       }
       image(insideTrain, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
       insideTrain.loop();
-    } else if (!pressed) {      
+    } else if (pressed) {      
       image(insideTrain, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
       insideTrain.loop();
       image(trainTimelaps, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
