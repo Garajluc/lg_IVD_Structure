@@ -17,7 +17,6 @@ class ControlPanelUI {
   PImage arrowYellow;
   PImage arrowBlue;
   PImage arrowSpeedRadialBar;
-
   /*show weather condition*/
   boolean pressed = false; 
   boolean mouseDown;

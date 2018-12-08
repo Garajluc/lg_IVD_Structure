@@ -46,8 +46,6 @@ class CarriageUI {
       text(int(nf((1-carriageCondition[i].lightSlider.currentValue)*100, 0, 0)), nBorder+nColX*9+128, nColY+75+i*50);
       textAlign(LEFT);
     }
-    
-  
   }
   /*-----------------------------------End Method-----------------------------------*/
 }

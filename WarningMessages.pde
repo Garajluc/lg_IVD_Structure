@@ -1,11 +1,13 @@
 class WarningMessages {
+  /*-----------------------------------Variables-----------------------------------*/
   float fade = 5;
   float fadeTargetValue = 0;
   float fadeCurrentValue = 255;
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   WarningMessages() {
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void approachStation() {
     /*Display the alert - approaching the train station*/
     if (controlPanel.cv > nBorder+nColX*2+135 && controlPanel.cv < nBorder+nColX*2+190
@@ -39,7 +41,7 @@ class WarningMessages {
       fill(colors[2]);
       textSize(14);
       text("!- DOORS OPEN -!", nColX*9+45, nColY+25);
-    } 
+    }
   }
 
   void carriageCondition() {
@@ -54,9 +56,9 @@ class WarningMessages {
       }
     }
   }
-  
+
   void highSpeed() {
-    if(controlPanel.radialProgressBar.currentValue > 0.6) {
+    if (controlPanel.radialProgressBar.currentValue > 0.6) {
       if (controlPanel.increment > 0) {
         if (fadeCurrentValue ==  0) {
           fadeTargetValue = 255;
@@ -70,8 +72,8 @@ class WarningMessages {
           fadeCurrentValue -= fade;
           println(fadeCurrentValue);
         }
-        
-        fill(colors[3],100);
+
+        fill(colors[3], 100);
         rect(nColX*4, nColY*2, 400, 100);
         textSize(20);
         fill(colors[2], fadeCurrentValue);
@@ -85,4 +87,5 @@ class WarningMessages {
       }
     }
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

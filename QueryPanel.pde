@@ -1,12 +1,13 @@
 class QueryPanel {
-  Button[] queryButton = new Button[20];
-  Frame frame;
+  /*-----------------------------------Variables-----------------------------------*/
   int x; // x position of buttons
   int y; // y position of button
   boolean audioOn = false;
-
+  /*-----------------------------------Objects-----------------------------------*/
+  Button[] queryButton = new Button[20];
+  Frame frame;
   PImage portrait;
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   QueryPanel() {
     portrait = loadImage("portrait.png");
     frame = new Frame(nBorder, 3*nColY+nColY/2, nColX*2, nColY*2+40);
@@ -23,7 +24,8 @@ class QueryPanel {
       queryButton[i] = new Button(x, y, 20, 20, i, 0);
     }
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     for (int i = 0; i < queryButton.length; i++) {
       queryButton[i].display(0, 0);
@@ -67,4 +69,5 @@ class QueryPanel {
       audioOn = false;
     }
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

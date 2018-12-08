@@ -1,4 +1,5 @@
 class RadialProgressBar {
+  /*-----------------------------------Variables-----------------------------------*/
   int x; //xpos
   int y; //ypos
   int d; // diameter
@@ -7,16 +8,17 @@ class RadialProgressBar {
   float colorMode;
   float increment = 0.0004;
   float currentValue;
+  /*-----------------------------------Objects-----------------------------------*/
   PImage speedmeter;
-
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   RadialProgressBar(int tx, int ty, int td) {
     x = tx;
     y = ty;
     d = td;
     speedmeter = loadImage("layout/speedmeter.png");
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display(float colorMode, float targetValue) {
     if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
 
@@ -71,4 +73,5 @@ class RadialProgressBar {
     image (speedmeter, x, y);
     imageMode(CORNER);
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

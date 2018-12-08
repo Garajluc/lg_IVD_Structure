@@ -1,21 +1,21 @@
 /*Grid/Structure of objects*/
 class Frame {
-  // Global variables
+  /*-----------------------------------Variables-----------------------------------*/
   int a; // x position
   int b; // y position
   int c; // width
   int d; // height
   float colorMode;
 
-  // Constructor
+  /*-----------------------------------Start Constructor-----------------------------------*/
   Frame(int ta, int tb, int tc, int td) {
     a = ta;
     b = tb;
     c = tc;
     d = td;
   }
-
-  // Methods
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     stroke(colors[0]); // color of the outlines
     strokeWeight(1);
@@ -32,4 +32,5 @@ class Frame {
     text(text, a+10, b+30);
     textSize(10);
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

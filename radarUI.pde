@@ -15,7 +15,6 @@ class radarUI {
   float xoff = 0.0; // arrow rotation: increasing value
   float an = 0; // line rotation: increasing value
   float n;
-  
   float xx;
 
   /*-----------------------------------Start Constructor-----------------------------------*/

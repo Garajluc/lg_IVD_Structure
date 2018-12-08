@@ -1,10 +1,10 @@
 class Carriage {
+  /*-----------------------------------Variables-----------------------------------*/
   int x, y, w, h;
   PImage carriage;
-
   float yoffUp = 20;
   float yoffDown = 20;
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   Carriage(int tx, int ty, int tw, int th) {
     x = tx;
     y = ty;
@@ -12,13 +12,14 @@ class Carriage {
     h = th;
     carriage = loadImage("layout/carriage.png");
   }
+  /*-----------------------------------End Constructor-----------------------------------*/
 
+  /*-----------------------------------Start Methods-----------------------------------*/
   void display() {
     image(carriage, x+140, y);
     stroke(colors[0]);
     line(x+nColX*2, nColY+nColY/2, x+nColX*2, nColY*6-20);
     line(x+nColX*2+5, nColY+nColY/2, x+nColX*2+5, nColY*6-20);
-    // tuto potrebujem nejaku vec ako su tie auticka aby som mala pohyblive ciary
     info();
   }
 
@@ -73,4 +74,5 @@ class Carriage {
     ellipse(x+nColX*2, y+yoffUp, 5, 5);
     ellipse(x+nColX*2, y+yoffDown, 5, 5);
   }
+  /*-----------------------------------End Methods-----------------------------------*/
 }

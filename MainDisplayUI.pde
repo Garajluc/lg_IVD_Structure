@@ -1,14 +1,15 @@
+/*-----------------------------------Objects-----------------------------------*/
 PImage camera;
 PImage location;
 PImage wind;
 PImage wave;
 PImage text;
 PImage flow;
+PImage mouse;
+/*-----------------------------------Variables-----------------------------------*/
 int x = nColX*2+nBorder;
 int y = nColY;
 int w = nColX*7;
-PImage mouse;
-
 boolean pressed = true;
 boolean mouseDown = false;
 
@@ -19,10 +20,8 @@ class MainDisplayUI {
   Frame mainDisplayBottom;
   Earthquake earthquake;
   Sphere sphere;
-  //Surveillance surveillance;
   ScrollingText scrollingText;
   Slider[] sliderRotation = new Slider[2];
-
   Button[] mainDisplayButton = new Button[3];
 
   /*-----------------------------------Start Constructor-----------------------------------*/
@@ -50,15 +49,6 @@ class MainDisplayUI {
 
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
-    /*Main Display Buttons*/
-    for (int i = 0; i < mainDisplayButton.length; i++) {
-      if (mainDisplayButtonArr != i)  mainDisplayButton[i].toggle = false;
-      mainDisplayButton[i].display(4, 8);
-      mainDisplayButton[i].hover();
-      mainDisplayButton[i].pressed();
-    }
-
-
     /*Switch Image Main Display*/
     if (mainDisplayButton[0].initColor == mainDisplayButton[0].clickedColor) {
       earthquake.display();
@@ -79,18 +69,44 @@ class MainDisplayUI {
         fill(colors[0]);
         float degreesX = map(sphere.angleX, 0, 5, 360, 0);
         float degreesY = map(sphere.angleY, 0, 5, 360, 0);
-        text("X: " + int(nf(degreesX,0,0)) + "deg", nColX*2+60, nColY*2);
-        text("Y: " + int(nf(degreesY,0,0)) + "deg", nColX*2+60, nColY*2 +20);
+        text("X: " + int(nf(degreesX, 0, 0)) + "deg", nColX*2+60, nColY*2);
+        text("Y: " + int(nf(degreesY, 0, 0)) + "deg", nColX*2+60, nColY*2 +20);
       }
-    } else if (mainDisplayButton[2].initColor == mainDisplayButton[0].clickedColor) {
-      //surveillance.display();
+    } else if (mainDisplay.mainDisplayButton[2].initColor == mainDisplay.mainDisplayButton[2].clickedColor) {
+      if (!pressed) {
+        image(trainTimelaps, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+        if (controlPanel.increment > 0) {
+          trainTimelaps.loop();
+          trainTimelaps.speed(0.5);
+        } else if (controlPanel.increment <= 0) {
+          trainTimelaps.pause();
+        }
+        image(insideTrain, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+        insideTrain.loop();
+      } else if (pressed) {      
+        image(insideTrain, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+        insideTrain.loop();
+        image(trainTimelaps, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+        if (controlPanel.increment > 0) {
+          trainTimelaps.loop();
+          trainTimelaps.speed(0.5);
+        } else if (controlPanel.increment <= 0) {
+          trainTimelaps.pause();
+        }
+      }
+    }
+
+    /*Main Display Buttons*/
+    for (int i = 0; i < mainDisplayButton.length; i++) {
+      if (mainDisplayButtonArr != i)  mainDisplayButton[i].toggle = false;
+      mainDisplayButton[i].display(4, 8);
+      mainDisplayButton[i].hover();
+      mainDisplayButton[i].pressed();
     }
 
     mainDisplayHeader.display();
     mainDisplayHeader.title("Main Display");
     mainDiplayUpFrame.display();
-
-
 
     if (mouseX >  nColX*6+nBorder+70 && 
       mouseX <  nColX*6+nBorder+70 +  nColX*3-90 && 

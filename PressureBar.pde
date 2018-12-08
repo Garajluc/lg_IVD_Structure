@@ -1,12 +1,12 @@
 class PressureBar {
+  /*-----------------------------------Objects-----------------------------------*/
   PressureBarRectangles[] pressureBarRectangles = new  PressureBarRectangles[10];
-
-
+/*-----------------------------------Variables-----------------------------------*/
   int x, y;
   float radialProgressBarCurrentVal;
   int relativeSpeed;
   float relationNumber;
-
+/*-----------------------------------Start Constructor-----------------------------------*/
   PressureBar(int tx, int ty, int trelativSpeed) {
     x = tx;
     y = ty;
@@ -16,7 +16,8 @@ class PressureBar {
       pressureBarRectangles[i] = new  PressureBarRectangles(x, i*10+y);
     }
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display(float radialProgressBarCurrentVal, float xfuel, float xend) {    
     /*Pressure Progress Bar_One - follow the speed value*/
     for (int i = 0; i < pressureBarRectangles.length; i++) {
@@ -38,4 +39,5 @@ class PressureBar {
     stroke(colors[0]);
     rect(x-3, y-3, 17, 102); // outline of slider
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

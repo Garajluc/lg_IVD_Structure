@@ -1,7 +1,6 @@
 class CarriageConditionUI {
   /*-----------------------------------Objects-----------------------------------*/
   Frame carriageConditionFrame;
-
   Slider[] airConditionSliderLeft = new Slider[4];
   Slider[] airConditionSliderRight = new Slider[4];
   Slider heatSlider;
@@ -20,7 +19,6 @@ class CarriageConditionUI {
     h = th;
 
     carriageConditionFrame = new Frame(nColX*9+nBorder, nColY*6, nColX*3, nColY*2+40);
-
 
     /*--------------Sliders--------------*/
     for (int i = 0; i < airConditionSliderLeft.length; i++) {

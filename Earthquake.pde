@@ -1,26 +1,27 @@
+/*-----------------------------------Variables-----------------------------------*/
 int mapx = nBorder+nColX*2+50;
 int mapy = nColY;
 int mapw = nColX*6;
 int maph = nColY*3+40;
 String szquaketext = "";
-
 float fmagtop = 0;
 float fmagbottom = 8;
 
-
 class Earthquake {
+  /*-----------------------------------Objects-----------------------------------*/
   Table table;
   quake[] arQuakes;
   PImage quakemap;
-
   Slider sliderMagFilterTop;
   Slider sliderMagFilterBottom;
+  /*-----------------------------------Start Constructor-----------------------------------*/
   Earthquake() {
     populateArrayFromTable();
     quakemap = loadImage("jr_worldmap.png");
     sliderMagFilterTop = new Slider(nColX*2+50, nColY+10, 100, 9, 0.4);
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     image(quakemap, mapx, mapy, mapw, maph);
     noStroke();
@@ -50,38 +51,5 @@ class Earthquake {
       nRow++;
     }
   }
-}
-
-class quake {
-  float fy;//lat
-  float fx;//long
-  float fmag; 
-  float flat;
-  float flong;
-  String szloc;
-  boolean bhover = false;
-
-  quake(float tlat, float tlong, String tsloc, float tfmag) {
-
-    flat = tlat;
-    flong = tlong;
-    fmag = tfmag;
-    szloc = tsloc;
-    fy = map(flat, 90, -90, mapy, mapy + maph);
-    fx = map(flong, -180, 180, mapx, mapx + mapw);
-  }
-
-  void display() {
-    if (bhover) { 
-      szquaketext = szloc;
-      fill(colors[2]);
-    } else fill(colors[0], map(fmag, 0, 8, 150, 100));
-    ellipse(fx, fy, 3*fmag, 3*fmag);
-  }
-
-  void checkMouse() {
-    if (dist(mouseX, mouseY, fx, fy) < fmag/2) {
-      bhover = true;
-    } else bhover = false;
-  }
+  /*-----------------------------------End Method-----------------------------------*/
 }

@@ -1,20 +1,19 @@
 class Waves {
-
+  /*-----------------------------------Variables-----------------------------------*/
   int cols, rows;
   int scl = 12;
   int w = 570;
   int h = 150;
-
   float flying = 0;
-
   float[][] terrain;
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   Waves() {
     cols = w / scl;
     rows = h/ scl;
     terrain = new float[cols][rows];
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     if (controlPanel.increment > 0) {
       flying -= controlPanel.increment*0.3;
@@ -32,14 +31,11 @@ class Waves {
       yoff += 0.1;
     }
 
-
-
     noFill();
     stroke(colors[0]);
 
     translate(325, 395);
     rotateX(PI/2.5);
-
 
     for (int y = 0; y < rows-1; y++) {
       beginShape(TRIANGLE_STRIP);
@@ -49,8 +45,9 @@ class Waves {
       }
       endShape();
     }
-    
+
     translate(-325, -395);
     rotateX(-(PI/2.5));
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

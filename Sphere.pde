@@ -1,14 +1,16 @@
 class Sphere {
+   /*-----------------------------------Variables-----------------------------------*/
   float angle;  
-  Table table;
-
   float angleX;
   float angleY;
-
+ /*-----------------------------------Objects-----------------------------------*/
+  Table table;
+ /*-----------------------------------Start Constructor-----------------------------------*/
   Sphere() {
     table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv", "header");
   }
-
+ /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     translate(nColX*6-20, -140);
 
@@ -16,7 +18,7 @@ class Sphere {
     angleX = map(mainDisplay.sliderRotation[1].currentValue, 0, 1, 0, 5);
     rotateX(angleY);
     rotateY(angleX);
-    
+
     fill(0);
     stroke(colors[0]);
     strokeWeight(1);
@@ -35,7 +37,7 @@ class Sphere {
       float z = r * cos(theta);
       float alpha = map(mag, 0, 7, 150, 255);
       pushMatrix();
-      if (dist(x,y,mouseX,mouseY) < 10) {
+      if (dist(x, y, mouseX, mouseY) < 10) {
         println("nieco" + lat);
       }
       stroke(colors[2], alpha);
@@ -44,4 +46,5 @@ class Sphere {
       popMatrix();
     }
   }
+   /*-----------------------------------End Method-----------------------------------*/
 }

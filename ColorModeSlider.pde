@@ -1,4 +1,5 @@
 class ColorModeSlider {
+  /*-----------------------------------Variables-----------------------------------*/
   /*moving triangle*/
   float targetValue;
   /*background rectangle*/
@@ -9,9 +10,9 @@ class ColorModeSlider {
   float mRectY;
   float increment = 2;
   float currentValue;
-
+  /*-----------------------------------Objects-----------------------------------*/
   PImage arrow;
-
+/*-----------------------------------Start Constructo-----------------------------------*/
   ColorModeSlider(int tx, int ty, int tw, int th) {
     x = tx;
     y = ty;
@@ -21,7 +22,8 @@ class ColorModeSlider {
     currentValue=x;
     targetValue=x;
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     image(arrow, currentValue, y-15);
 
@@ -55,4 +57,5 @@ class ColorModeSlider {
       currentValue = currentValue - increment;
     }
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }

@@ -1,21 +1,22 @@
 class WelcomeScreen {
+  /*-----------------------------------Variables-----------------------------------*/
   float x =0;
   float xa;
   float ya;
   float easing = 0.05;
-
   boolean start = false;
   boolean hoverOne = false;
   boolean hoverTwo = false;
   boolean hoverThree = false;
   boolean hoverFour = false;
-
+  /*-----------------------------------Objects-----------------------------------*/
   PImage portrait;
-
+  /*-----------------------------------Start Constructor-----------------------------------*/
   WelcomeScreen() {
     portrait = loadImage("portrait.png");
   }
-
+  /*-----------------------------------End Constructor-----------------------------------*/
+  /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     if (!start) {
       background(0);
@@ -70,7 +71,6 @@ class WelcomeScreen {
         text("dskj^% u839h u7t73t439 *()", nBorder+10, 405);
       }
 
-
       if (hoverOne && hoverTwo && hoverThree) {
         if (x < 10) {
           x +=0.1;
@@ -82,4 +82,5 @@ class WelcomeScreen {
       }
     }
   }
+  /*-----------------------------------End Method-----------------------------------*/
 }
