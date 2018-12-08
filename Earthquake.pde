@@ -4,30 +4,37 @@ int mapw = nColX*6;
 int maph = nColY*3+40;
 String szquaketext = "";
 
+float fmagtop = 0;
+float fmagbottom = 8;
+
+
 class Earthquake {
   Table table;
   quake[] arQuakes;
   PImage quakemap;
 
+  Slider sliderMagFilterTop;
+  Slider sliderMagFilterBottom;
   Earthquake() {
     populateArrayFromTable();
     quakemap = loadImage("jr_worldmap.png");
+    sliderMagFilterTop = new Slider(nColX*2+50, nColY+10, 100, 9, 0.4);
   }
 
   void display() {
-    float fmagcheck = 5;
     image(quakemap, mapx, mapy, mapw, maph);
     noStroke();
-    for (int i = 0; i < arQuakes.length; i++) {
-      arQuakes[i].checkMouse();
-      if (!arQuakes[i].bhover && arQuakes[i].fmag > fmagcheck ) arQuakes[i].display();
-    }
-    for (int i = 0; i < arQuakes.length; i++) {
-      arQuakes[i].checkMouse();
-      if (arQuakes[i].bhover && arQuakes[i].fmag > fmagcheck) arQuakes[i].display();
-    }
+    sliderMagFilterTop.display(2, 2);
+    sliderMagFilterTop.horisontalSlider(0);
     fill(colors[2]);
-    text(szquaketext, nColX*2+55, nColY+20);
+    text(szquaketext, nColX*2+55, nColY*4+10);
+    for (int i = 0; i < arQuakes.length; i++) {
+      if (arQuakes[i].fmag < fmagtop) {
+        arQuakes[i].checkMouse();
+        arQuakes[i].display();
+      }
+    }
+    fmagtop = map(sliderMagFilterTop.currentValue, 1, 0, 0, 8);
   }
 
   void populateArrayFromTable() {
@@ -54,7 +61,6 @@ class quake {
   String szloc;
   boolean bhover = false;
 
-
   quake(float tlat, float tlong, String tsloc, float tfmag) {
 
     flat = tlat;
@@ -70,11 +76,11 @@ class quake {
       szquaketext = szloc;
       fill(colors[2]);
     } else fill(colors[0], map(fmag, 0, 8, 150, 100));
-    ellipse(fx, fy, 3*fmag, 3*fmag); 
+    ellipse(fx, fy, 3*fmag, 3*fmag);
   }
 
   void checkMouse() {
-    if (dist(mouseX, mouseY, fx, fy) < 5) {
+    if (dist(mouseX, mouseY, fx, fy) < fmag/2) {
       bhover = true;
     } else bhover = false;
   }
