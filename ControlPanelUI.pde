@@ -108,14 +108,14 @@ class ControlPanelUI {
       && speedModeButton[2].initColor != speedModeButton[2].clickedColor) {
       lightDoorButton[1].hover();
     }
-    fill(0);
+    fill(0+ colorModeSlider.a);
     stroke(colors[0]);
     if (lightDoorButton[0].initColor == lightDoorButton[0].clickedColor) {
       fill(colors[2]);
       stroke(colors[2]);
     }
 
-    ellipse(x+nColX*3+70, y+33, 5, 5);
+    ellipse(x+nColX*3+60, y+33, 5, 5);
 
     /*Button text*/
     fill(colors[1]);

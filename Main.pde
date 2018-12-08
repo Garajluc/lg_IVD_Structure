@@ -4,8 +4,6 @@ import processing.video.*;
 /*-----------------------------------Start Objects-----------------------------------*/
 Movie trainTimelaps;
 Movie insideTrain;
-
-//Movie shark;
 SoundFile train;
 WelcomeScreen welcomeScreen;
 Header header;
@@ -36,8 +34,6 @@ int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color pa
 PFont pressStart;
 // Sound
 boolean soundIsPlaying = false;
-// Video
-
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
   size(1280, 720, P3D);
@@ -46,8 +42,7 @@ void setup() {
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
 
   trainTimelaps = new Movie(this, "video/Train_Timelapse.mov");
-  insideTrain = new Movie(this, "video/insideTrain.mp4"); 
-  //shark = new Movie(this, "video/shark.mp4"); 
+  insideTrain = new Movie(this, "video/insideTrain.mp4");
 
   /*------Initiate the objects------*/
   welcomeScreen = new WelcomeScreen();
@@ -78,76 +73,72 @@ void setup() {
 /*-----------------------------------Start Draw Loop-----------------------------------*/
 void draw() {
   /*Welcome Screen*/
-  //welcomeScreen.display();
+  welcomeScreen.display();
   /*Draw after the code was passed*/
-  //if (welcomeScreen.start) {
-  background(0 + colorModeSlider.a);
-  fill(colors[4]);
+  if (welcomeScreen.start) {
+    background(0 + colorModeSlider.a);
+    fill(colors[4]);
 
-  /*Background*/
-  pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
-  pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
-  /*------Objects------*/
-  header.display(colorModeSlider.a);
-  radar.display();
-  audioVisualiser.display();
-  queryPanel.display();
-  engineStatus.display();
-  if (mainDisplay.mainDisplayButton[2].initColor == mainDisplay.mainDisplayButton[2].clickedColor) {
-    //image(shark, nColX*2+nBorder, nColY+nColY*1+40, nColX*3+50, nColY*1+40);
-    //shark.loop();
-
-    if (!pressed) {
-      image(trainTimelaps, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
-      if (controlPanel.increment > 0) {
-        trainTimelaps.loop();
-        trainTimelaps.speed(0.5);
-      } else if (controlPanel.increment <= 0) {
-        trainTimelaps.pause();
-      }
-      image(insideTrain, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
-      insideTrain.loop();
-    } else if (pressed) {      
-      image(insideTrain, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
-      insideTrain.loop();
-      image(trainTimelaps, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
-      if (controlPanel.increment > 0) {
-        trainTimelaps.loop();
-        trainTimelaps.speed(0.5);
-      } else if (controlPanel.increment <= 0) {
-        trainTimelaps.pause();
+    /*Background*/
+    pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
+    pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
+    /*------Objects------*/
+    header.display(colorModeSlider.a);
+    radar.display();
+    //audioVisualiser.display();
+    queryPanel.display();
+    engineStatus.display();
+    if (mainDisplay.mainDisplayButton[2].initColor == mainDisplay.mainDisplayButton[2].clickedColor) {
+      if (!pressed) {
+        image(trainTimelaps, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+        if (controlPanel.increment > 0) {
+          trainTimelaps.loop();
+          trainTimelaps.speed(0.5);
+        } else if (controlPanel.increment <= 0) {
+          trainTimelaps.pause();
+        }
+        image(insideTrain, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+        insideTrain.loop();
+      } else if (pressed) {      
+        image(insideTrain, nColX*2+nBorder, nColY, nColX*7, nColY*3+40); // full screen
+        insideTrain.loop();
+        image(trainTimelaps, nColX*6+nBorder+70, nColY+nColY*1+90, nColX*3-90, nColY*1+10);
+        if (controlPanel.increment > 0) {
+          trainTimelaps.loop();
+          trainTimelaps.speed(0.5);
+        } else if (controlPanel.increment <= 0) {
+          trainTimelaps.pause();
+        }
       }
     }
-  }
-  mainDisplay.display();
+    mainDisplay.display();
 
-  controlPanel.display();
-  carriage.display();
-  highSpeed.highSpeed();
-  for (int i = 0; i < airConditionButton.length; i++) {
-    if (carriageConditionButtonArrIndex != i)  airConditionButton[i].toggle = false;
-    airConditionButton[i].display(4, 8);
-    airConditionButton[i].hover();
-    airConditionButton[i].pressed();
-  }
-  for (int i=0; i < carriageCondition.length; i++) {
-    if (carriageConditionButtonArrIndex == i) {
-      carriageCondition[i].display();
+    controlPanel.display();
+    carriage.display();
+    highSpeed.highSpeed();
+    for (int i = 0; i < airConditionButton.length; i++) {
+      if (carriageConditionButtonArrIndex != i)  airConditionButton[i].toggle = false;
+      airConditionButton[i].display(4, 8);
+      airConditionButton[i].hover();
+      airConditionButton[i].pressed();
     }
-  }
+    for (int i=0; i < carriageCondition.length; i++) {
+      if (carriageConditionButtonArrIndex == i) {
+        carriageCondition[i].display();
+      }
+    }
 
-  if (controlPanel.radialProgressBar.currentValue > 0 && !soundIsPlaying) {
-    train.loop();
-    soundIsPlaying = true;
-  } else if (controlPanel.radialProgressBar.currentValue < 0 && soundIsPlaying) {
-    train.pause();
-    soundIsPlaying = false;
-  }
-  //}
-
-  waves.display();
-  if (mainDisplay.mainDisplayButton[1].initColor == mainDisplay.mainDisplayButton[1].clickedColor) {
-    mainDisplay.sphere.display();
+    if (controlPanel.radialProgressBar.currentValue > 0 && !soundIsPlaying) {
+      train.loop();
+      soundIsPlaying = true;
+    } else if (controlPanel.radialProgressBar.currentValue < 0 && soundIsPlaying) {
+      train.pause();
+      soundIsPlaying = false;
+    }
+    waves.display();
+    if (mainDisplay.mainDisplayButton[1].initColor == mainDisplay.mainDisplayButton[1].clickedColor) {
+      mainDisplay.sphere.display();
+    }
   }
   /*-----------------------------------End Draw Loop-----------------------------------*/
 }
