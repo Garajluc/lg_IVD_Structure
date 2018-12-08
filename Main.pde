@@ -22,17 +22,14 @@ WarningMessages highSpeed;
 /*-----------------------------------End Objects-----------------------------------*/
 
 /*------Global Variables------*/
-// Layout
 int nBorder = 40; // 2*40=80
 int nColX = 100; // 12*100=1200
 int nColY = 80; // 9*80=720
-//Buttons
 int carriageConditionButtonArrIndex = 0; // index of corriage condition buttons
 int mainDisplayButtonArr = 0; // index of the main display buttons
 int controlPanelButtonArr = 0; // index of control panel
 int[] colors = {#66C8CB, #19777B, #EBE719, #000000, #FFFFFF}; // Set of color palette
 PFont pressStart;
-// Sound
 boolean soundIsPlaying = false;
 /*-----------------------------------Start Setup-----------------------------------*/
 void setup() {
@@ -40,9 +37,9 @@ void setup() {
   pixelDensity(displayDensity());
   smooth(2);
   pressStart = createFont ("font/OCR A Std Regular.ttf", 16);
-
   trainTimelaps = new Movie(this, "video/Train_Timelapse.mov");
   insideTrain = new Movie(this, "video/insideTrain.mp4");
+  train = new SoundFile(this, "train.wav");
 
   /*------Initiate the objects------*/
   welcomeScreen = new WelcomeScreen();
@@ -55,9 +52,9 @@ void setup() {
   mainDisplay = new MainDisplayUI(this);
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
-  train = new SoundFile(this, "train.wav");
   waves = new Waves();
   highSpeed = new WarningMessages();
+  /*--------------Carriage Condition Sliders--------------*/  
   for (int i = 0; i < carriageCondition.length; i++) {
     carriageCondition[i] = new CarriageConditionUI(nColX*9+nBorder, nColY*6, nColX*3, nColY*3);
   }
@@ -66,7 +63,6 @@ void setup() {
     airConditionButton[i] = new Button(nColX*9+nBorder+(i*40)+10, nColY*6+nColY*2-5, 40, 35, i, 1);
     if (i == carriageConditionButtonArrIndex) airConditionButton[i].toggle = true;
   }
-
   /*-----------------------------------End Setup-----------------------------------*/
 }
 
