@@ -74,7 +74,6 @@ class WelcomeScreen {
       if (hoverOne && hoverTwo && hoverThree) {
         if (x < 10) {
           x +=0.1;
-          println(x);
         }
         if ( x >= 10 ) {
           start = true;
