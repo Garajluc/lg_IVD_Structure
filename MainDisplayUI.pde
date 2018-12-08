@@ -25,7 +25,7 @@ class MainDisplayUI {
   Button[] mainDisplayButton = new Button[3];
 
   /*-----------------------------------Start Constructor-----------------------------------*/
-  MainDisplayUI(PApplet pa) {
+  MainDisplayUI() {
 
     mainDisplayHeader = new Frame(nColX*2+nBorder, nColY/2, nColX*7, nColY/2);
     mainDiplayUpFrame = new Frame(nColX*2+nBorder, nColY, nColX*7, nColY*3+40);

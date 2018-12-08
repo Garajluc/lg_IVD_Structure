@@ -49,7 +49,7 @@ void setup() {
   queryPanel = new QueryPanel();
   controlPanel = new ControlPanelUI(nBorder+nColX*2, nColY*6, nColX*7, nColY*2+40);
   engineStatus = new EngineStatusUI();
-  mainDisplay = new MainDisplayUI(this);
+  mainDisplay = new MainDisplayUI();
   carriage = new CarriageUI();
   colorModeSlider = new ColorModeSlider(nBorder+30, nColY*5+25, nColX*2-40, nColY/2);
   waves = new Waves();
@@ -78,7 +78,7 @@ void draw() {
     /*Background*/
     pointGrid(5, 5, 28, 28, 2, 209, 219, 189, 120);
     pointGrid(9, 6, 28, 28, 1, 252, 255, 245, 80);
-    header.display(colorModeSlider.a);
+    header.display();
     radar.display();
     queryPanel.display();
     engineStatus.display();

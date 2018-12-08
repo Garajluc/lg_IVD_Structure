@@ -18,7 +18,7 @@ class PressureBar {
   }
   /*-----------------------------------End Constructor-----------------------------------*/
   /*-----------------------------------Start Method-----------------------------------*/
-  void display(float radialProgressBarCurrentVal, float xfuel, float xend) {    
+  void display(float xfuel, float xend) {    
     /*Pressure Progress Bar_One - follow the speed value*/
     for (int i = 0; i < pressureBarRectangles.length; i++) {
       pressureBarRectangles[i].display();

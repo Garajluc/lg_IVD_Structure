@@ -17,9 +17,9 @@ class PressureUI {
   }
   /*-----------------------------------End Constructor-----------------------------------*/
   /*-----------------------------------Start Method-----------------------------------*/
-  void display(float radialProgressBarCurrentVal) {
+  void display() {
     for (int i = 0; i < pressureBar.length; i++) { // Pressure Progress Bar_One - follow the speed value
-      pressureBar[i].display(radialProgressBarCurrentVal, 297+i*303, 603+i*303);
+      pressureBar[i].display(297+i*303, 603+i*303);
       pressureBar[i].outline();
     }
     image(scale, x+nColX*2+27, y+30);

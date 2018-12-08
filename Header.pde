@@ -18,7 +18,7 @@ class Header {
   /*-----------------------------------End Constructor-----------------------------------*/
 
   /*-----------------------------------Start Method-----------------------------------*/
-  void display(float colorMode) {
+  void display() {
     headerFrame.display();
 
     noStroke();

@@ -63,8 +63,8 @@ class ControlPanelUI {
   /*-----------------------------------Start Method-----------------------------------*/
   void display() {
     controlPanelFrame.display();
-    pressureUI.display(radialProgressBar.currentValue);
-    radialProgressBar.display(colorModeSlider.a, speedSlider.targetValue);
+    pressureUI.display();
+    radialProgressBar.display(speedSlider.targetValue);
     speedSlider.display(2, 2);
     speedSlider.speedSlider();
 

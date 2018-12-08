@@ -17,8 +17,6 @@ class Waves {
   void display() {
     if (controlPanel.increment > 0) {
       flying -= controlPanel.increment*0.3;
-    } else if (controlPanel.increment < 0) {
-      flying = flying;
     }
 
     float yoff = flying;

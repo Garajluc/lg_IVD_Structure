@@ -19,7 +19,7 @@ class RadialProgressBar {
   }
   /*-----------------------------------End Constructor-----------------------------------*/
   /*-----------------------------------Start Method-----------------------------------*/
-  void display(float colorMode, float targetValue) {
+  void display(float targetValue) {
     if (controlPanel.lightDoorButton[1].initColor != controlPanel.lightDoorButton[1].clickedColor) {
 
       noStroke();
